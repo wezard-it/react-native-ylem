@@ -1,0 +1,17 @@
+export type TextType =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'title'
+  | 'title1'
+  | 'title2'
+  | 'titleBig'
+  | 'titleBold'
+  | 'p'
+  | 'p1'
+  | 'p2'
+  | 'link'
+  | 'link1'
+  | 'link2'
+  | 'link3';

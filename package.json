@@ -1,5 +1,5 @@
 {
-  "name": "react-native-ylem",
+  "name": "@wezard/react-native-ylem",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -41,8 +41,8 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/wezard-it/react-native-ylem",
-  "author": "wezard <eric.wekouri@gmail.com> (https://github.com/wezard-it)",
+  "repository": "https://github.com/wezard-it/react-native-ylem.git",
+  "author": "Westudents Tech Team <tech@westudents.it> (https://developers.westudents.it)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wezard-it/react-native-ylem/issues"
@@ -52,6 +52,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.2.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^3.0.2",
@@ -59,11 +60,22 @@
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-config-standard-react": "^13.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-standard": "^5.0.0",
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
@@ -78,7 +90,10 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": ">=2.0.0",
+    "react-native-vector-icons": "*"
   },
   "engines": {
     "node": ">= 16.0.0"
