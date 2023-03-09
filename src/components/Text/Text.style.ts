@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { theme } from '..';
+import { theme } from '../../theme';
 
 const Style = StyleSheet.create({
   h1: { ...theme.typography.h1 },

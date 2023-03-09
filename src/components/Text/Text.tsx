@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { StyleProp, Text as RNText, TextProps, TextStyle } from 'react-native';
 import type { TextDecorationLine, TextType } from 'src/global';
-import { theme } from '..';
+import { theme } from '../../theme';
 import Style from './Text.style';
 
 export interface Props extends TextProps {

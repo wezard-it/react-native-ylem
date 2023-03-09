@@ -1,4 +1,11 @@
-import type { Props as TextProps } from './Text/Text';
+import type { Props as AccordionProps } from './components/Accordion/Accordion';
+import type { Props as ActionSheetProps } from './components/ActionSheet/ActionSheet';
+import type { Props as CheckboxProps } from './components/Checbox/Checbox';
+import type { Props as IconProps } from './components/Icon/Icon';
+import type { Props as SeparatorProps } from './components/Separator/Separator';
+import type { Props as SpinnerProps } from './components/Spinner/Spinner';
+import type { Props as TextProps } from './components/Text/Text';
+import type { Props as ToggleProps } from './components/Toggle/Toggle';
 
 interface Colors {
   primary: string;
@@ -43,7 +50,7 @@ interface Shadow {
   };
 }
 
-type Spacing = {
+interface Spacing {
   xs: number;
   s: number;
   midS: number;
@@ -52,7 +59,7 @@ type Spacing = {
   l: number;
   midL: number;
   xl: number;
-};
+}
 
 type TypographyType = {
   fontFamily?: string;
@@ -88,8 +95,6 @@ interface Theme {
   typography: Typography;
 }
 
-type TextProps = TextProps;
-
 type TextType =
   | 'h1'
   | 'h2'
@@ -112,3 +117,28 @@ type TextDecorationLine =
   | 'line-through'
   | 'underline line-through'
   | undefined;
+
+interface IBottomSheetHandler {
+  openBottomSheet: () => void;
+  closeBottomSheet: () => void;
+}
+
+interface BottomSheetProps {
+  title: string | null;
+  children: React.ReactNode;
+  hasHeader: boolean;
+  header: React.ReactNode;
+  points: string[];
+  overlayOpacity: number;
+  onCloseBottomSheet?: () => void;
+}
+type ActionsheetHandler = { show: () => void };
+
+type CheckboxProps = CheckboxProps;
+type IconProps = IconProps;
+type SeparatorProps = SeparatorProps;
+type TextProps = TextProps;
+type ToggleProps = ToggleProps;
+type SpinnerProps = SpinnerProps;
+type AccordionProps = AccordionProps;
+type ActionSheetProps = ActionSheetProps;

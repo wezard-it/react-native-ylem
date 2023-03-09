@@ -13,7 +13,7 @@ type Modify<T, R> = Omit<T, keyof R> & R;
 type TypeExtended = 'h5' | 'h6' | 'h7';
 type Props = Modify<
   TextProps,
-  { type: TextType | TypeExtended; fontFamily?: string | undefined }
+  { type: TextType | TypeExtended; fontFamily: string | undefined }
 >;
 
 const Text = ({
@@ -24,7 +24,7 @@ const Text = ({
   underlined = false,
   fontFamily = undefined,
   ...rest
-}: Props) => {
+}: Partial<Props>) => {
   const extendedStyle: StyleProp<TextStyle> = useMemo(() => {
     switch (type) {
       case 'h5':

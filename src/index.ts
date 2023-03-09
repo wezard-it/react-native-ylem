@@ -1,3 +1,11 @@
+import Accordion from './components/Accordion/Accordion';
+import ActionSheet from './components/ActionSheet/ActionSheet';
+import Checkbox from './components/Checkbox/Checkbox';
+import Icon from './components/Icon/Icon';
+import Separator from './components/Separator/Separator';
+import Spinner from './components/Spinner/Spinner';
+import Text from './components/Text/Text';
+import Toggle from './components/Toggle/Toggle';
 import type {
   Colors,
   Radius,
@@ -6,13 +14,30 @@ import type {
   TypographyType,
   Typography,
   Theme,
-  TextProps,
   TextType,
+  CheckboxProps,
+  IconProps,
+  SeparatorProps,
+  TextProps,
+  ToggleProps,
+  SpinnerProps,
+  AccordionProps,
+  ActionSheetProps,
+  ActionsheetHandler,
 } from './global';
-import Text from './Text/Text';
 import { theme } from './theme';
 
-export { theme, Text };
+export {
+  theme,
+  Text,
+  Icon,
+  Separator,
+  Checkbox,
+  Toggle,
+  Spinner,
+  Accordion,
+  ActionSheet,
+};
 export {
   Colors,
   Radius,
@@ -22,5 +47,13 @@ export {
   Typography,
   Theme,
   TextProps,
+  CheckboxProps,
+  IconProps,
+  SeparatorProps,
   TextType,
+  ToggleProps,
+  SpinnerProps,
+  AccordionProps,
+  ActionSheetProps,
+  ActionsheetHandler,
 };
