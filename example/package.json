@@ -1,5 +1,6 @@
 {
-  "name": "YlemExample",
+  "name": "react-native-ylem-example",
+  "description": "Example app for @wezard/react-native-ylem",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,7 +17,8 @@
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "metro-react-native-babel-preset": "0.73.7",
-    "babel-plugin-module-resolver": "^4.1.0"
+    "@types/react": "^18.0.28",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "0.73.7"
   }
 }

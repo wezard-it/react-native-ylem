@@ -1,86 +1,68 @@
 import React, { useMemo } from 'react';
 import { StyleProp, Text as RNText, TextProps, TextStyle } from 'react-native';
+import type { TextDecorationLine, TextType } from 'src/global';
 import { theme } from '..';
 import Style from './Text.style';
 
-export type TextType =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'title-sm'
-  | 'title-md'
-  | 'title-lg'
-  | 'title-bold'
-  | 'p-sm'
-  | 'p-md'
-  | 'p-lg'
-  | 'link-sm'
-  | 'link-md'
-  | 'link-lg';
-
-interface Props extends TextProps {
+export interface Props extends TextProps {
   type: TextType;
-  children?: React.ReactNode;
   color?: string;
   style?: StyleProp<TextStyle>;
   underlined?: boolean;
   rest?: string[];
+  extendedStyle?: StyleProp<TextStyle>;
+  fontFamily?: string | undefined;
 }
 
 const Text = ({
   type = 'p-md',
-  children = null,
+  children,
   style = null,
   color = theme.colors.primary,
   underlined = false,
+  extendedStyle = null,
+  fontFamily = 'Avenir',
   ...rest
 }: React.PropsWithChildren<Partial<Props>>) => {
   const customStyle: StyleProp<TextStyle> = useMemo(() => {
-    switch (type) {
-      case 'h1':
-        return Style.h1;
-      case 'h2':
-        return Style.h2;
-      case 'h3':
-        return Style.h3;
-      case 'h4':
-        return Style.h4;
-      case 'title-sm':
-        return Style.titleSm;
-      case 'title-md':
-        return Style.titleMd;
-      case 'title-lg':
-        return Style.titleLg;
-      case 'title-bold':
-        return Style.titleBold;
-      case 'p-sm':
-        return Style.pSm;
-      case 'p-md':
-        return Style.pMd;
-      case 'p-lg':
-        return Style.pLg;
-      case 'link-sm':
-        return Style.linkSm;
-      case 'link-md':
-        return Style.linkMd;
-      case 'link-lg':
-        return Style.linkLg;
-      default:
-        return Style.pMd;
+    if (extendedStyle) {
+      return [extendedStyle, { fontFamily }];
+    } else {
+      switch (type) {
+        case 'h1':
+          return [Style.h1, { fontFamily }];
+        case 'h2':
+          return [Style.h2, { fontFamily }];
+        case 'h3':
+          return [Style.h3, { fontFamily }];
+        case 'h4':
+          return [Style.h4, { fontFamily }];
+        case 'title-sm':
+          return [Style.titleSm, { fontFamily }];
+        case 'title-md':
+          return [Style.titleMd, { fontFamily }];
+        case 'title-lg':
+          return [Style.titleLg, { fontFamily }];
+        case 'title-bold':
+          return [Style.titleBold, { fontFamily }];
+        case 'p-sm':
+          return [Style.pSm, { fontFamily }];
+        case 'p-md':
+          return [Style.pMd, { fontFamily }];
+        case 'p-lg':
+          return [Style.pLg, { fontFamily }];
+        case 'link-sm':
+          return [Style.linkSm, { fontFamily }];
+        case 'link-md':
+          return [Style.linkMd, { fontFamily }];
+        case 'link-lg':
+          return [Style.linkLg, { fontFamily }];
+      }
     }
-  }, [type]);
+  }, [type, extendedStyle, fontFamily]);
 
-  const textDecorationLine:
-    | 'none'
-    | 'underline'
-    | 'line-through'
-    | 'underline line-through'
-    | undefined = useMemo(() => {
-    if (underlined) {
-      return 'underline';
-    }
-    return 'none';
+  const textDecorationLine: TextDecorationLine = useMemo(() => {
+    return underlined ? 'underline' : 'none';
   }, [underlined]);
 
   return (

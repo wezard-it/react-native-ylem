@@ -1,6 +1,11 @@
-import radius from './shared/radius';
-import spacing from './shared/spacing';
-import typography from './shared/typography';
+import type {
+  Colors,
+  Radius,
+  Shadow,
+  Spacing,
+  Theme,
+  Typography,
+} from 'src/global';
 
 const colors: Colors = {
   primary: '#000000',
@@ -20,6 +25,27 @@ const colors: Colors = {
   neutralTextDisabled: '#ABB8CA',
   white: '#FFFFFF',
   black: '#000000',
+};
+
+const radius: Radius = {
+  xs: 2,
+  s: 4,
+  m: 6,
+  l: 8,
+  xl: 10,
+  xxl: 12,
+  infinite: 999,
+};
+
+const spacing: Spacing = {
+  xs: 5,
+  s: 10,
+  midS: 15,
+  m: 20,
+  midM: 25,
+  l: 30,
+  midL: 35,
+  xl: 40,
 };
 
 const shadows: Shadow = {
@@ -55,7 +81,97 @@ const shadows: Shadow = {
   },
 };
 
-const theme: Theme = {
+const typography: Typography = {
+  themeFont: {
+    fontFamily: 'Menlo',
+  },
+  h1: {
+    fontSize: 26,
+    fontWeight: '700',
+    lineHeight: 39,
+    color: colors.black,
+  },
+  h2: {
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 27,
+    color: colors.black,
+  },
+  h3: {
+    fontSize: 16,
+    fontWeight: '700',
+    lineHeight: 24,
+    color: colors.black,
+  },
+  h4: {
+    fontSize: 12,
+    fontWeight: '700',
+    lineHeight: 18,
+    color: colors.black,
+  },
+  titleSm: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  titleMd: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  titleLg: {
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  titleBold: {
+    fontSize: 14,
+    fontWeight: '600',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  pLg: {
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  pMd: {
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    color: colors.black,
+  },
+  pSm: {
+    fontSize: 10,
+    fontWeight: '400',
+    lineHeight: 15,
+    color: colors.black,
+  },
+  linkLg: {
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 24,
+    color: colors.black,
+  },
+  linkMd: {
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 21,
+    color: colors.black,
+  },
+  linkSm: {
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 18,
+    color: colors.black,
+  },
+};
+
+export const theme: Theme = {
   colors,
   radius,
   shadows,

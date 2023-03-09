@@ -26,8 +26,16 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'object', 'index'],
-        pathGroups: [
+        'groups': [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'object',
+          'index',
+        ],
+        'pathGroups': [
           {
             pattern: 'react',
             group: 'external',
@@ -44,9 +52,9 @@ module.exports = {
             position: 'before',
           },
         ],
-        pathGroupsExcludedImportTypes: ['react'],
+        'pathGroupsExcludedImportTypes': ['react'],
         'newlines-between': 'ignore',
-        alphabetize: {
+        'alphabetize': {
           order: 'asc',
           caseInsensitive: true,
         },
@@ -73,4 +81,4 @@ module.exports = {
   globals: {
     __DEV__: true,
   },
-}
+};
