@@ -8,108 +8,280 @@ import Animated, {
   interpolateColor,
   runOnJS,
 } from 'react-native-reanimated';
-import type { DefaultTFuncReturn } from 'i18next';
 import { noop } from 'lodash';
+import type { ButtonProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
 import Style from './Button.style';
 
-export interface Props {
-  title: string | DefaultTFuncReturn;
-  type: 'primary' | 'secondary';
-  size: 'sm' | 'md' | 'lg';
-  backgroundColor: string | null;
-  width: string;
-  outlined: boolean;
-  outlineColor: string | null;
-  soft: boolean;
-  text: boolean;
-  hasIcon: boolean;
-  icon?: string;
-  isLoading: boolean;
-  isDisabled?: boolean;
-  children?: React.ReactNode;
-  onPress?: () => void;
-}
-
 const TRANSPARENT = 'rgba(255, 255, 255, 0)';
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
 const Button = ({
-  title = 'Placeholder',
   type = 'primary',
+  title = 'Placeholder',
+  titleStyle = null,
   size = 'md',
   width = 'auto',
-  backgroundColor = null,
-  outlined = false,
-  outlineColor = null,
-  soft = false,
-  text = false,
+  height = undefined,
+  variant = 'container',
+  icon = 'sun',
   hasIcon = false,
-  icon = 'home',
+  iconPosition = 'right',
+  iconColor = undefined,
   isLoading = false,
+  spinnerColor = theme.colors.white,
   isDisabled = false,
+  disabledColor = theme.colors.neutralLight,
+  hasShadow = false,
+  shadowType = undefined,
+  shadowStyle = null,
+  animation = 'bounce',
+  bounciness = 0.98,
+  interpolationSet = [TRANSPARENT, TRANSPARENT],
+  containerStyle = null,
+  style = null,
+  fillSpace = false,
+  children,
+  custom = undefined,
   onPress = noop,
 }: Partial<Props>): JSX.Element => {
+  const [defaultWidth, setDefaultWidth] = useState(0);
+  const [derivedIconColor, setDerivedIconColor] = useState('');
+
+  // #region Container
+  const _containerStyle: StyleProp<ViewStyle> = useMemo(() => {
+    if (fillSpace) {
+      return [containerStyle, { flex: 1 }];
+    }
+    return _containerStyle;
+  }, [containerStyle, fillSpace]);
+  // #endregion
+
+  // #region Button
+  const buttonShadow = useMemo(() => {
+    if (hasShadow) {
+      if (shadowStyle) {
+        return shadowStyle;
+      } else {
+        switch (shadowType) {
+          case 'light':
+            return Style.shadowLight;
+          case 'medium':
+            return Style.shadowMedium;
+          case 'dark':
+            return Style.shadowDark;
+          case 'custom':
+            return custom?.shadow || Style.shadowLight;
+          default:
+            return null;
+        }
+      }
+    } else {
+      return null;
+    }
+  }, [hasShadow, shadowStyle, shadowType, custom]);
+
   const buttonStyle: StyleProp<ViewStyle> = useMemo(() => {
-    let style: StyleProp<ViewStyle> = Style.button;
+    let innerStyle: StyleProp<ViewStyle> = Style.button;
     if (isDisabled) {
-      if (outlined) {
-        return [Style.button, Style.disabledOutlined];
-      } else if (text) {
-        return [Style.button, Style.disabledOutlined];
+      if (type === 'custom') {
+        return [
+          Style.button,
+          { backgroundColor: custom?.disabled || disabledColor },
+        ];
+      } else {
+        switch (variant) {
+          case 'outlined':
+          case 'text':
+            return [Style.button, Style.disabledOutlined];
+          default:
+            return [Style.button, { backgroundColor: disabledColor }];
+        }
+      }
+    } else {
+      if (type === 'primary') {
+        switch (variant) {
+          case 'container':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: theme.colors.primary },
+            ];
+            break;
+          case 'outlined':
+            innerStyle = [
+              innerStyle,
+              { borderWidth: 1, borderColor: theme.colors.primary },
+            ];
+            break;
+          case 'soft':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: theme.colors.primary1 },
+            ];
+            break;
+          case 'text':
+            return innerStyle;
+          default:
+            return innerStyle;
+        }
+      } else if (type === 'secondary') {
+        switch (variant) {
+          case 'container':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: theme.colors.secondary },
+            ];
+            break;
+          case 'outlined':
+            innerStyle = [
+              innerStyle,
+              { borderWidth: 1, borderColor: theme.colors.secondary },
+            ];
+            break;
+          case 'soft':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: theme.colors.secondary1 },
+            ];
+            break;
+          case 'text':
+            return innerStyle;
+          default:
+            return innerStyle;
+        }
+      } else if (type === 'custom') {
+        switch (variant) {
+          case 'container':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: custom?.background || theme.colors.primary },
+            ];
+            break;
+          case 'outlined':
+            innerStyle = [
+              innerStyle,
+              {
+                borderWidth: 1,
+                borderColor: custom?.border || theme.colors.primary,
+              },
+            ];
+            break;
+          case 'soft':
+            innerStyle = [
+              innerStyle,
+              { backgroundColor: custom?.soft || theme.colors.primary1 },
+            ];
+            break;
+          case 'text':
+            return innerStyle;
+          default:
+            return innerStyle;
+        }
+      } else {
+        return innerStyle;
       }
     }
-    if (outlined && type === 'primary') {
-      style = [
-        style,
-        Style.outlined,
-        { borderColor: outlineColor || theme.colors.primary },
-      ];
-    }
-    if (outlined && type === 'secondary') {
-      style = [style, Style.outlined, { borderColor: theme.colors.accent }];
-    }
-    if (outlined && isDisabled) {
-      style = [
-        style,
-        Style.outlined,
-        { borderColor: theme.colors.neutralLight },
-      ];
-    }
-    if (soft && isDisabled) {
-      style = [style, Style.disabled];
-    }
-    if (width) {
-      style = [style, { width }];
-    }
-    return style;
-  }, [type, isDisabled, outlined, soft, text, width, outlineColor]);
+    return [innerStyle, { width: fillSpace ? '100%' : width }];
+  }, [isDisabled, variant, type, custom, width, fillSpace, disabledColor]);
 
   const buttonSize: StyleProp<ViewStyle> = useMemo(() => {
     switch (size) {
       case 'sm':
         return Style.buttonSm;
       case 'md':
+        return Style.buttonMd;
       case 'lg':
         return Style.buttonLg;
+      case 'custom':
+        return height ? { height } : Style.buttonMd;
       default:
-        return Style.buttonMd;
+        return null;
     }
-  }, [size]);
+  }, [size, height]);
 
-  const titleSize: StyleProp<TextStyle> = useMemo(() => {
-    switch (size) {
-      case 'sm':
-        return Style.titleSm;
-      case 'md':
-      case 'lg':
-        return Style.titleLg;
-      default:
-        return Style.titleMd;
+  const buttonLoadingStyle: StyleProp<ViewStyle> = useMemo(() => {
+    if (isLoading) {
+      return { minWidth: defaultWidth };
+    } else {
+      return { minWidth: 0 };
     }
-  }, [size]);
+  }, [isLoading, defaultWidth]);
 
+  const buttonInterpolation = useMemo(() => {
+    if (isDisabled) {
+      return interpolationSet;
+    } else {
+      if (type === 'primary') {
+        switch (variant) {
+          case 'container':
+            return [theme.colors.primary, theme.colors.primaryDark];
+          case 'outlined':
+            return [theme.colors.white, theme.colors.primary1];
+          case 'soft':
+            return [theme.colors.primary1, theme.colors.primary];
+          case 'text':
+            return [TRANSPARENT, theme.colors.primary1];
+          default:
+            return interpolationSet;
+        }
+      } else if (type === 'secondary') {
+        switch (variant) {
+          case 'container':
+            return [theme.colors.secondary, theme.colors.secondaryDark];
+          case 'outlined':
+            return [theme.colors.white, theme.colors.secondary1];
+          case 'soft':
+            return [theme.colors.secondary1, theme.colors.secondary];
+          case 'text':
+            return [TRANSPARENT, theme.colors.secondary1];
+          default:
+            return interpolationSet;
+        }
+      } else if (type === 'custom') {
+        switch (variant) {
+          case 'container':
+            return (
+              custom?.interpolation?.container || [
+                theme.colors.primary,
+                theme.colors.primary,
+              ]
+            );
+          case 'outlined':
+            return (
+              custom?.interpolation?.outlined || [
+                theme.colors.white,
+                theme.colors.primary1,
+              ]
+            );
+          case 'soft':
+            return (
+              custom?.interpolation?.soft || [
+                theme.colors.primary1,
+                theme.colors.primary,
+              ]
+            );
+          case 'text':
+            return (
+              custom?.interpolation?.text || [
+                TRANSPARENT,
+                theme.colors.primary1,
+              ]
+            );
+          default:
+            return interpolationSet;
+        }
+      } else {
+        return interpolationSet;
+      }
+    }
+  }, [interpolationSet, type, variant, isDisabled, custom]);
+
+  // #endregion
+
+  // #region Title
   const titleContainer: StyleProp<ViewStyle> = useMemo(() => {
     if (hasIcon) {
       return [Style.titleContainer, Style.titleContainerIcon];
@@ -117,135 +289,163 @@ const Button = ({
     return Style.titleContainer;
   }, [hasIcon]);
 
-  const titleColor: StyleProp<TextStyle> = useMemo(() => {
-    let style: StyleProp<TextStyle> = Style.title;
+  const titleSize: StyleProp<TextStyle> = useMemo(() => {
+    switch (size) {
+      case 'sm':
+        return Style.titleSm;
+      case 'md':
+        return Style.titleMd;
+      case 'lg':
+        return Style.titleLg;
+      case 'custom':
+        return titleStyle || Style.titleMd;
+      default:
+        return null;
+    }
+  }, [size, titleStyle]);
+
+  const _titleColor: StyleProp<TextStyle> = useMemo(() => {
     if (isDisabled) {
-      style = Style.titleDisabled;
-    }
-    if (hasIcon) {
-      style = [style, Style.titleContainerIcon];
-    }
-    return style;
-  }, [isDisabled, hasIcon]);
-
-  const spinnerColor = useMemo(() => {
-    let color = 'default';
-    if (isDisabled) {
-      return 'disabled';
-    }
-    if (type === 'primary') {
-      color = 'secondary';
-    }
-    if (type === 'secondary') {
-      color = 'default';
-    }
-    if (text && type === 'primary') {
-      color = 'primary';
-    }
-    if (text && type === 'secondary') {
-      color = 'secondary';
-    }
-    if (isLoading && type === 'primary' && !text) {
-      color = 'secondary';
-    }
-    if (isLoading && type === 'secondary' && !text) {
-      color = 'default';
-    }
-    return color;
-  }, [isDisabled, type, text, isLoading]);
-
-  // Interpolation variables
-  const buttonColorInterpolation = useMemo(() => {
-    let interpolation = [theme.colors.white, theme.colors.white];
-    if (type === 'primary') {
-      interpolation = [theme.colors.primary, theme.colors.primary];
-    }
-    if (type === 'secondary') {
-      interpolation = [theme.colors.accent, theme.colors.accent];
-    }
-    if (outlined && type === 'primary') {
-      interpolation = [TRANSPARENT, outlineColor || theme.colors.primary];
-    }
-    if (outlined && type === 'secondary') {
-      interpolation = [TRANSPARENT, theme.colors.primary];
-    }
-    if (soft && type === 'primary') {
-      interpolation = [theme.colors.gray1, theme.colors.gray];
-    }
-    if (soft && type === 'secondary') {
-      interpolation = [theme.colors.accent1, theme.colors.accent];
-    }
-    if (text && type === 'primary') {
-      interpolation = [TRANSPARENT, theme.colors.primary];
-    }
-    if (text && type === 'secondary') {
-      interpolation = [TRANSPARENT, theme.colors.accent1];
-    }
-    if (isLoading && !text && type === 'primary') {
-      interpolation = [theme.colors.primary, theme.colors.primary];
-    } else if (isLoading && text && type === 'primary') {
-      interpolation = [theme.colors.primary, theme.colors.primary];
-    }
-    if (isLoading && !text && type === 'secondary') {
-      interpolation = [theme.colors.accent, theme.colors.accent];
-    } else if (isLoading && text && type === 'secondary') {
-      interpolation = [theme.colors.accent1, theme.colors.accent1];
-    }
-    return interpolation;
-  }, [type, outlined, soft, text, isLoading, outlineColor]);
-
-  const titleColorInterpolation = useMemo(() => {
-    let interpolation = [theme.colors.white, theme.colors.white];
-    if (type === 'primary') {
-      interpolation = [theme.colors.white, theme.colors.white];
-    }
-    if (type === 'secondary') {
-      interpolation = [theme.colors.white, theme.colors.white];
-    }
-    if (outlined && type === 'primary') {
-      if (!outlineColor) {
-        interpolation = [theme.colors.primary, theme.colors.white];
+      return {
+        color:
+          type === 'custom'
+            ? custom?.title?.disabled
+            : theme.colors.neutralDark,
+      };
+    } else {
+      if (type === 'primary') {
+        switch (variant) {
+          case 'container':
+            return { color: theme.colors.white };
+          case 'outlined':
+            return { color: theme.colors.primary };
+          case 'soft':
+            return { color: theme.colors.primary };
+          case 'text':
+            return { color: theme.colors.primary };
+          default:
+            return { color: theme.colors.white };
+        }
+      } else if (type === 'secondary') {
+        switch (variant) {
+          case 'container':
+            return { color: theme.colors.white };
+          case 'outlined':
+            return { color: theme.colors.secondary };
+          case 'soft':
+            return { color: theme.colors.secondary };
+          case 'text':
+            return { color: theme.colors.secondary };
+          default:
+            return { color: theme.colors.secondary };
+        }
+      } else if (type === 'custom') {
+        switch (variant) {
+          case 'container':
+            return { color: custom?.title?.container || theme.colors.white };
+          case 'outlined':
+            return { color: custom?.title?.outlined || theme.colors.primary };
+          case 'soft':
+            return { color: custom?.title?.soft || theme.colors.primary };
+          case 'text':
+            return { color: custom?.title?.text || theme.colors.primary };
+          default:
+            return { color: theme.colors.white };
+        }
       } else {
-        interpolation = [theme.colors.white, theme.colors.primary];
+        return { color: theme.colors.white };
       }
     }
-    if (outlined && type === 'secondary') {
-      interpolation = [theme.colors.accent, theme.colors.white];
-    }
-    if (soft && type === 'primary') {
-      interpolation = [theme.colors.primary, theme.colors.white];
-    }
-    if (soft && type === 'secondary') {
-      interpolation = [theme.colors.accent, theme.colors.white];
-    }
-    if (text && type === 'primary') {
-      interpolation = [theme.colors.primary, theme.colors.primary];
-    }
-    if (text && type === 'secondary') {
-      interpolation = [theme.colors.accent, theme.colors.accent];
-    }
-    if (isLoading && !text && type === 'primary') {
-      interpolation = [theme.colors.white, theme.colors.white];
-    }
-    if (isLoading && !text && type === 'secondary') {
-      interpolation = [theme.colors.white, theme.colors.white];
-    }
+  }, [type, variant, custom, isDisabled]);
+
+  const titleInterpolation = useMemo(() => {
     if (isDisabled) {
-      interpolation = [
-        theme.colors.neutralTextDisabled,
-        theme.colors.neutralTextDisabled,
-      ];
+      return [theme.colors.white, theme.colors.white];
+    } else {
+      if (type === 'primary' || type === 'secondary') {
+        switch (variant) {
+          case 'container':
+            return [theme.colors.white, theme.colors.white];
+          default:
+            return [_titleColor.color as string, theme.colors.white];
+        }
+      } else if (type === 'custom') {
+        switch (variant) {
+          case 'container':
+            return (
+              custom?.interpolationColor?.container || [
+                theme.colors.white,
+                theme.colors.white,
+              ]
+            );
+          case 'outlined':
+            return (
+              custom?.interpolationColor?.outlined || [
+                _titleColor.color as string,
+                theme.colors.white,
+              ]
+            );
+          case 'soft':
+            return (
+              custom?.interpolationColor?.soft || [
+                _titleColor.color as string,
+                theme.colors.white,
+              ]
+            );
+          case 'text':
+            return (
+              custom?.interpolationColor?.text || [
+                _titleColor.color as string,
+                theme.colors.white,
+              ]
+            );
+          default:
+            return [_titleColor.color as string, theme.colors.white];
+        }
+      } else {
+        return [theme.colors.white, theme.colors.white];
+      }
     }
-    return interpolation;
-  }, [type, outlined, soft, text, isLoading, isDisabled, outlineColor]);
+  }, [type, variant, isDisabled, custom, _titleColor]);
 
-  // State variable
-  const [derivedIconColor, setDerivedIconColor] = useState('');
+  // #endregion
 
-  // Animated variables
+  // #region Spinner
+  const loadingColor = useMemo(() => {
+    if (isDisabled) {
+      if (type === 'custom') {
+        return custom?.spinner?.disabled || theme.colors.neutralDark;
+      }
+      return theme.colors.neutralDark;
+    } else {
+      switch (type) {
+        case 'primary':
+          return spinnerColor || theme.colors.white;
+        case 'secondary':
+          return spinnerColor || theme.colors.white;
+        case 'custom':
+          return custom?.spinner?.active || theme.colors.white;
+        default:
+          return spinnerColor;
+      }
+    }
+  }, [isDisabled, type, spinnerColor, custom]);
+  // #endregion
+
+  // #region Animated
   const buttonPressed = useSharedValue(0);
+  const buttonScale = useSharedValue(1);
 
-  // Animated worklets
+  const onLowerScale = (toValue: number) => {
+    'worklet';
+    buttonScale.value = withTiming(toValue || 0.98, { duration: 150 });
+  };
+
+  const onRestoreScale = () => {
+    'worklet';
+    buttonScale.value = withTiming(1, { duration: 150 });
+  };
+
   const onButtonPressed = () => {
     'worklet';
     buttonPressed.value = withTiming(1, { duration: 250 });
@@ -256,91 +456,119 @@ const Button = ({
     buttonPressed.value = withTiming(0, { duration: 250 });
   };
 
-  // Animated style
   const buttonAnimatedStyle = useAnimatedStyle(() => {
-    let borderWidth = 0;
-    let _backgroundColor = theme.colors.neutralLight;
-    if (buttonPressed.value > 0.5 && outlined) {
-      borderWidth = 0;
-    } else if (buttonPressed.value <= 0.5 && outlined) {
-      borderWidth = 1;
-    }
-
-    if (!isDisabled) {
-      _backgroundColor = interpolateColor(
+    if (animation === 'interpolation') {
+      const backgroundColor = interpolateColor(
         buttonPressed.value,
         [0, 1],
-        buttonColorInterpolation
+        buttonInterpolation
       );
+      return { backgroundColor };
+    } else if (animation === 'bounce') {
+      return {
+        transform: [{ scale: animation === 'bounce' ? buttonScale.value : 1 }],
+      };
+    } else {
+      return {};
     }
-    if ((text || outlined) && isDisabled) {
-      _backgroundColor = interpolateColor(
-        buttonPressed.value,
-        [0, 1],
-        [TRANSPARENT, TRANSPARENT]
-      );
-    }
-
-    const bg = backgroundColor || _backgroundColor;
-    return { backgroundColor: bg, borderWidth };
-  });
+  }, [animation, buttonInterpolation]);
 
   const titleAnimatedStyle = useAnimatedStyle(() => {
     if (buttonPressed.value < 0.5 && hasIcon) {
-      runOnJS(setDerivedIconColor)(titleColorInterpolation[0]!);
+      runOnJS(setDerivedIconColor)(titleInterpolation[0]!);
     } else if (buttonPressed.value >= 0.5 && hasIcon) {
-      runOnJS(setDerivedIconColor)(titleColorInterpolation[1]!);
+      runOnJS(setDerivedIconColor)(titleInterpolation[1]!);
     }
-    const color = interpolateColor(
-      buttonPressed.value,
-      [0, 1],
-      titleColorInterpolation
-    );
-    return { color };
+    if (animation === 'interpolation') {
+      const color = interpolateColor(
+        buttonPressed.value,
+        [0, 1],
+        titleInterpolation!
+      );
+      return { color };
+    } else {
+      return {};
+    }
   });
+  // #endregion
 
-  // Methods
-
+  // #region Methods
   const _onPressIn = () => {
-    runOnUI(onButtonPressed)();
+    switch (animation) {
+      case 'bounce':
+        runOnUI(onLowerScale)(bounciness);
+        break;
+      case 'interpolation':
+        runOnUI(onButtonPressed)();
+        break;
+      default:
+    }
   };
 
   const _onPressOut = () => {
-    runOnUI(onButtonReleased)();
+    switch (animation) {
+      case 'bounce':
+        runOnUI(onRestoreScale)();
+        break;
+      case 'interpolation':
+        runOnUI(onButtonReleased)();
+        break;
+      default:
+    }
   };
+  // #endregion
+
+  // #region Render components
+  const renderIcon = (
+    <View style={Style.iconContainer}>
+      <Icon name={icon} tint={iconColor || derivedIconColor} size={20} />
+    </View>
+  );
+  // #endregion
 
   return (
-    <Pressable
-      onPressIn={_onPressIn}
-      onPressOut={_onPressOut}
-      onPress={onPress}
-      pointerEvents={isDisabled || isLoading ? 'none' : 'auto'}
-    >
-      <Animated.View style={[buttonStyle, buttonSize, buttonAnimatedStyle]}>
-        <View>
-          {isLoading ? (
-            <View style={Style.buttonContent}>
-              <Spinner color={spinnerColor} />
-            </View>
-          ) : (
-            <View style={Style.buttonContent}>
-              <View style={titleContainer}>
-                <Animated.Text
-                  style={[titleSize, titleColor, titleAnimatedStyle]}
-                >
-                  {title}
-                </Animated.Text>
-              </View>
-              {hasIcon ? (
-                <View style={Style.iconContainer}>
-                  <Icon name={icon} tint={derivedIconColor} size={20} />
+    <View style={_containerStyle}>
+      <AnimatedPressable
+        onPressIn={_onPressIn}
+        onPressOut={_onPressOut}
+        onPress={onPress}
+        pointerEvents={isDisabled || isLoading ? 'none' : 'auto'}
+        onLayout={(e) => setDefaultWidth(e.nativeEvent.layout.width)}
+      >
+        <Animated.View
+          style={[
+            buttonShadow,
+            style,
+            buttonStyle,
+            buttonSize,
+            buttonLoadingStyle,
+            buttonAnimatedStyle,
+          ]}
+        >
+          {children || (
+            <View>
+              {isLoading ? (
+                <View style={Style.buttonContent}>
+                  <Spinner color={loadingColor} />
                 </View>
-              ) : null}
+              ) : (
+                <View style={Style.buttonContent}>
+                  {hasIcon && iconPosition === 'left' ? renderIcon : null}
+                  <View style={titleContainer}>
+                    <Animated.Text
+                      style={[titleSize, _titleColor, titleAnimatedStyle]}
+                    >
+                      {title}
+                    </Animated.Text>
+                  </View>
+                  {hasIcon && iconPosition === 'right' ? renderIcon : null}
+                </View>
+              )}
             </View>
           )}
-        </View>
-      </Animated.View>
-    </Pressable>
+        </Animated.View>
+      </AnimatedPressable>
+    </View>
   );
 };
 

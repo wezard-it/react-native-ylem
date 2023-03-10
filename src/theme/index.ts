@@ -8,10 +8,12 @@ import type {
 } from 'src/global';
 
 const colors: Colors = {
-  primary: '#000000',
-  primary1: '#000000',
-  accent: '#E7374C',
-  accent1: '#F18794',
+  primaryDark: '#1565c0',
+  primary: '#1976d2',
+  primary1: '#42a5f5',
+  secondaryDark: '#7b1fa2',
+  secondary: '#9c27b0',
+  secondary1: '#ba68c8',
   text: '#70808C',
   text1: '#A9B3BA',
   gray: '#DDDDDD',

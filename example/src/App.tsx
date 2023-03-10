@@ -11,6 +11,7 @@ import {
   Accordion,
   ActionSheet,
   ActionsheetHandler,
+  Button,
   Checkbox,
   Icon,
   Separator,
@@ -55,19 +56,27 @@ export default function App() {
         <ScrollView contentContainerStyle={styles.container}>
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Text:</Text>
-              <Text type="h1">Text testing</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Text:
+              </Text>
+              <Text type="h1" color={theme.colors.black}>
+                Text testing
+              </Text>
             </View>
           )}
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Icon:</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Icon:
+              </Text>
               <Icon name={ICONS.sun} />
             </View>
           )}
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Checkbox:</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Checkbox:
+              </Text>
               <Checkbox
                 iconType="custom"
                 active={checkboxActive}
@@ -78,7 +87,9 @@ export default function App() {
           )}
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Toogle:</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Toogle:
+              </Text>
               <Toggle
                 active={toggleActive}
                 onPress={() => setToggleActive((prevState) => !prevState)}
@@ -87,26 +98,40 @@ export default function App() {
           )}
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Spinner:</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Spinner:
+              </Text>
               <Spinner color={theme.colors.primary} />
             </View>
           )}
           {renderSection(
             <View style={styles.section}>
               <Accordion
-                iconType="custom"
-                backgroundAnimation={false}
                 title="Accordion component"
+                titleColor={theme.colors.black}
+                iconType="custom"
+                iconColor={theme.colors.black}
+                backgroundAnimation={false}
                 description="Tempor commodo duis ullamco mollit. Irure cupidatat aute voluptate laborum sunt magna fugiat. Non eu do aliqua eu duis excepteur mollit incididunt. Est amet esse veniam eiusmod. Labore ad elit aute minim reprehenderit anim et fugiat mollit cillum pariatur nostrud laborum. Consequat nisi amet culpa sit aliqua nostrud aute dolore amet ut."
               />
             </View>
           )}
           {renderSection(
             <View style={styles.section}>
-              <Text type="h3">Actionsheet:</Text>
+              <Text type="h3" color={theme.colors.black}>
+                Actionsheet:
+              </Text>
               <Pressable style={styles.actionsheet} onPress={onShowActionsheet}>
                 <Text color={theme.colors.white}>Show</Text>
               </Pressable>
+            </View>
+          )}
+          {renderSection(
+            <View style={styles.section}>
+              <Text type="h3" color={theme.colors.black}>
+                Button:
+              </Text>
+              <Button type="primary" animation="bounce" />
             </View>
           )}
         </ScrollView>
