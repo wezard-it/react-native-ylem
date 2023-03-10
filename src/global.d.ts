@@ -2,7 +2,7 @@ import type {
   ImageStyle,
   StyleProp,
   ViewStyle,
-  TextProps,
+  TextProps as RNTextProps,
   TextStyle,
 } from 'react-native';
 import type { DefaultTFuncReturn } from 'i18next';
@@ -20,6 +20,19 @@ type OptionsAndroid = {
 };
 
 type FormattedOptions = OptionsAndroid & { onPress: () => void };
+
+type FontWeight =
+  | 'normal'
+  | 'bold'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
 
 type TextType =
   | 'h1'
@@ -48,14 +61,51 @@ interface IBottomSheetHandler {
   openBottomSheet: () => void;
   closeBottomSheet: () => void;
 }
+
+type Interpolation<T> = [T, T];
+
+type CustomButtonProps = {
+  background?: string;
+  soft?: string;
+  border?: string;
+  disabled?: string;
+  shadow?: StyleProp<ViewStyle>;
+  interpolation?: {
+    container?: Interpolation<string>;
+    outlined?: Interpolation<string>;
+    soft?: Interpolation<string>;
+    text?: Interpolation<string>;
+    disabled?: Interpolation<string>;
+  };
+  interpolationColor?: {
+    container?: Interpolation<string>;
+    outlined?: Interpolation<string>;
+    soft?: Interpolation<string>;
+    text?: Interpolation<string>;
+    disabled?: Interpolation<string>;
+  };
+  spinner?: {
+    active: string;
+    disabled: string;
+  };
+  title?: {
+    container?: string;
+    outlined?: string;
+    soft?: string;
+    text?: string;
+    disabled?: string;
+  };
+};
 // #endregion
 
 // #region Theme
 interface Colors {
+  primaryDark: string;
   primary: string;
   primary1: string;
-  accent: string;
-  accent1: string;
+  secondaryDark: string;
+  secondary: string;
+  secondary1: string;
   text: string;
   text1: string;
   gray: string;
@@ -143,9 +193,11 @@ interface Theme {
 // #region Components props
 interface AccordionProps {
   title: string | DefaultTFuncReturn;
+  titleColor: string;
   description: string;
   icon: boolean;
   iconType: 'default' | 'custom';
+  iconColor: string;
   iconSize: number;
   backgroundAnimation: boolean;
   defaultColor: string;
@@ -169,6 +221,38 @@ interface BottomSheetProps {
   points: string[];
   overlayOpacity: number;
   onCloseBottomSheet?: () => void;
+}
+
+interface ButtonProps {
+  type: 'primary' | 'secondary' | 'custom';
+  size: 'sm' | 'md' | 'lg' | 'custom';
+  title: string;
+  titleColor: string;
+  titleStyle: StyleProp<ViewStyle>;
+  width: string;
+  height: number;
+  variant: 'container' | 'outlined' | 'soft' | 'text';
+  icon: string;
+  hasIcon: boolean;
+  iconPosition: 'left' | 'right';
+  iconColor: string;
+  isLoading: boolean;
+  spinnerColor: string;
+  isDisabled: boolean;
+  disabledColor: string;
+  hasShadow: boolean;
+  shadowType: 'light' | 'medium' | 'dark' | 'custom';
+  shadowStyle: StyleProp<ViewStyle>;
+  animation: 'bounce' | 'interpolation' | 'none';
+  bounciness: number;
+  isInterpolable: boolean;
+  interpolationSet: Interpolation<string>;
+  containerStyle: StyleProp<ViewStyle>;
+  style: StyleProp<ViewStyle>;
+  fillSpace: boolean;
+  custom: CustomButton;
+  children: React.ReactNode;
+  onPress: () => void;
 }
 
 interface CheckboxProps {
@@ -207,7 +291,7 @@ interface SpinnerProps {
   color: string;
 }
 
-interface CustomTextProps extends TextProps {
+interface TextProps extends RNTextProps {
   type: TextType;
   color?: string;
   style?: StyleProp<TextStyle>;

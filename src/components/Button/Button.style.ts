@@ -12,7 +12,7 @@ const Style = StyleSheet.create({
   },
   buttonSm: { height: 30 },
   buttonMd: { height: 40 },
-  buttonLg: { height: 48 },
+  buttonLg: { height: 50 },
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -25,13 +25,25 @@ const Style = StyleSheet.create({
     borderColor: theme.colors.neutralBorder,
   },
   titleContainer: { alignSelf: 'flex-start', paddingHorizontal: 16 },
-  titleContainerIcon: { alignSelf: 'flex-start', paddingRight: 5 },
+  titleContainerIcon: { alignSelf: 'flex-start', paddingHorizontal: 5 },
   title: { color: theme.colors.white },
   titleSm: { ...theme.typography.titleSm },
   titleMd: { ...theme.typography.titleMd },
   titleLg: { ...theme.typography.titleLg },
   titleDisabled: { color: theme.colors.neutralTextDisabled },
   iconContainer: {},
+  shadowLight: {
+    ...theme.shadows.light,
+    backgroundColor: theme.colors.white,
+  },
+  shadowMedium: {
+    ...theme.shadows.medium,
+    backgroundColor: theme.colors.white,
+  },
+  shadowDark: {
+    ...theme.shadows.dark,
+    backgroundColor: theme.colors.white,
+  },
 });
 
 export default Style;

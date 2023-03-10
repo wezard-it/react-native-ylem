@@ -20,9 +20,11 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const Accordion = ({
   title = 'Title',
+  titleColor = theme.colors.primary,
   description = 'Description',
   icon = true,
   iconType = 'default',
+  iconColor = theme.colors.primary,
   iconSize = 18,
   backgroundAnimation = true,
   defaultColor = theme.colors.white,
@@ -40,7 +42,7 @@ const Accordion = ({
           <Icon
             name="plus"
             size={iconSize}
-            tint={theme.colors.primary}
+            tint={iconColor}
             style={iconStyle}
           />
         );
@@ -51,7 +53,7 @@ const Accordion = ({
           <DefaultIcon
             name="plus"
             size={iconSize}
-            color={theme.colors.primary}
+            color={iconColor}
             style={iconStyle}
           />
         );
@@ -59,7 +61,7 @@ const Accordion = ({
     } else {
       return null;
     }
-  }, [icon, iconType, open, iconSize]);
+  }, [icon, iconType, open, iconSize, iconColor]);
 
   // Animated variables
   const accordionPressed = useSharedValue<number>(0);
@@ -136,7 +138,7 @@ const Accordion = ({
       style={[Style.container, containerAnimatedStyle]}
     >
       <View style={Style.header}>
-        <Text type="h3" style={Style.title}>
+        <Text type="h3" color={titleColor} style={Style.title}>
           {title}
         </Text>
         <View style={Style.iconRight} pointerEvents="none">

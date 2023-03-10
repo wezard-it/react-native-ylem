@@ -1,17 +1,5 @@
 import { Platform } from 'react-native';
-
-export type FontWeight =
-  | 'normal'
-  | 'bold'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900';
+import type { FontWeight } from 'src/global';
 
 export const formatFontWeight = (value: number) => {
   const weight: number = value * 1;
