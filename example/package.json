@@ -7,11 +7,18 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "pods": "pod-install --quiet"
+    "pods": "pod-install --quiet",
+    "start:android": "adb reverse tcp:8081 tcp:8081 && npx react-native start",
+    "upgrade:ios": "cd ios && pod install && cd ..",
+    "upgrade:android": "cd android && gradle clean --build-cache && cd ..",
+    "upgrade:all": "yarn install && yarn upgrade:ios && yarn upgrade:android",
+    "upgrade:oss": "yarn upgrade:ios && yarn upgrade:android"
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-native": "0.71.3"
+    "react-native": "0.71.3",
+    "react-native-reanimated": "^3.0.2",
+    "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

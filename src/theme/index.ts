@@ -178,5 +178,3 @@ export const theme: Theme = {
   spacing,
   typography,
 };
-
-export default theme;
