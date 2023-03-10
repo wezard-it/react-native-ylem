@@ -1,26 +1,8 @@
 import React, { useMemo } from 'react';
-import {
-  Image,
-  ImageStyle,
-  Platform,
-  Pressable,
-  ViewStyle,
-} from 'react-native';
+import { Image, Platform, Pressable, ViewStyle } from 'react-native';
 import VectorDrawable from '@klarna/react-native-vector-drawable';
 import { noop, snakeCase } from 'lodash';
-
-type IconMap = { [key: string]: string };
-
-export type IconName = keyof IconMap;
-
-export interface Props {
-  name: IconName;
-  style: ImageStyle;
-  containerStyle: ImageStyle;
-  size: number;
-  tint: string | null;
-  onPress?: () => void;
-}
+import type { IconProps as Props } from 'src/global';
 
 const Icon = ({
   name = 'sun',

@@ -1,23 +1,11 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
-import type { DefaultTFuncReturn } from 'i18next';
 import { noop } from 'lodash';
-import type { ActionsheetHandler } from 'src/global';
-
-type OptionsAndroid = {
-  text: string;
-  style?: 'default' | 'destructive' | 'cancel';
-};
-type FormattedOptions = OptionsAndroid & { onPress: () => void };
-
-export interface Props {
-  optionsIOS: string[];
-  messageIOS: string | undefined;
-  optionsAndroid: OptionsAndroid[];
-  androidTitle: string | DefaultTFuncReturn;
-  androidSubTitle: string | DefaultTFuncReturn;
-  onActionPressed: (id: number | string) => void;
-}
+import type {
+  ActionSheetProps as Props,
+  ActionsheetHandler,
+  FormattedOptions,
+} from 'src/global';
 
 const ActionSheet = (
   {

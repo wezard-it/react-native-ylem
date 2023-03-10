@@ -9,24 +9,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
 import DefaultIcon from 'react-native-vector-icons/Feather';
+import type { CheckboxProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
 import Style from './Checkbox.style';
-
-export interface Props {
-  active: boolean;
-  activeColor: string;
-  defaultColor: string;
-  defaultColorDark: string;
-  disabledColor: string;
-  icon: string;
-  iconSize: number;
-  iconType: 'default' | 'custom';
-  isDisabled: boolean;
-  onPress?: () => void;
-  size: number;
-  type: 'round' | 'square';
-}
 
 const Checkbox = ({
   active = false,

@@ -1,12 +1,56 @@
-import type { Props as AccordionProps } from './components/Accordion/Accordion';
-import type { Props as ActionSheetProps } from './components/ActionSheet/ActionSheet';
-import type { Props as CheckboxProps } from './components/Checbox/Checbox';
-import type { Props as IconProps } from './components/Icon/Icon';
-import type { Props as SeparatorProps } from './components/Separator/Separator';
-import type { Props as SpinnerProps } from './components/Spinner/Spinner';
-import type { Props as TextProps } from './components/Text/Text';
-import type { Props as ToggleProps } from './components/Toggle/Toggle';
+import type {
+  ImageStyle,
+  StyleProp,
+  ViewStyle,
+  TextProps,
+  TextStyle,
+} from 'react-native';
+import type { DefaultTFuncReturn } from 'i18next';
 
+// #region Accessories
+type ActionsheetHandler = { show: () => void };
+
+type IconMap = { [key: string]: string };
+
+type IconName = keyof IconMap;
+
+type OptionsAndroid = {
+  text: string;
+  style?: 'default' | 'destructive' | 'cancel';
+};
+
+type FormattedOptions = OptionsAndroid & { onPress: () => void };
+
+type TextType =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'title-sm'
+  | 'title-md'
+  | 'title-lg'
+  | 'title-bold'
+  | 'p-sm'
+  | 'p-md'
+  | 'p-lg'
+  | 'link-sm'
+  | 'link-md'
+  | 'link-lg';
+
+type TextDecorationLine =
+  | 'none'
+  | 'underline'
+  | 'line-through'
+  | 'underline line-through'
+  | undefined;
+
+interface IBottomSheetHandler {
+  openBottomSheet: () => void;
+  closeBottomSheet: () => void;
+}
+// #endregion
+
+// #region Theme
 interface Colors {
   primary: string;
   primary1: string;
@@ -94,33 +138,27 @@ interface Theme {
   spacing: Spacing;
   typography: Typography;
 }
+// #endregion
 
-type TextType =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'title-sm'
-  | 'title-md'
-  | 'title-lg'
-  | 'title-bold'
-  | 'p-sm'
-  | 'p-md'
-  | 'p-lg'
-  | 'link-sm'
-  | 'link-md'
-  | 'link-lg';
+// #region Components props
+interface AccordionProps {
+  title: string | DefaultTFuncReturn;
+  description: string;
+  icon: boolean;
+  iconType: 'default' | 'custom';
+  iconSize: number;
+  backgroundAnimation: boolean;
+  defaultColor: string;
+  animatedColor: string;
+}
 
-type TextDecorationLine =
-  | 'none'
-  | 'underline'
-  | 'line-through'
-  | 'underline line-through'
-  | undefined;
-
-interface IBottomSheetHandler {
-  openBottomSheet: () => void;
-  closeBottomSheet: () => void;
+interface ActionSheetProps {
+  optionsIOS: string[];
+  messageIOS: string | undefined;
+  optionsAndroid: OptionsAndroid[];
+  androidTitle: string | DefaultTFuncReturn;
+  androidSubTitle: string | DefaultTFuncReturn;
+  onActionPressed: (id: number | string) => void;
 }
 
 interface BottomSheetProps {
@@ -132,13 +170,60 @@ interface BottomSheetProps {
   overlayOpacity: number;
   onCloseBottomSheet?: () => void;
 }
-type ActionsheetHandler = { show: () => void };
 
-type CheckboxProps = CheckboxProps;
-type IconProps = IconProps;
-type SeparatorProps = SeparatorProps;
-type TextProps = TextProps;
-type ToggleProps = ToggleProps;
-type SpinnerProps = SpinnerProps;
-type AccordionProps = AccordionProps;
-type ActionSheetProps = ActionSheetProps;
+interface CheckboxProps {
+  active: boolean;
+  activeColor: string;
+  defaultColor: string;
+  defaultColorDark: string;
+  disabledColor: string;
+  icon: string;
+  iconSize: number;
+  iconType: 'default' | 'custom';
+  isDisabled: boolean;
+  onPress?: () => void;
+  size: number;
+  type: 'round' | 'square';
+}
+
+interface IconProps {
+  name: IconName;
+  style: ImageStyle;
+  containerStyle: ImageStyle;
+  size: number;
+  tint: string | null;
+  onPress?: () => void;
+}
+
+interface SeparatorProps {
+  size: number;
+  backgroundColor: string;
+  direction: 'horizontal' | 'vertical';
+  containerStyle: StyleProp<ViewStyle>;
+}
+
+interface SpinnerProps {
+  size: number | 'small' | 'large' | undefined;
+  color: string;
+}
+
+interface CustomTextProps extends TextProps {
+  type: TextType;
+  color?: string;
+  style?: StyleProp<TextStyle>;
+  underlined?: boolean;
+  rest?: string[];
+  extendedStyle?: StyleProp<TextStyle>;
+  fontFamily?: string | undefined;
+}
+
+interface ToggleProps {
+  active: boolean;
+  isDisabled: boolean;
+  style?: StyleProp<ViewStyle>;
+  thumbColor: string;
+  trackActive: string;
+  trackDefault: string;
+  onPress?: () => void;
+}
+// #endregion

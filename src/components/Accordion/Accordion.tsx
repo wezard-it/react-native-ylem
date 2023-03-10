@@ -9,25 +9,14 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import type { DefaultTFuncReturn } from 'i18next';
 import DefaultIcon from 'react-native-vector-icons/Feather';
+import type { AccordionProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
 import Style from './Accordion.style';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
-export interface Props {
-  title: string | DefaultTFuncReturn;
-  description: string;
-  icon: boolean;
-  iconType: 'default' | 'custom';
-  iconSize: number;
-  backgroundAnimation: boolean;
-  defaultColor: string;
-  animatedColor: string;
-}
 
 const Accordion = ({
   title = 'Title',

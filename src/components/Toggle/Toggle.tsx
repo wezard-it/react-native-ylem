@@ -1,18 +1,9 @@
 import React, { useMemo } from 'react';
-import { Switch, Platform, StyleProp, ViewStyle } from 'react-native';
+import { Switch, Platform } from 'react-native';
 import { noop } from 'lodash';
+import type { ToggleProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Style from './Toggle.style';
-
-export interface Props {
-  active: boolean;
-  isDisabled: boolean;
-  style?: StyleProp<ViewStyle>;
-  thumbColor: string;
-  trackActive: string;
-  trackDefault: string;
-  onPress?: () => void;
-}
 
 const Toggle = ({
   active = false,

@@ -1,18 +1,8 @@
 import React, { useMemo } from 'react';
-import { StyleProp, Text as RNText, TextProps, TextStyle } from 'react-native';
-import type { TextDecorationLine, TextType } from 'src/global';
+import { StyleProp, Text as RNText, TextStyle } from 'react-native';
+import type { CustomTextProps as Props, TextDecorationLine } from 'src/global';
 import { theme } from '../../theme';
 import Style from './Text.style';
-
-export interface Props extends TextProps {
-  type: TextType;
-  color?: string;
-  style?: StyleProp<TextStyle>;
-  underlined?: boolean;
-  rest?: string[];
-  extendedStyle?: StyleProp<TextStyle>;
-  fontFamily?: string | undefined;
-}
 
 const Text = ({
   type = 'p-md',

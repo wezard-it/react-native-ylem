@@ -1,11 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
+import type { SpinnerProps as Props } from 'src/global';
 import { theme } from '../../theme';
-
-export interface Props {
-  size: number | 'small' | 'large' | undefined;
-  color: string;
-}
 
 const Spinner = ({
   size = 'small',

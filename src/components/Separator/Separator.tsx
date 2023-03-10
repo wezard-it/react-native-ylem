@@ -1,14 +1,8 @@
 import React, { useMemo } from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { View } from 'react-native';
+import type { SeparatorProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Style from './Separator.style';
-
-export interface Props {
-  size: number;
-  backgroundColor: string;
-  direction: 'horizontal' | 'vertical';
-  containerStyle: StyleProp<ViewStyle>;
-}
 
 const Separator = ({
   size = 1,

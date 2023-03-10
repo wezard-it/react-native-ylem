@@ -18,7 +18,7 @@ import type {
   CheckboxProps,
   IconProps,
   SeparatorProps,
-  TextProps,
+  CustomTextProps as TextProps,
   ToggleProps,
   SpinnerProps,
   AccordionProps,
@@ -27,18 +27,9 @@ import type {
 } from './global';
 import { theme } from './theme';
 
+// Theme export
 export {
   theme,
-  Text,
-  Icon,
-  Separator,
-  Checkbox,
-  Toggle,
-  Spinner,
-  Accordion,
-  ActionSheet,
-};
-export {
   Colors,
   Radius,
   Shadow,
@@ -46,14 +37,14 @@ export {
   TypographyType,
   Typography,
   Theme,
-  TextProps,
-  CheckboxProps,
-  IconProps,
-  SeparatorProps,
-  TextType,
-  ToggleProps,
-  SpinnerProps,
-  AccordionProps,
-  ActionSheetProps,
-  ActionsheetHandler,
 };
+
+// Components & Props exports
+export { Accordion, AccordionProps };
+export { ActionSheet, ActionsheetHandler, ActionSheetProps };
+export { Checkbox, CheckboxProps };
+export { Icon, IconProps };
+export { Separator, SeparatorProps };
+export { Spinner, SpinnerProps };
+export { Text, TextType, TextProps };
+export { Toggle, ToggleProps };
