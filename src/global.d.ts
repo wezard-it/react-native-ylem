@@ -6,6 +6,8 @@ import type {
   TextStyle,
   LayoutChangeEvent,
 } from 'react-native';
+import type { WithSpringConfig } from 'react-native-reanimated';
+import type { BottomSheetProps as GorhomBottomSheetProps } from '@gorhom/bottom-sheet';
 import type { DefaultTFuncReturn } from 'i18next';
 
 // #region Accessories
@@ -58,7 +60,7 @@ type TextDecorationLine =
   | 'underline line-through'
   | undefined;
 
-interface IBottomSheetHandler {
+interface BottomSheetHandler {
   openBottomSheet: () => void;
   closeBottomSheet: () => void;
 }
@@ -97,6 +99,14 @@ type CustomButtonProps = {
     disabled?: string;
   };
 };
+
+interface BottomConfig {
+  damping: number;
+  overshootClamping: boolean;
+  restDisplacementThreshold: number;
+  restSpeedThreshold: number;
+  stiffness: number;
+}
 // #endregion
 
 // #region Theme
@@ -215,13 +225,21 @@ interface ActionSheetProps {
 }
 
 interface BottomSheetProps {
+  type: 'dynamic' | 'fixed';
+  snapPoints: string[];
+  config: Omit<WithSpringConfig, 'velocity'>;
+  duration: number;
   title: string | null;
   children: React.ReactNode;
-  hasHeader: boolean;
   header: React.ReactNode;
+  footer: React.ReactNode;
   points: string[];
   overlayOpacity: number;
+  backdropType: 'default' | 'custom' | 'none';
+  backdrop: React.ReactNode;
+  handleComponent: React.FC<BottomSheetHandleProps>;
   onCloseBottomSheet?: () => void;
+  props: Partial<GorhomBottomSheetProps>;
 }
 
 interface ButtonProps {

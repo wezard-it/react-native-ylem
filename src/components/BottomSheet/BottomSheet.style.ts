@@ -7,8 +7,8 @@ const Style = StyleSheet.create({
     backgroundColor: theme.colors.white,
     paddingBottom: 10,
   },
-  handle: { height: 40 },
-  background: { borderRadius: 40 },
+  // handle: { height: 40 },
+  // background: { borderRadius: 40 },
 });
 
 export default Style;
