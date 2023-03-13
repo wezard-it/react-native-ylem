@@ -12,7 +12,7 @@
 | icon    | boolean | no       | true    | icon for expand/hide description                                                  |
 | iconType       | `default`, `custom`              | no       | default   | default icon using react-native-vector-icons or custom (custom image must be added as an svg image `ic_name` under images in xcode and in Android studio as a vector)                             |
 | iconColor | string              | no       | theme.colors.primary   | icon color                        |
-| iconSize       | number      | no      | null    | component that will be wrapped inside the ListItem component  |
+| iconSize       | number      | no      | 18    | component that will be wrapped inside the ListItem component  |
 | backgroundAnimation          | boolean               | no       | true    | define there will be a background animation from `defaultColor`  to `animatedColor`|
 | defaultColor          | string               | no       | theme.colors.white    | default accordion color |
 | animatedColor          | string               | no       | theme.colors.neutralBorder    | animated accordion color |
@@ -28,4 +28,4 @@
 | optionsAndroid | string| no       | []    | Actionsheet options (Android), the first option should always be for handling `cancel` action
 | androidTitle    | boolean | no       | true    | Actionsheet title (Android) |
 | androidSubTitle       | `default`, `custom`              | no       | default   | Actionsheet subtitle (Android)                        |
-| onActionPressed | (id: number | string) => void | no       |         | Event when an action is pressed, return the index of the selected action |
+| onActionPressed | (id: number | string) => void | no       |Event when an action is pressed, return the index of the selected action |
