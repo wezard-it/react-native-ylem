@@ -88,12 +88,12 @@
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| optionsIOS           | string[]             | no       | [] | Actionsheet options (IOS), the first option should always be for handling `cancel` action
-| messageIOS | string               | no       | theme.colors.primary      | Actionsheet message (IOS)                        |
-| optionsAndroid | string| no       | []    | Actionsheet options (Android), the first option should always be for handling `cancel` action
-| androidTitle    | boolean | no       | true    | Actionsheet title (Android) |
-| androidSubTitle       | `default`, `custom`              | no       | default   | Actionsheet subtitle (Android)                        |
-| onActionPressed | (id: number | string) => void | no       |Event when an action is pressed, return the index of the selected action |
+| name           | string          | no       | `sun` | icon name |
+| style | ImageStyle               | no       | {}      | icon style| 
+| size |  number               | no       | 24      | icon size |
+| tint |  string             | no       | null      | icon color |
+| style | ImageStyle               | no       | {}      | icon container styles|
+| onPress | () => void               | no       | null      | method triggered when an icon is onActionPressed |
 
 ### `<Separator />`
 
@@ -112,7 +112,7 @@
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| size           | `number` , `small`, `large`, `undefined`         | no       | small | size|
+| size           | `number`, `small`, `large`, `undefined`         | no       | small | size|
 | color | string               | no       | theme.colors.white      | color|
 
 ### `<Text />`
@@ -126,7 +126,7 @@
 | color    | string | no       | true    | text color |
 | underlined       | boolean              | no       | false   | define if the text is underlined or not|
 | extendedStyle       | StyleProp<TextStyle>              | no       | null   | prop that allows to extend the default predefined styles|
-| fontFamily       | string              | no       | Avenir   | Font family |
+| fontFamily       | string              | no       | Avenir   | font family |
 | rest       | string[]              | no       | default   | define an array of strings that can be added for extend <Text />|
 
 ### `<Toggle />`
