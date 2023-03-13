@@ -101,10 +101,10 @@
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| size           | number          | no       | 1 | separator size|
-| backgroundColor | string               | no       | theme.colors.gray2      | separator color|
-| direction |  `horizontal` , `vertical`               | no       | horizontal      | separator direction|
-| containerStyle |  StyleProp<ViewStyle>             | no       | null      | separator container style|
+| size           | number          | no       | 1 | size|
+| backgroundColor | string               | no       | theme.colors.gray2      | color|
+| direction |  `horizontal`, `vertical`               | no       | horizontal      | direction|
+| containerStyle |  StyleProp<ViewStyle>             | no       | null      | container style|
 
 ### `<Spinner />`
 
@@ -112,8 +112,8 @@
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| size           | `number` , `small`, `large`, `undefined`          | no       | small | spinner size|
-| color | string               | no       | theme.colors.white      | spinner color|
+| size           | `number` , `small`, `large`, `undefined`         | no       | small | size|
+| color | string               | no       | theme.colors.white      | color|
 
 ### `<Text />`
 
@@ -121,13 +121,13 @@
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| type           | TextType             | no       | `p-md` | type of text |
-| style | StyleProp<TextStyle> | no       | null    | Text style |
-| color    | string | no       | true    | Actionsheet title (Android) |
-| underlined       | boolean              | no       | false   | Define if the text is underlined or not|
+| type           | TextType             | no       | `p-md` | text type |
+| style | StyleProp<TextStyle> | no       | null    | text style |
+| color    | string | no       | true    | text color |
+| underlined       | boolean              | no       | false   | define if the text is underlined or not|
 | extendedStyle       | StyleProp<TextStyle>              | no       | null   | prop that allows to extend the default predefined styles|
 | fontFamily       | string              | no       | Avenir   | Font family |
-| rest       | string[]              | no       | default   | Define an array of strings that can be added for extend <Text />|
+| rest       | string[]              | no       | default   | define an array of strings that can be added for extend <Text />|
 
 ### `<Toggle />`
 
