@@ -8,7 +8,7 @@
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
 | title           | string              | no       | Title | Accordion title
 | titleColor | string               | no       | theme.colors.primary      | define the color for the title                        |
-| description | string>| no       | Description    | Accordion description                                              |
+| description | string| no       | Description    | Accordion description                                              |
 | icon    | boolean | no       | true    | icon for expand/hide description                                                  |
 | iconType       | default, custom              | no       | default   | default icon using react-native-vector-icons or custom (custom image must be added as an svg image `ic_name` under images in xcode and in Android studio as a vector)                             |
 | iconColor | string              | no       | theme.colors.primary   | icon color                        |
