@@ -17,10 +17,6 @@
 | defaultColor          | string               | no       | theme.colors.white    | default accordion color |
 | animatedColor          | string               | no       | theme.colors.neutralBorder    | animated accordion color |
 
-### Events
-
-There are no events for this component.
-
 ### `<ActionSheet />`
 
 ### Props
@@ -32,9 +28,4 @@ There are no events for this component.
 | optionsAndroid | string| no       | []    | Actionsheet options (Android), the first option should always be for handling `cancel` action
 | androidTitle    | boolean | no       | true    | Actionsheet title (Android) |
 | androidSubTitle       | `default`, `custom`              | no       | default   | Actionsheet subtitle (Android)                        |
-
-### Events
-
-| Name    | Type                | Required | Default | Description                                        |
-| ------- | ------------------- | -------- | ------- | -------------------------------------------------- |
 | onActionPressed | (id: number | string) => void | no       |         | Event when an action is pressed, return the index of the selected action |
