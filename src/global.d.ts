@@ -4,6 +4,7 @@ import type {
   ViewStyle,
   TextProps as RNTextProps,
   TextStyle,
+  LayoutChangeEvent,
 } from 'react-native';
 import type { DefaultTFuncReturn } from 'i18next';
 
@@ -253,6 +254,23 @@ interface ButtonProps {
   custom: CustomButton;
   children: React.ReactNode;
   onPress: () => void;
+}
+
+interface CardProps {
+  children: React.ReactNode;
+  style: StyleProp<ViewStyle>;
+  isDisabled: boolean;
+  disabledColor: string;
+  backgroundColor: string;
+  radius: number;
+  animation: 'bounce' | 'none';
+  bounciness: number;
+  shadow: 'light' | 'medium' | 'dark' | 'none';
+  shadowStyle: StyleProp<ViewStyle>;
+  onPress: () => void;
+  onPressIn: () => void;
+  onPressOut: () => void;
+  onLayout: (e: LayoutChangeEvent) => void;
 }
 
 interface CheckboxProps {

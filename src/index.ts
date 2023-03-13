@@ -1,6 +1,7 @@
 import Accordion from './components/Accordion/Accordion';
 import ActionSheet from './components/ActionSheet/ActionSheet';
 import Button from './components/Button/Button';
+import Card from './components/Card/Card';
 import Checkbox from './components/Checkbox/Checkbox';
 import Icon from './components/Icon/Icon';
 import Separator from './components/Separator/Separator';
@@ -12,6 +13,7 @@ import type {
   ActionsheetHandler,
   ActionSheetProps,
   ButtonProps,
+  CardProps,
   CheckboxProps,
   Colors,
   CustomButtonProps,
@@ -47,6 +49,7 @@ export {
 export { Accordion, AccordionProps };
 export { ActionSheet, ActionsheetHandler, ActionSheetProps };
 export { Button, ButtonProps, CustomButtonProps };
+export { Card, CardProps };
 export { Checkbox, CheckboxProps };
 export { Icon, IconProps };
 export { Separator, SeparatorProps };

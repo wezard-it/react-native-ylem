@@ -12,6 +12,7 @@ import {
   ActionSheet,
   ActionsheetHandler,
   Button,
+  Card,
   Checkbox,
   Icon,
   Separator,
@@ -78,7 +79,6 @@ export default function App() {
                 Checkbox:
               </Text>
               <Checkbox
-                iconType="custom"
                 active={checkboxActive}
                 activeColor={theme.colors.primary}
                 onPress={() => setCheckboxActive((prevState) => !prevState)}
@@ -134,6 +134,16 @@ export default function App() {
               <Button type="primary" animation="bounce" />
             </View>
           )}
+          <View style={styles.sectionVertical}>
+            <Text type="h3" color={theme.colors.black}>
+              Card:
+            </Text>
+            <Card style={styles.cardContainer}>
+              <View style={styles.card}>
+                <Text color={theme.colors.black}>Card component</Text>
+              </View>
+            </Card>
+          </View>
         </ScrollView>
       </SafeAreaView>
       <ActionSheet
@@ -167,9 +177,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  sectionVertical: {
+    flexDirection: 'column',
+    paddingVertical: theme.spacing.s,
+  },
   actionsheet: {
     backgroundColor: theme.colors.primary,
     padding: 10,
     borderRadius: theme.radius.s,
+  },
+  cardContainer: { marginVertical: 10 },
+  card: {
+    height: 100,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
