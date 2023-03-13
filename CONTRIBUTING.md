@@ -68,6 +68,7 @@ We follow the [conventional commits specification](https://www.conventionalcommi
 - `docs`: changes into documentation, e.g. add usage example for the module..
 - `test`: adding or updating tests, e.g. add integration tests using detox.
 - `chore`: tooling changes, e.g. change CI config.
+- `wip`: work in progress, e.g. working on a feature but not finished yet.
 
 Our pre-commit hooks verify that your commit message matches this format when committing.
 

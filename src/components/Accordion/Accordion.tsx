@@ -33,7 +33,7 @@ const Accordion = ({
   const [open, setOpen] = useState<boolean>(false);
   const [maxHeight, setMaxHeight] = useState<number>(0);
 
-  // Memo variables
+  // #region Memo variables
   const _icon = useMemo(() => {
     if (icon) {
       const iconStyle = { transform: [{ rotate: open ? '45deg' : '0deg' }] };
@@ -62,12 +62,12 @@ const Accordion = ({
       return null;
     }
   }, [icon, iconType, open, iconSize, iconColor]);
+  // #endregion
 
-  // Animated variables
+  // #region Animated
   const accordionPressed = useSharedValue<number>(0);
   const descriptionHeight = useSharedValue<number>(0);
 
-  // Animated worklets
   const onAccordionPressed = () => {
     'worklet';
     accordionPressed.value = withTiming(1, { duration: 250 });
@@ -83,7 +83,6 @@ const Accordion = ({
     }
   };
 
-  // Animated style
   const containerAnimatedStyle = useAnimatedStyle(() => {
     if (!backgroundAnimation) {
       return { backgroundColor: 'transparent' };
@@ -111,8 +110,9 @@ const Accordion = ({
     );
     return { opacity, height };
   });
+  // #endregion
 
-  // Methods
+  // #region Methods
   const _onPressIn = () => {
     runOnUI(onAccordionPressed)();
   };
@@ -121,8 +121,9 @@ const Accordion = ({
     runOnUI(onAccordionReleased)(open);
     setOpen((prevState) => !prevState);
   };
+  // #endregion
 
-  // Render components
+  // #region Render components
   const renderDescription = useMemo(() => {
     return (
       <Text type="p-sm" color={theme.colors.text}>
@@ -130,6 +131,7 @@ const Accordion = ({
       </Text>
     );
   }, [description]);
+  // #endregion
 
   return (
     <AnimatedPressable

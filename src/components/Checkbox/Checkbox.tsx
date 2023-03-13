@@ -28,6 +28,7 @@ const Checkbox = ({
   size = 25,
   type = 'square',
 }: Partial<Props>): JSX.Element => {
+  // #region Memo variables
   const containerShape = useMemo(() => {
     const _size = { width: size, height: size };
     if (type === 'round') {
@@ -86,11 +87,11 @@ const Checkbox = ({
     return null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iconType, active, icon, iconSize]);
+  // #endregion
 
-  // Animated variables
+  // #region Animated variables
   const checkboxPressed = useSharedValue(0);
 
-  // Animated worklets
   const onCheckboxPressed = () => {
     'worklet';
     checkboxPressed.value = withTiming(1, { duration: 250 });
@@ -101,7 +102,6 @@ const Checkbox = ({
     checkboxPressed.value = withTiming(0, { duration: 250 });
   };
 
-  // Animated style
   const containerAnimatedStyle = useAnimatedStyle(() => {
     let backgroundColor = interpolateColor(
       checkboxPressed.value,
@@ -113,8 +113,9 @@ const Checkbox = ({
     }
     return { backgroundColor };
   });
+  // #endregion
 
-  // Methods
+  // #region Methods
   const _onPressIn = () => {
     runOnUI(onCheckboxPressed)();
   };
@@ -122,6 +123,7 @@ const Checkbox = ({
   const _onPressOut = () => {
     runOnUI(onCheckboxReleased)();
   };
+  // #endregion
 
   return (
     <Pressable
