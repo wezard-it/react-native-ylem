@@ -20,3 +20,21 @@
 ### Events
 
 There are no events for this component.
+
+### `<ActionSheet />`
+
+### Props
+
+| Name           | Type                 | Required | Default | Description                                                   |
+| -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
+| optionsIOS           | string[]             | no       | [] | Actionsheet options (IOS), the first option should always be for handling `cancel` action
+| messageIOS | string               | no       | theme.colors.primary      | Actionsheet message (IOS)                        |
+| optionsAndroid | string| no       | []    | Actionsheet options (Android), the first option should always be for handling `cancel` action
+| androidTitle    | boolean | no       | true    | Actionsheet title (Android) |
+| androidSubTitle       | `default`, `custom`              | no       | default   | Actionsheet subtitle (Android)                        |
+
+### Events
+
+| Name    | Type                | Required | Default | Description                                        |
+| ------- | ------------------- | -------- | ------- | -------------------------------------------------- |
+| onActionPressed | (id: number | string) => void | no       |         | Event when an action is pressed, return the index of the selected action |
