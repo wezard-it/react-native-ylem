@@ -10,15 +10,9 @@ We can also use:
 npm install react-native-ylem
 ```
 
-<!-- ## Usage
+## Components
 
-```js
-import { multiply } from 'react-native-ylem';
-
-// ...
-
-const result = await multiply(3, 7);
-``` -->
+List of all our components and related props [here](COMPONENTS.md).
 
 ## Committing recap
 
