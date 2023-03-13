@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import {
-  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -11,6 +10,7 @@ import {
   Accordion,
   ActionSheet,
   ActionsheetHandler,
+  BottomSheet,
   Button,
   Card,
   Checkbox,
@@ -20,6 +20,7 @@ import {
   theme,
   Toggle,
 } from '@wezard/react-native-ylem';
+import type { BottomSheetHandler } from 'src/global';
 import Text from './Text/Text';
 
 // Custom icons
@@ -32,6 +33,8 @@ const ICONS = {
 
 export default function App() {
   const actionRef = useRef<ActionsheetHandler>(null);
+  const bottomRef = useRef<BottomSheetHandler>(null);
+
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [toggleActive, setToggleActive] = useState(true);
 
@@ -42,12 +45,44 @@ export default function App() {
     }
   };
 
+  const onShowBottomSheet = () => {
+    if (bottomRef?.current) {
+      bottomRef?.current?.openBottomSheet();
+    }
+  };
+
   // Render components
   const renderSection = (children: React.ReactNode) => (
     <View>
       {children}
       <Separator />
     </View>
+  );
+
+  const renderActionsheet = (
+    <ActionSheet
+      ref={actionRef}
+      optionsIOS={['Cancel', 'Test']}
+      messageIOS="Testing this component"
+      optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
+      onActionPressed={(id) => console.log(`perform ${id}`)}
+    />
+  );
+
+  const renderBottomSheet = (
+    <BottomSheet ref={bottomRef} type="dynamic">
+      <View style={styles.bottomsheet}>
+        <Text>
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+        </Text>
+      </View>
+    </BottomSheet>
   );
 
   return (
@@ -121,9 +156,13 @@ export default function App() {
               <Text type="h3" color={theme.colors.black}>
                 Actionsheet:
               </Text>
-              <Pressable style={styles.actionsheet} onPress={onShowActionsheet}>
-                <Text color={theme.colors.white}>Show</Text>
-              </Pressable>
+              <Button
+                type="primary"
+                variant="text"
+                animation="bounce"
+                title="Show"
+                onPress={onShowActionsheet}
+              />
             </View>
           )}
           {renderSection(
@@ -132,6 +171,20 @@ export default function App() {
                 Button:
               </Text>
               <Button type="primary" animation="bounce" />
+            </View>
+          )}
+          {renderSection(
+            <View style={styles.section}>
+              <Text type="h3" color={theme.colors.black}>
+                Bottomsheet:
+              </Text>
+              <Button
+                type="primary"
+                variant="text"
+                animation="bounce"
+                title="Show"
+                onPress={onShowBottomSheet}
+              />
             </View>
           )}
           <View style={styles.sectionVertical}>
@@ -146,13 +199,8 @@ export default function App() {
           </View>
         </ScrollView>
       </SafeAreaView>
-      <ActionSheet
-        ref={actionRef}
-        optionsIOS={['Cancel', 'Test']}
-        messageIOS="Testing this component"
-        optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
-        onActionPressed={(id) => console.log(`perform ${id}`)}
-      />
+      {renderActionsheet}
+      {renderBottomSheet}
     </View>
   );
 }
@@ -181,11 +229,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingVertical: theme.spacing.s,
   },
-  actionsheet: {
-    backgroundColor: theme.colors.primary,
-    padding: 10,
-    borderRadius: theme.radius.s,
-  },
+  bottomsheet: { paddingHorizontal: 20, paddingVertical: 30 },
   cardContainer: { marginVertical: 10 },
   card: {
     height: 100,
