@@ -12,18 +12,7 @@ npm install react-native-ylem
 
 ## Components
 
-List of all our components and related props [here](COMPONENTS.md).
-
-## Usage
-
-```js
-import {
-  Button,
-  CheckBox,
-  Text,
-  theme,
-} from '@wezard/react-native-ylem';
-```
+List of all our components and related props and usage [here](COMPONENTS.md).
 
 ## Committing recap
 

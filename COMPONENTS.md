@@ -121,3 +121,14 @@ Working on it...
 | trackActive      | string | no          | theme.colors.primary | active color |
 | trackDefault     | string               | no                   | theme.colors.neutralTextDisabled   | disabled color |
 | style            | StyleProp<ViewStyle> | no                   | Allow to customize the component style |
+
+## Usage
+
+```js
+import {
+  Button,
+  CheckBox,
+  Text,
+  theme,
+} from '@wezard/react-native-ylem';
+```
