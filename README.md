@@ -10,15 +10,20 @@ We can also use:
 npm install react-native-ylem
 ```
 
-<!-- ## Usage
+## Components
+
+List of all our components and related props [here](COMPONENTS.md).
+
+## Usage
 
 ```js
-import { multiply } from 'react-native-ylem';
-
-// ...
-
-const result = await multiply(3, 7);
-``` -->
+import {
+  Button,
+  CheckBox,
+  Text,
+  theme,
+} from '@wezard/react-native-ylem';
+```
 
 ## Committing recap
 
