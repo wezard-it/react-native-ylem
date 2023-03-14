@@ -226,10 +226,8 @@ interface ActionSheetProps {
 
 interface BottomSheetProps {
   type: 'dynamic' | 'fixed';
-  snapPoints: string[];
   config: Omit<WithSpringConfig, 'velocity'>;
   duration: number;
-  title: string | null;
   children: React.ReactNode;
   header: React.ReactNode;
   footer: React.ReactNode;
@@ -238,8 +236,8 @@ interface BottomSheetProps {
   backdropType: 'default' | 'custom' | 'none';
   backdrop: React.ReactNode;
   handleComponent: React.FC<BottomSheetHandleProps>;
-  onCloseBottomSheet?: () => void;
   props: Partial<GorhomBottomSheetProps>;
+  onCloseBottomSheet?: () => void;
 }
 
 interface ButtonProps {

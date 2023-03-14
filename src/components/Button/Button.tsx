@@ -590,4 +590,4 @@ const Button = ({
 };
 
 export default Button;
-// TODO: button custom icon handling
+// TODO: sort props like in readme

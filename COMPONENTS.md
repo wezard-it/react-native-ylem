@@ -34,9 +34,26 @@
 
 ### Props
 
-<!-- | Name           | Type                 | Required | Default | Description                                                   |
-| -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
-Working on it...
+| Name               | Type                             | Default       | Description                                                                             |
+| ------------------ | -------------------------------- | ------------- | --------------------------------------------------------------------------------------- |
+| type               | `dynamic`, `fixed`               | `dynamic`     | Bottomsheet type
+| config             | WithSpringConfig                 | BOTTOM_CONFIG | Bottomsheet configuration (check `reanimated` WithSpringConfig), velocity param not used
+| duration           | number                           | 250           | Bottomsheet duration
+| children           | React.ReactNode                  | null          | Bottomsheet children
+| header             | React.ReactNode                  | null          | Bottomsheet header
+| footer             | React.ReactNode                  | null          | Bottomsheet footer
+| points             | string[]                         | undefined     | Bottomsheet snap points (used when type is `fixed`)
+| overlayOpacity     | number                           | 0.4           | Bottomsheet backdrop opacity
+| backdropType       | `default`, `custom`, `none`      | default       | Bottomsheet backdrop type
+| backdrop           | React.ReactNode                  | null          | Bottomsheet backdrop component, if `backdropType` is equal to custom
+| handleComponent    | React.FC<BottomSheetHandleProps> | undefined     | Bottomsheet handle component
+| props              | Partial<GorhomBottomSheetProps>  | []            | Bottomsheet props, allow to fully extend this component
+| onCloseBottomSheet | () => void                       | null          | Event triggered when bottomsheet is closed
+
+### Usage
+
+This component is handled imperatively, you will need to pass a ref and you'll have access to two methods `openBottomsheet` and `closeBottomSheet`. Check the example to fully understand how to use this component [here](https://github.com/wezard-it/react-native-boilerplate).
+
 
 ### `<Button />`
 
