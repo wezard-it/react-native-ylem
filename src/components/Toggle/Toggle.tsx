@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Switch, Platform } from 'react-native';
 import { noop } from 'lodash';
-import type { ToggleProps as Props } from '../../global';
+import type { ToggleProps as Props } from '../../index';
 import { theme } from '../../theme';
 import Style from './Toggle.style';
 

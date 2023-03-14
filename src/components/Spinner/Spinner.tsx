@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import type { SpinnerProps as Props } from '../../global';
+import type { SpinnerProps as Props } from '../../index';
 import { theme } from '../../theme';
 
 const Spinner = ({
