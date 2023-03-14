@@ -5,7 +5,7 @@ import type {
   ActionSheetProps as Props,
   ActionsheetHandler,
   FormattedOptions,
-} from '../../types';
+} from '../../global';
 
 const ActionSheet = (
   {

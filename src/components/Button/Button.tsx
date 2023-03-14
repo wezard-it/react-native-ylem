@@ -10,8 +10,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
 import DefaultIcon from 'react-native-vector-icons/Feather';
+import type { ButtonProps as Props } from '../../global';
 import { theme } from '../../theme';
-import type { ButtonProps as Props } from '../../types';
 import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
 import Style from './Button.style';

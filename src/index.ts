@@ -9,7 +9,6 @@ import Separator from './components/Separator/Separator';
 import Spinner from './components/Spinner/Spinner';
 import Text from './components/Text/Text';
 import Toggle from './components/Toggle/Toggle';
-import { theme } from './theme';
 import type {
   AccordionProps,
   ActionsheetHandler,
@@ -34,7 +33,8 @@ import type {
   ToggleProps,
   Typography,
   TypographyType,
-} from './types';
+} from './global';
+import { theme } from './theme';
 
 export {
   theme,

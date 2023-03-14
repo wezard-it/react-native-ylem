@@ -20,7 +20,7 @@ import {
   theme,
   Toggle,
 } from '@wezard/react-native-ylem';
-import type { BottomSheetHandler } from 'src/types';
+import type { BottomSheetHandler } from 'src/global';
 import Text from './Text/Text';
 
 // Custom icons
@@ -65,7 +65,7 @@ export default function App() {
       optionsIOS={['Cancel', 'Test']}
       messageIOS="Testing this component"
       optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
-      onActionPressed={(id) => console.log(`perform ${id}`)}
+      onActionPressed={(id: number) => console.log(`perform ${id}`)}
     />
   );
 
