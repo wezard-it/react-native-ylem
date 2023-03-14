@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Image, Platform, Pressable, ViewStyle } from 'react-native';
 import VectorDrawable from '@klarna/react-native-vector-drawable';
 import { noop, snakeCase } from 'lodash';
-import type { IconProps as Props } from 'src/global';
+import type { IconProps as Props } from '../../types';
 
 const Icon = ({
   name = 'sun',

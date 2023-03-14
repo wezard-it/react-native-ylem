@@ -20,7 +20,7 @@ import {
   theme,
   Toggle,
 } from '@wezard/react-native-ylem';
-import type { BottomSheetHandler } from 'src/global';
+import type { BottomSheetHandler } from 'src/types';
 import Text from './Text/Text';
 
 // Custom icons

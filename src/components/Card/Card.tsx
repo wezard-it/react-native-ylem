@@ -7,8 +7,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
-import type { CardProps as Props } from 'src/global';
 import { theme } from '../../theme';
+import type { CardProps as Props } from '../../types';
 import Style from './Card.style';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);

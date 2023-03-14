@@ -7,7 +7,10 @@ import type {
   LayoutChangeEvent,
 } from 'react-native';
 import type { WithSpringConfig } from 'react-native-reanimated';
-import type { BottomSheetProps as GorhomBottomSheetProps } from '@gorhom/bottom-sheet';
+import type {
+  BottomSheetHandleProps,
+  BottomSheetProps as GorhomBottomSheetProps,
+} from '@gorhom/bottom-sheet';
 import type { DefaultTFuncReturn } from 'i18next';
 
 // #region Accessories
@@ -169,7 +172,7 @@ interface Spacing {
 type TypographyType = {
   fontFamily?: string;
   fontSize: number;
-  fontWeight: FontWeightType;
+  fontWeight: FontWeight;
   color: string;
   lineHeight: number;
 };
@@ -267,7 +270,7 @@ interface ButtonProps {
   containerStyle: StyleProp<ViewStyle>;
   style: StyleProp<ViewStyle>;
   fillSpace: boolean;
-  custom: CustomButton;
+  custom: CustomButtonProps;
   children: React.ReactNode;
   onPress: () => void;
 }
