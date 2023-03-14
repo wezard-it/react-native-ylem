@@ -1,11 +1,11 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import { noop } from 'lodash';
-import type { FormattedOptions } from '../../global';
 import type {
   ActionSheetProps as Props,
   ActionsheetHandler,
 } from '../../index';
+import type { FormattedOptions } from '../../types';
 
 const ActionSheet = (
   {

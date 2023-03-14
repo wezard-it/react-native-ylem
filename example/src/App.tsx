@@ -19,8 +19,8 @@ import {
   Spinner,
   theme,
   Toggle,
+  BottomSheetHandler,
 } from '@wezard/react-native-ylem';
-import type { BottomSheetHandler } from 'src/global';
 import Text from './Text/Text';
 
 // Custom icons

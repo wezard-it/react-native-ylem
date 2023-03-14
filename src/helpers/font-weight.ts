@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import type { FontWeight } from '../global';
+import type { FontWeight } from '../types';
 
 export const formatFontWeight = (value: number) => {
   const weight: number = value * 1;
