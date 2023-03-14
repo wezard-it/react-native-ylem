@@ -39,7 +39,11 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "ui",
+    "uk-kit",
+    "react-component",
+    "ylem"
   ],
   "repository": "https://github.com/wezard-it/react-native-ylem.git",
   "author": "Wekouri Eric <eric.wekouri@gmail.com> (https://github.com/wezard-it)",

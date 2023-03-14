@@ -42,9 +42,37 @@ Working on it...
 
 ### Props
 
-<!-- | Name           | Type                 | Required | Default | Description                                                   |
-| -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
-Working on it...
+| Name             | Type                 | Default | Description                                                   |
+| ---------------- | -------------------- | ------- | ------------------------------------------------------------- |
+| type             | `primary`, `secondary`, `custom`        | `primary`                 | button type |
+| variant          | `container`, `outlined`, `soft`, `text` | `container`               | button variant |
+| title            | string                                  | Placeholder               | button's title |
+| titleStyle       | StyleProp<ViewStyle>                    | null                      | style for button's title |
+| size             | `sm`, `md`, `lg`, `custom`              | `md`                      | button type |
+| width            | string                                  | auto                      | button width |
+| height           | number                                  | undefined                 | button height |
+| icon             | string                                  | undefined                 | icon name, must start with `ic_` if iconType is custom|
+| iconType         | `default` | `custom`                    | `default`                 | icon type |
+| iconSize         | number                                  | 20                        | icon size |
+| hasIcon          | boolean                                 | false                     | define if the icon is visible or not |
+| iconPosition     | `left`, `right`                         | undefined                 | icon type |
+| iconColor        | string                                  | undefined                 | icon color |
+| spinnerColor     | string                                  | theme.colors.white        | loading spinner color |
+| isDisabled       | boolean                                 | false                     | define if the button is disabled or not |
+| disabledColor    | string                                  | theme.colors.neutralLight | button's disabled color |
+| hasShadow        | boolean                                 | false                     | define if the shadow is visible |
+| shadowType       | `light`, `medium`, `dark`, `custom`     | undefined                 | shadow type |
+| shadowStyle      | StyleProp<ViewStyle>                    | null                      | shadow style |
+| animation        | `bounce`, `interpolation`, `none`       | `bounce`                  | define the type of animation for when the button will be pressed |
+| bounciness       | number                                  | 0.98                      | define how much the button will scale down when pressed |
+| interpolationSet | Interpolation<T> = [T, T]               | []                        | the array must be of two elements (strings) |
+| containerStyle   | StyleProp<ViewStyle>                    | null                      | button container style |
+| style            | StyleProp<ViewStyle>                    | null                      | button style |
+| fillSpace        | boolean                                 | false                     | define if the button and its container must fill the parent's space |
+| custom           | CustomButton                            | undefined                 | custom configuration for the button, you'll be able to override almost everything |
+| children         | React.ReactNode                         | undefined                 | button children |
+| onPress          | () => void                              | null                      | method triggered when a button is pressed |
+
 
 ### `<Card />`
 
@@ -68,12 +96,12 @@ Working on it...
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| name           | string          | no       | `sun`   | icon name |
-| style          | ImageStyle      | no       | {}      | icon style| 
-| size           | number          | no       | 24      | icon size |
-| tint           | string          | no       | null    | icon color |
-| style          | ImageStyle      | no       | {}      | icon container styles|
-| onPress        | () => void      | no       | null    | method triggered when an icon is onActionPressed |
+| name           | string          | no | `sun`   | icon name |
+| style          | ImageStyle      | no | {}      | icon style| 
+| size           | number          | no | 24      | icon size |
+| tint           | string          | no | null    | icon color |
+| style          | ImageStyle      | no | {}      | icon container styles|
+| onPress        | () => void      | no | null    | method triggered when an icon is onActionPressed |
 
 ### `<Separator />`
 
@@ -81,10 +109,10 @@ Working on it...
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| size            | number                     | no       | 1                   | size |
-| backgroundColor | string                     | no       | theme.colors.gray2  | color |
-| direction       |  `horizontal`, `vertical`  | no       | horizontal          | direction |
-| containerStyle  |  StyleProp<ViewStyle>      | no       | null                | container style |
+| size            | number                    | no | 1                   | size |
+| backgroundColor | string                    | no | theme.colors.gray2  | color |
+| direction       | `horizontal`, `vertical`  | no | horizontal          | direction |
+| containerStyle  | StyleProp<ViewStyle>      | no | null                | container style |
 
 ### `<Spinner />`
 
@@ -92,8 +120,8 @@ Working on it...
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| size    | `number`, `small`, `large`, `undefined`  | no       | small              | size  |
-| color   | string                                   | no       | theme.colors.white | color |
+| size    | `number`, `small`, `large`, `undefined`  | no | small              | size  |
+| color   | string                                   | no | theme.colors.white | color |
 
 ### `<Text />`
 
@@ -101,13 +129,13 @@ Working on it...
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| type           | TextType             | no       | `p-md`     | text type |
-| style          | StyleProp<TextStyle> | no       | null       | text style |
-| color          | string | no          | true     | text color |
-| underlined     | boolean              | no       | false      | define if the text is underlined or not |
-| extendedStyle  | StyleProp<TextStyle> | no       | null       | prop that allows to extend the default predefined styles |
-| fontFamily     | string               | no       | Avenir     | font family |
-| rest           | string[]             | no       | default    | define an array of strings that can be added for extend <Text />|
+| type           | TextType             | no | `p-md`             | text type |
+| style          | StyleProp<TextStyle> | no | null               | text style |
+| color          | string | no          | no | theme.colors.black |text color |
+| underlined     | boolean              | no | false              | define if the text is underlined or not |
+| extendedStyle  | StyleProp<TextStyle> | no | null               | prop that allows to extend the default predefined styles |
+| fontFamily     | string               | no | Avenir             | font family |
+| rest           | string[]             | no | default            | define an array of strings that can be added for extend <Text />|
 
 ### `<Toggle />`
 
@@ -115,12 +143,12 @@ Working on it...
 
 | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- |
-| active           | boolean              | no                   | false | define if the component is on/off |
-| isDisabled       | boolean              | no                   | false      | define if the component is disabled |
-| thumbColor       | string| no           | theme.colors.white   | thumb color |
-| trackActive      | string | no          | theme.colors.primary | active color |
-| trackDefault     | string               | no                   | theme.colors.neutralTextDisabled   | disabled color |
-| style            | StyleProp<ViewStyle> | no                   | Allow to customize the component style |
+| active           | boolean              | no | false                            | define if the component is on/off |
+| isDisabled       | boolean              | no | false                            | define if the component is disabled |
+| thumbColor       | string| no           | no | theme.colors.white               | thumb color |
+| trackActive      | string | no          | no | theme.colors.primary             | active color |
+| trackDefault     | string               | no | theme.colors.neutralTextDisabled | disabled color |
+| style            | StyleProp<ViewStyle> | no | null                             | Allow to customize the component style |
 
 ## Usage
 

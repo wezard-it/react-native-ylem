@@ -252,6 +252,8 @@ interface ButtonProps {
   height: number;
   variant: 'container' | 'outlined' | 'soft' | 'text';
   icon: string;
+  iconType: 'default' | 'custom';
+  iconSize: number;
   hasIcon: boolean;
   iconPosition: 'left' | 'right';
   iconColor: string;
@@ -264,7 +266,6 @@ interface ButtonProps {
   shadowStyle: StyleProp<ViewStyle>;
   animation: 'bounce' | 'interpolation' | 'none';
   bounciness: number;
-  isInterpolable: boolean;
   interpolationSet: Interpolation<string>;
   containerStyle: StyleProp<ViewStyle>;
   style: StyleProp<ViewStyle>;

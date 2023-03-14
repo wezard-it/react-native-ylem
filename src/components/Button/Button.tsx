@@ -9,6 +9,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
+import DefaultIcon from 'react-native-vector-icons/Feather';
 import type { ButtonProps as Props } from 'src/global';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
@@ -28,6 +29,8 @@ const Button = ({
   height = undefined,
   variant = 'container',
   icon = 'sun',
+  iconType = 'default',
+  iconSize = 20,
   hasIcon = false,
   iconPosition = 'right',
   iconColor = undefined,
@@ -521,7 +524,21 @@ const Button = ({
   // #region Render components
   const renderIcon = (
     <View style={Style.iconContainer}>
-      <Icon name={icon} tint={iconColor || derivedIconColor} size={20} />
+      {iconType === 'default' ? (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        <DefaultIcon
+          name={icon}
+          size={iconSize}
+          color={iconColor || derivedIconColor}
+        />
+      ) : (
+        <Icon
+          name={icon}
+          tint={iconColor || derivedIconColor}
+          size={iconSize}
+        />
+      )}
     </View>
   );
   // #endregion
@@ -573,3 +590,4 @@ const Button = ({
 };
 
 export default Button;
+// TODO: button custom icon handling
