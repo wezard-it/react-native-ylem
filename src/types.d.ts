@@ -249,7 +249,7 @@ interface ButtonProps {
   size: 'sm' | 'md' | 'lg' | 'custom';
   width: string;
   height: number;
-  title: string;
+  title: string | DefaultTFuncReturn;
   titleStyle: StyleProp<ViewStyle>;
   icon: string;
   iconType: 'default' | 'custom';

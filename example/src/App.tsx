@@ -65,7 +65,7 @@ export default function App() {
       optionsIOS={['Cancel', 'Test']}
       messageIOS="Testing this component"
       optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
-      onActionPressed={(id: number) => console.log(`perform ${id}`)}
+      onActionPressed={(id: number | string) => console.log(`perform ${id}`)}
     />
   );
 
