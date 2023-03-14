@@ -36,26 +36,24 @@ import type {
 } from 'src/global';
 import { theme } from 'src/theme';
 
-declare module '@wezard/react-native-ylem' {
-  export {
-    theme,
-    Colors,
-    Radius,
-    Shadow,
-    Spacing,
-    TypographyType,
-    Typography,
-    Theme,
-  };
-  export { Accordion, AccordionProps };
-  export { ActionSheet, ActionsheetHandler, ActionSheetProps };
-  export { BottomSheet, BottomSheetHandler, BottomSheetProps };
-  export { Button, ButtonProps, CustomButtonProps };
-  export { Card, CardProps };
-  export { Checkbox, CheckboxProps };
-  export { Icon, IconProps };
-  export { Separator, SeparatorProps };
-  export { Spinner, SpinnerProps };
-  export { Text, TextType, TextProps, FontWeight };
-  export { Toggle, ToggleProps };
-}
+export {
+  theme,
+  Colors,
+  Radius,
+  Shadow,
+  Spacing,
+  TypographyType,
+  Typography,
+  Theme,
+};
+export { Accordion, AccordionProps };
+export { ActionSheet, ActionsheetHandler, ActionSheetProps };
+export { BottomSheet, BottomSheetHandler, BottomSheetProps };
+export { Button, ButtonProps, CustomButtonProps };
+export { Card, CardProps };
+export { Checkbox, CheckboxProps };
+export { Icon, IconProps };
+export { Separator, SeparatorProps };
+export { Spinner, SpinnerProps };
+export { Text, TextType, TextProps, FontWeight };
+export { Toggle, ToggleProps };
