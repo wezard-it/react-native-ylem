@@ -1494,10 +1494,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@wezard/react-native-ylem@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@wezard/react-native-ylem/-/react-native-ylem-0.3.0.tgz#ee06d35bcfe237bacc964a3d4d09492d977138fa"
-  integrity sha512-gOxYhUbRf/JQBqhEjb3dVLAoHpU2rGSw1e9nkhhGtMEyfhSLzLLYienlNfupu2m36kIZgfVI8lce9gZmB57luw==
+"@wezard/react-native-ylem@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@wezard/react-native-ylem/-/react-native-ylem-0.4.0.tgz#8efef831c104cc98788dcff518f4ad2924f0b810"
+  integrity sha512-ZYrInHSVkJkW7nNWDA1voNqn/V9GTaHqbSBQjzeIOluQVlY2pq5gnryZyxvLGwuU22pt6nU6IIIq54OmNKwXkQ==
 
 abort-controller@^3.0.0:
   version "3.0.0"

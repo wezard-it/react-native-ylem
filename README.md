@@ -3,11 +3,11 @@
 ## Installation
 
 ```sh
-yarn add react-native-ylem
+yarn add @wezard/react-native-ylem
 ```
 We can also use:
 ```sh
-npm install react-native-ylem
+npm install @wezard/react-native-ylem
 ```
 
 ## Components

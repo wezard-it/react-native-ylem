@@ -15,7 +15,7 @@
     "upgrade:oss": "yarn upgrade:ios && yarn upgrade:android"
   },
   "dependencies": {
-    "@wezard/react-native-ylem": "^0.3.0",
+    "@wezard/react-native-ylem": "^0.4.0",
     "react": "18.2.0",
     "react-native": "0.71.3",
     "react-native-gesture-handler": "^2.9.0",
