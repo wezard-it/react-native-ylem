@@ -1,14 +1,14 @@
-import Accordion from 'src/components/Accordion/Accordion';
-import ActionSheet from 'src/components/ActionSheet/ActionSheet';
-import BottomSheet from 'src/components/BottomSheet/BottomSheet';
-import Button from 'src/components/Button/Button';
-import Card from 'src/components/Card/Card';
-import Checkbox from 'src/components/Checkbox/Checkbox';
-import Icon from 'src/components/Icon/Icon';
-import Separator from 'src/components/Separator/Separator';
-import Spinner from 'src/components/Spinner/Spinner';
-import Text from 'src/components/Text/Text';
-import Toggle from 'src/components/Toggle/Toggle';
+import Accordion from './components/Accordion/Accordion';
+import ActionSheet from './components/ActionSheet/ActionSheet';
+import BottomSheet from './components/BottomSheet/BottomSheet';
+import Button from './components/Button/Button';
+import Card from './components/Card/Card';
+import Checkbox from './components/Checkbox/Checkbox';
+import Icon from './components/Icon/Icon';
+import Separator from './components/Separator/Separator';
+import Spinner from './components/Spinner/Spinner';
+import Text from './components/Text/Text';
+import Toggle from './components/Toggle/Toggle';
 import type {
   AccordionProps,
   ActionsheetHandler,
@@ -33,8 +33,8 @@ import type {
   ToggleProps,
   Typography,
   TypographyType,
-} from 'src/global';
-import { theme } from 'src/theme';
+} from './global';
+import { theme } from './theme';
 
 export {
   theme,
