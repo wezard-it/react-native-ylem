@@ -52,7 +52,7 @@
 
 ### Usage
 
-This component is handled imperatively, you will need to pass a ref and you'll have access to two methods `openBottomsheet` and `closeBottomSheet`. Check the example to fully understand how to use this component [here](https://github.com/wezard-it/react-native-boilerplate).
+This component is handled imperatively, you will need to pass a ref and you'll have access to two methods `openBottomsheet` and `closeBottomSheet`. Check the example to fully understand how to use this.
 
 
 ### `<Button />`
