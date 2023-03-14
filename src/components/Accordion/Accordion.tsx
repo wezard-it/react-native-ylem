@@ -10,7 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import DefaultIcon from 'react-native-vector-icons/Feather';
-import type { AccordionProps as Props } from '../../global';
+import type { AccordionProps as Props } from '../../index';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
