@@ -22,12 +22,12 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const Button = ({
   type = 'primary',
-  title = 'Placeholder',
-  titleStyle = null,
+  variant = 'container',
   size = 'md',
   width = 'auto',
   height = undefined,
-  variant = 'container',
+  title = 'Placeholder',
+  titleStyle = null,
   icon = 'sun',
   iconType = 'default',
   iconSize = 20,
@@ -590,4 +590,3 @@ const Button = ({
 };
 
 export default Button;
-// TODO: sort props like in readme

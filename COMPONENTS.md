@@ -62,18 +62,19 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 | Name             | Type                                    | Default                   | Description                                                   |
 | ---------------- | --------------------------------------- | ------------------------- | ------------------------------------------------------------- |
 | type             | `primary`, `secondary`, `custom`        | `primary`                 | button type |
-| variant          | `container`, `outlined`, `soft`, `text` | `container`               | button variant |
-| title            | string                                  | Placeholder               | button's title |
-| titleStyle       | StyleProp<ViewStyle>                    | null                      | style for button's title |
 | size             | `sm`, `md`, `lg`, `custom`              | `md`                      | button type |
+| variant          | `container`, `outlined`, `soft`, `text` | `container`               | button variant |
 | width            | string                                  | auto                      | button width |
 | height           | number                                  | undefined                 | button height |
+| title            | string                                  | Placeholder               | button's title |
+| titleStyle       | StyleProp<ViewStyle>                    | null                      | style for button's title |
 | icon             | string                                  | undefined                 | icon name, must start with `ic_` if iconType is custom|
 | iconType         | `default` | `custom`                    | `default`                 | icon type |
 | iconSize         | number                                  | 20                        | icon size |
 | hasIcon          | boolean                                 | false                     | define if the icon is visible or not |
 | iconPosition     | `left`, `right`                         | undefined                 | icon type |
 | iconColor        | string                                  | undefined                 | icon color |
+| isLoading        | boolean                                 | false                     | define if the button is in loading state|
 | spinnerColor     | string                                  | theme.colors.white        | loading spinner color |
 | isDisabled       | boolean                                 | false                     | define if the button is disabled or not |
 | disabledColor    | string                                  | theme.colors.neutralLight | button's disabled color |

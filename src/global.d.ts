@@ -242,13 +242,12 @@ interface BottomSheetProps {
 
 interface ButtonProps {
   type: 'primary' | 'secondary' | 'custom';
+  variant: 'container' | 'outlined' | 'soft' | 'text';
   size: 'sm' | 'md' | 'lg' | 'custom';
-  title: string;
-  titleColor: string;
-  titleStyle: StyleProp<ViewStyle>;
   width: string;
   height: number;
-  variant: 'container' | 'outlined' | 'soft' | 'text';
+  title: string;
+  titleStyle: StyleProp<ViewStyle>;
   icon: string;
   iconType: 'default' | 'custom';
   iconSize: number;
