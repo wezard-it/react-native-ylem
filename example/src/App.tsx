@@ -1,96 +1,95 @@
-// import React, { useRef, useState } from 'react';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
-  // ScrollView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
-// import {
-//   Accordion,
-//   ActionSheet,
-//   ActionsheetHandler,
-//   BottomSheet,
-//   Button,
-//   Card,
-//   Checkbox,
-//   Icon,
-//   Separator,
-//   Spinner,
-//   theme,
-//   Toggle,
-// } from '@wezard/react-native-ylem';
-// import type { BottomSheetHandler } from 'src/global';
-// import Text from './Text/Text';
+import {
+  Accordion,
+  ActionSheet,
+  ActionsheetHandler,
+  BottomSheet,
+  Button,
+  Card,
+  Checkbox,
+  Icon,
+  Separator,
+  Spinner,
+  theme,
+  Toggle,
+} from '@wezard/react-native-ylem';
+import type { BottomSheetHandler } from 'src/global';
+import Text from './Text/Text';
 
 // Custom icons
-// const ICONS = {
-//   check: 'check',
-//   plus: 'plus',
-//   sun: 'sun',
-//   toggleOn: 'toggleOn',
-// };
+const ICONS = {
+  check: 'check',
+  plus: 'plus',
+  sun: 'sun',
+  toggleOn: 'toggleOn',
+};
 
 export default function App() {
-  // const actionRef = useRef<ActionsheetHandler>(null);
-  // const bottomRef = useRef<BottomSheetHandler>(null);
+  const actionRef = useRef<ActionsheetHandler>(null);
+  const bottomRef = useRef<BottomSheetHandler>(null);
 
-  // const [checkboxActive, setCheckboxActive] = useState(false);
-  // const [toggleActive, setToggleActive] = useState(true);
+  const [checkboxActive, setCheckboxActive] = useState(false);
+  const [toggleActive, setToggleActive] = useState(true);
 
   // Methods
-  // const onShowActionsheet = () => {
-  //   if (actionRef?.current) {
-  //     actionRef?.current?.show();
-  //   }
-  // };
+  const onShowActionsheet = () => {
+    if (actionRef?.current) {
+      actionRef?.current?.show();
+    }
+  };
 
-  // const onShowBottomSheet = () => {
-  //   if (bottomRef?.current) {
-  //     bottomRef?.current?.openBottomSheet();
-  //   }
-  // };
+  const onShowBottomSheet = () => {
+    if (bottomRef?.current) {
+      bottomRef?.current?.openBottomSheet();
+    }
+  };
 
   // Render components
-  // const renderSection = (children: React.ReactNode) => (
-  //   <View>
-  //     {children}
-  //     <Separator />
-  //   </View>
-  // );
+  const renderSection = (children: React.ReactNode) => (
+    <View>
+      {children}
+      <Separator />
+    </View>
+  );
 
-  // const renderActionsheet = (
-  //   <ActionSheet
-  //     ref={actionRef}
-  //     optionsIOS={['Cancel', 'Test']}
-  //     messageIOS="Testing this component"
-  //     optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
-  //     onActionPressed={(id) => console.log(`perform ${id}`)}
-  //   />
-  // );
+  const renderActionsheet = (
+    <ActionSheet
+      ref={actionRef}
+      optionsIOS={['Cancel', 'Test']}
+      messageIOS="Testing this component"
+      optionsAndroid={[{ text: 'Cancel', style: 'cancel' }, { text: 'Test' }]}
+      onActionPressed={(id) => console.log(`perform ${id}`)}
+    />
+  );
 
-  // const renderBottomSheet = (
-  //   <BottomSheet ref={bottomRef} type="dynamic">
-  //     <View style={styles.bottomsheet}>
-  //       <Text>
-  //         Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-  //         culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-  //         non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
-  //         minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
-  //         Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
-  //         nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
-  //         magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-  //       </Text>
-  //     </View>
-  //   </BottomSheet>
-  // );
+  const renderBottomSheet = (
+    <BottomSheet ref={bottomRef} type="dynamic">
+      <View style={styles.bottomsheet}>
+        <Text>
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+        </Text>
+      </View>
+    </BottomSheet>
+  );
 
   return (
     <View style={styles.safe}>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="dark-content" />
-        {/* <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
           {renderSection(
             <View style={styles.section}>
               <Text type="h3" color={theme.colors.black}>
@@ -198,10 +197,10 @@ export default function App() {
               </View>
             </Card>
           </View>
-        </ScrollView> */}
+        </ScrollView>
       </SafeAreaView>
-      {/* {renderActionsheet} */}
-      {/* {renderBottomSheet} */}
+      {renderActionsheet}
+      {renderBottomSheet}
     </View>
   );
 }
@@ -209,26 +208,26 @@ export default function App() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    // backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.white,
   },
   safeArea: {
     flex: 1,
-    // backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.white,
   },
   container: {
     flex: 1,
-    // backgroundColor: theme.colors.white,
-    // paddingHorizontal: theme.spacing.m,
+    backgroundColor: theme.colors.white,
+    paddingHorizontal: theme.spacing.m,
   },
   section: {
     flexDirection: 'row',
-    // paddingVertical: theme.spacing.s,
+    paddingVertical: theme.spacing.s,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   sectionVertical: {
     flexDirection: 'column',
-    // paddingVertical: theme.spacing.s,
+    paddingVertical: theme.spacing.s,
   },
   bottomsheet: { paddingHorizontal: 20, paddingVertical: 30 },
   cardContainer: { marginVertical: 10 },
