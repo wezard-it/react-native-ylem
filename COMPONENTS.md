@@ -24,7 +24,7 @@
 | optionsAndroid  | string                        | []                   | Actionsheet options (Android), the first option should always be for handling `cancel` action
 | androidTitle    | boolean                       | true                 | Actionsheet title (Android)
 | androidSubTitle | `default`, `custom`           | default              | Actionsheet subtitle (Android)                 
-| onActionPressed | (id: number | string) => void | null                 | Event when an action is pressed, return the index of the selected action
+| onActionPressed | (id: number | string) => void | noop                 | Event when an action is pressed, return the index of the selected action
 
 ### `<BottomSheet />`
 
@@ -42,7 +42,7 @@
 | backdrop           | React.ReactNode                  | null          | Bottomsheet backdrop component, if `backdropType` is equal to custom
 | handleComponent    | React.FC<BottomSheetHandleProps> | undefined     | Bottomsheet handle component
 | props              | Partial<GorhomBottomSheetProps>  | []            | Bottomsheet props, allow to fully extend this component
-| onCloseBottomSheet | () => void                       | null          | Event triggered when bottomsheet is closed
+| onCloseBottomSheet | () => void                       | noop          | Event triggered when bottomsheet is closed
 
 ### Usage
 
@@ -86,9 +86,22 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 
 ### `<Card />`
 
-<!-- | Name           | Type                 | Required | Default | Description                                                   |
-| -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
-Working on it...
+| Name            | Type                              | Default                   | Description                                                                 |
+| --------------- | --------------------------------- | ------------------------- | --------------------------------------------------------------------------- |
+| children        | React.ReactNode                   | null                      | Card children
+| style           | StyleProp<ViewStyle>              | null                      | Card style
+| isDisabled      | boolean                           | false                     | Define if the card is disabled
+| backgroundColor | string                            | theme.colors.gray2        | Card background color
+| disabledColor   | string                            | theme.colors.gray3        | Card disabled color
+| radius          | number                            | 6                         | Card radius
+| animation       | `bounce`, `none`                  | `bounce`                  | Define if one card press there will be an animation or not
+| bounciness      | number                            | 0.98                      | Define how much will the component scale down when pressed
+| shadow          | `light`, `medium`, `dark`, `none` | `none`                    | Define if a shadow will be shown or not
+| shadowStyle     | StyleProp<ViewStyle>              | null                      | Shadow style (allow to override the default styles)
+| onPress         | () => void                        | noop                      | Event triggered when card component is pressed in
+| onPressIn       | () => void                        | noop                      | Event triggered when card component is pressed
+| onPressOut      | () => void                        | noop                      | Event triggered when card component is pressed out
+| onLayout        | LayoutChangeEvent                 | undefined                 | Event triggered onLayout
 
 ### `<Checkbox />`
 
@@ -105,7 +118,7 @@ Working on it...
 | isDisabled       | boolean             | false                     | Define if the checkbox is disabled
 | size             | number              | 25                        | Checkbox size
 | type             | `round`, `square`   | `square`                  | Checkbox type
-| onPress          | () => void          | null                      | Event triggered when checkbox is pressed
+| onPress          | () => void          | noop                      | Event triggered when checkbox is pressed
 
 ### `<Icon />`
 
@@ -116,7 +129,7 @@ Working on it...
 | size           | number       | 24      | Icon size
 | tint           | string       | null    | Icon color
 | style          | ImageStyle   | {}      | Icon container styles
-| onPress        | () => void   | null    | Method triggered when an icon is onActionPressed
+| onPress        | () => void   | noop    | Method triggered when an icon is onActionPressed
 
 ### `<Separator />`
 
