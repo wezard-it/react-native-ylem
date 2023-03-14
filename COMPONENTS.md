@@ -2,8 +2,6 @@
 
 ### `<Accordion />`
 
-### Props
-
 | Name                | Type                | Default                       | Description                                                                                                |
 | ------------------- | ------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | title               | string              | Title                         | Accordion title
@@ -19,8 +17,6 @@
 
 ### `<ActionSheet />`
 
-### Props
-
 | Name            | Type                          | Default              | Description                                                   |
 | --------------- | ----------------------------- | -------------------- | ------------------------------------------------------------- |
 | optionsIOS      | string[]                      | []                   | Actionsheet options (IOS), the first option should always be for handling `cancel` action
@@ -31,8 +27,6 @@
 | onActionPressed | (id: number | string) => void | null                 | Event when an action is pressed, return the index of the selected action
 
 ### `<BottomSheet />`
-
-### Props
 
 | Name               | Type                             | Default       | Description                                                                             |
 | ------------------ | -------------------------------- | ------------- | --------------------------------------------------------------------------------------- |
@@ -56,8 +50,6 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 
 
 ### `<Button />`
-
-### Props
 
 | Name             | Type                                    | Default                   | Description                                                                 |
 | ---------------- | --------------------------------------- | ------------------------- | --------------------------------------------------------------------------- |
@@ -94,23 +86,17 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 
 ### `<Card />`
 
-### Props
-
 <!-- | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
 Working on it...
 
 ### `<Checkbox />`
 
-### Props
-
 <!-- | Name           | Type                 | Required | Default | Description                                                   |
 | -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
 Working on it...
 
 ### `<Icon />`
-
-### Props
 
 | Name           | Type         | Default | Description                                      |
 | -------------- | ------------ | ------- | ------------------------------------------------ |
@@ -123,8 +109,6 @@ Working on it...
 
 ### `<Separator />`
 
-### Props
-
 | Name            | Type                     |  Default           | Description     |
 | --------------- | ------------------------ |  ----------------- | --------------- |
 | size            | number                   | 1                  | size
@@ -134,16 +118,12 @@ Working on it...
 
 ### `<Spinner />`
 
-### Props
-
 | Name    | Type                                     | Default            | Description   |
 | ------- | ---------------------------------------- | ------------------ | ------------- |
 | size    | `number`, `small`, `large`, `undefined`  | small              | spinner size
 | color   | string                                   | theme.colors.white | spinner color
 
 ### `<Text />`
-
-### Props
 
 | Name          | Type                  | Default            | Description                                                     |
 | ------------- | --------------------- | ------------------ | --------------------------------------------------------------- |
@@ -156,8 +136,6 @@ Working on it...
 | rest          | string[]              | default            | define an array of strings that can be added for extend <Text />
 
 ### `<Toggle />`
-
-### Props
 
 | Name         | Type                 | Default                          | Description                                                   |
 | ------------ | -------------------- | -------------------------------- | ------------------------------------------------------------- |
