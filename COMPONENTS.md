@@ -169,3 +169,21 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 | trackActive  | string               | theme.colors.primary             | Active color
 | trackDefault | string               | theme.colors.neutralTextDisabled | Default color
 | style        | StyleProp<ViewStyle> | null                             | Allow to customize the component style
+
+### Theme
+``
+const theme = {
+  colors,
+  radius,
+  shadows,
+  spacing,
+  typography,
+}
+``
+
+You will have access to :
+- Colors
+- Radius
+- Shadows
+- Spacing
+- Typography
