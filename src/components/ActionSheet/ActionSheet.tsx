@@ -4,8 +4,8 @@ import { noop } from 'lodash';
 import type {
   ActionSheetProps as Props,
   ActionsheetHandler,
-  FormattedOptions,
-} from 'src/global';
+} from '../../index';
+import type { FormattedOptions } from '../../types';
 
 const ActionSheet = (
   {

@@ -5,7 +5,7 @@ import type {
   Spacing,
   Theme,
   Typography,
-} from 'src/global';
+} from '../types';
 
 const colors: Colors = {
   primaryDark: '#1565c0',

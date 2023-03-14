@@ -9,6 +9,7 @@ import Separator from './components/Separator/Separator';
 import Spinner from './components/Spinner/Spinner';
 import Text from './components/Text/Text';
 import Toggle from './components/Toggle/Toggle';
+import { theme } from './theme';
 import type {
   AccordionProps,
   ActionsheetHandler,
@@ -28,13 +29,13 @@ import type {
   Spacing,
   SpinnerProps,
   TextProps,
+  TextDecorationLine,
   TextType,
   Theme,
   ToggleProps,
   Typography,
   TypographyType,
-} from './global';
-import { theme } from './theme';
+} from './types';
 
 export {
   theme,
@@ -55,5 +56,5 @@ export { Checkbox, CheckboxProps };
 export { Icon, IconProps };
 export { Separator, SeparatorProps };
 export { Spinner, SpinnerProps };
-export { Text, TextType, TextProps, FontWeight };
+export { Text, TextType, TextProps, FontWeight, TextDecorationLine };
 export { Toggle, ToggleProps };

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import type { SeparatorProps as Props } from 'src/global';
+import type { SeparatorProps as Props } from '../../index';
 import { theme } from '../../theme';
 import Style from './Separator.style';
 

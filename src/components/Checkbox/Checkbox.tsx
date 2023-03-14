@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
 import DefaultIcon from 'react-native-vector-icons/Feather';
-import type { CheckboxProps as Props } from 'src/global';
+import type { CheckboxProps as Props } from '../../index';
 import { theme } from '../../theme';
 import Icon from '../Icon/Icon';
 import Style from './Checkbox.style';

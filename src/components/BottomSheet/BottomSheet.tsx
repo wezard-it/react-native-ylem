@@ -14,7 +14,7 @@ import AnimatedBottomSheet, {
 } from '@gorhom/bottom-sheet';
 import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
 import { noop } from 'lodash';
-import type { BottomSheetProps, BottomSheetHandler } from 'src/global';
+import type { BottomSheetProps, BottomSheetHandler } from '../../index';
 import BottomBackdrop from '../BottomBackdrop/BottomBackdrop';
 import Style from './BottomSheet.style';
 

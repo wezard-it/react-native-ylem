@@ -7,7 +7,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { noop } from 'lodash';
-import type { CardProps as Props } from 'src/global';
+import type { CardProps as Props } from '../../index';
 import { theme } from '../../theme';
 import Style from './Card.style';
 
