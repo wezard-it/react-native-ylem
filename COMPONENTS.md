@@ -60,7 +60,7 @@ This component is handled imperatively, you will need to pass a ref and you'll h
 | height           | number                                  | undefined                 | button height
 | title            | string                                  | Placeholder               | button's title
 | titleStyle       | StyleProp<ViewStyle>                    | null                      | style for button's title
-| icon             | string                                  | undefined                 | icon name, must start with `ic_` if iconType is custom
+| icon             | string                                  | undefined                 | icon name
 | iconType         | `default` | `custom`                    | `default`                 | icon type
 | iconSize         | number                                  | 20                        | icon size
 | hasIcon          | boolean                                 | false                     | define if the icon is visible or not
@@ -92,9 +92,20 @@ Working on it...
 
 ### `<Checkbox />`
 
-<!-- | Name           | Type                 | Required | Default | Description                                                   |
-| -------------- | -------------------- | -------- | ------- | ------------------------------------------------------------- | -->
-Working on it...
+| Name             | Type                | Default                   | Description                                                                 |
+| ---------------- | ------------------- | ------------------------- | --------------------------------------------------------------------------- |
+| active           | boolean             | false                     | define if the checkbox is active or not
+| activeColor      | string              | theme.colors.primary      | active color
+| defaultColor     | string              | theme.colors.neutral      | default color
+| defaultColorDark | string              | theme.colors.neutralDark  | color when the checkbox is pressed
+| disabledColor    | string              | theme.colors.primaryLight | color displayed when the checkbox is disabled
+| icon             | string              | `check`                   | icon name
+| iconType         | `default`, `custom` | `default`                 | icon type
+| iconSize         | number              | 12                        | icon size
+| isDisabled       | boolean             | false                     | define if the checkbox is disabled
+| size             | number              | 25                        | checkbox size
+| type             | `round`, `square`   | `square`                  | checkbox type
+| onPress          | () => void          | null                      | event triggered when checkbox is pressed
 
 ### `<Icon />`
 

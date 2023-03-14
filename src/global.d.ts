@@ -296,12 +296,12 @@ interface CheckboxProps {
   defaultColorDark: string;
   disabledColor: string;
   icon: string;
-  iconSize: number;
   iconType: 'default' | 'custom';
+  iconSize: number;
   isDisabled: boolean;
-  onPress?: () => void;
   size: number;
   type: 'round' | 'square';
+  onPress?: () => void;
 }
 
 interface IconProps {

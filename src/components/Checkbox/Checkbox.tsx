@@ -24,9 +24,9 @@ const Checkbox = ({
   iconSize = 12,
   iconType = 'default',
   isDisabled = false,
-  onPress = noop,
   size = 25,
   type = 'square',
+  onPress = noop,
 }: Partial<Props>): JSX.Element => {
   // #region Memo variables
   const containerShape = useMemo(() => {
