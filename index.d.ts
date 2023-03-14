@@ -1,0 +1,27 @@
+declare module '@wezard/react-native-ylem' {
+  export type {
+    AccordionProps,
+    ActionsheetHandler,
+    ActionSheetProps,
+    BottomSheetHandler,
+    BottomSheetProps,
+    ButtonProps,
+    CardProps,
+    CheckboxProps,
+    Colors,
+    CustomButtonProps,
+    FontWeight,
+    IconProps,
+    Radius,
+    SeparatorProps,
+    Shadow,
+    Spacing,
+    SpinnerProps,
+    TextProps,
+    TextType,
+    Theme,
+    ToggleProps,
+    Typography,
+    TypographyType,
+  } from 'src/global';
+}
