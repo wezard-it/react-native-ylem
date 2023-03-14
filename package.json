@@ -1,6 +1,6 @@
 {
   "name": "@wezard/react-native-ylem",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
