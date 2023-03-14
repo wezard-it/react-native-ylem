@@ -226,10 +226,8 @@ interface ActionSheetProps {
 
 interface BottomSheetProps {
   type: 'dynamic' | 'fixed';
-  snapPoints: string[];
   config: Omit<WithSpringConfig, 'velocity'>;
   duration: number;
-  title: string | null;
   children: React.ReactNode;
   header: React.ReactNode;
   footer: React.ReactNode;
@@ -238,20 +236,21 @@ interface BottomSheetProps {
   backdropType: 'default' | 'custom' | 'none';
   backdrop: React.ReactNode;
   handleComponent: React.FC<BottomSheetHandleProps>;
-  onCloseBottomSheet?: () => void;
   props: Partial<GorhomBottomSheetProps>;
+  onCloseBottomSheet?: () => void;
 }
 
 interface ButtonProps {
   type: 'primary' | 'secondary' | 'custom';
+  variant: 'container' | 'outlined' | 'soft' | 'text';
   size: 'sm' | 'md' | 'lg' | 'custom';
-  title: string;
-  titleColor: string;
-  titleStyle: StyleProp<ViewStyle>;
   width: string;
   height: number;
-  variant: 'container' | 'outlined' | 'soft' | 'text';
+  title: string;
+  titleStyle: StyleProp<ViewStyle>;
   icon: string;
+  iconType: 'default' | 'custom';
+  iconSize: number;
   hasIcon: boolean;
   iconPosition: 'left' | 'right';
   iconColor: string;
@@ -264,7 +263,6 @@ interface ButtonProps {
   shadowStyle: StyleProp<ViewStyle>;
   animation: 'bounce' | 'interpolation' | 'none';
   bounciness: number;
-  isInterpolable: boolean;
   interpolationSet: Interpolation<string>;
   containerStyle: StyleProp<ViewStyle>;
   style: StyleProp<ViewStyle>;
@@ -298,12 +296,12 @@ interface CheckboxProps {
   defaultColorDark: string;
   disabledColor: string;
   icon: string;
-  iconSize: number;
   iconType: 'default' | 'custom';
+  iconSize: number;
   isDisabled: boolean;
-  onPress?: () => void;
   size: number;
   type: 'round' | 'square';
+  onPress?: () => void;
 }
 
 interface IconProps {

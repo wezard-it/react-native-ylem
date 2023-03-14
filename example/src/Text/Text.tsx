@@ -20,7 +20,7 @@ const Text = ({
   type = 'p-md',
   children,
   style = null,
-  color = theme.colors.primary,
+  color = theme.colors.black,
   underlined = false,
   fontFamily = undefined,
   ...rest
