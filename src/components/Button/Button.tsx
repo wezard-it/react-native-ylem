@@ -59,7 +59,7 @@ const Button = ({
     if (fillSpace) {
       return [containerStyle, { flex: 1 }];
     }
-    return _containerStyle;
+    return containerStyle;
   }, [containerStyle, fillSpace]);
   // #endregion
 
