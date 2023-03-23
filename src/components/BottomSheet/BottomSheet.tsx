@@ -42,6 +42,9 @@ const BottomSheet = (
     backdropType = 'default',
     backdrop = null,
     handleComponent,
+    backgroundStyle,
+    keyboardBehavior = 'fillParent',
+    keyboardBlurBehavior = 'restore',
     onCloseBottomSheet = noop,
     props,
   }: Partial<BottomSheetProps>,
@@ -90,7 +93,7 @@ const BottomSheet = (
 
   const contentHeight = useMemo(() => {
     if (type === 'fixed') {
-      return 20;
+      return undefined;
     } else {
       return animatedContentHeight;
     }
@@ -183,9 +186,9 @@ const BottomSheet = (
       enablePanDownToClose
       enableContentPanningGesture={false}
       handleComponent={handleComponent}
-      backgroundStyle={{}}
-      keyboardBehavior="fillParent"
-      keyboardBlurBehavior="restore"
+      backgroundStyle={backgroundStyle}
+      keyboardBehavior={keyboardBehavior}
+      keyboardBlurBehavior={keyboardBlurBehavior}
       backdropComponent={renderBackdrop}
       onAnimate={_onAnimate}
       {...props}
