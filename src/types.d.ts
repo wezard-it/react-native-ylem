@@ -238,6 +238,11 @@ interface BottomSheetProps {
   overlayOpacity: number;
   backdropType: 'default' | 'custom' | 'none';
   backdrop: React.ReactNode;
+  backgroundStyle: StyleProp<
+    Omit<ViewStyle, 'bottom' | 'left' | 'position' | 'right' | 'top'>
+  >;
+  keyboardBehavior: 'fillParent' | 'interactive' | 'extend' | undefined;
+  keyboardBlurBehavior: 'none' | 'restore' | undefined;
   handleComponent: React.FC<BottomSheetHandleProps>;
   props: Partial<GorhomBottomSheetProps>;
   onCloseBottomSheet?: () => void;

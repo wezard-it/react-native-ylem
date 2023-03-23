@@ -70,8 +70,8 @@ export default function App() {
   );
 
   const renderBottomSheet = (
-    <BottomSheet ref={bottomRef} type="dynamic">
-      <View style={styles.bottomsheet}>
+    <BottomSheet ref={bottomRef} type="fixed" points={['50%']}>
+      <ScrollView contentContainerStyle={styles.bottomsheet}>
         <Text>
           Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
@@ -80,8 +80,22 @@ export default function App() {
           Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
           nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
           magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
         </Text>
-      </View>
+      </ScrollView>
     </BottomSheet>
   );
 
