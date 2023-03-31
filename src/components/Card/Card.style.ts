@@ -4,6 +4,7 @@ import { theme } from '../../theme';
 const Style = StyleSheet.create({
   container: {},
   shadowLight: {
+    flex: 1,
     ...theme.shadows.light,
     backgroundColor: theme.colors.white,
   },

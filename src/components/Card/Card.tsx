@@ -53,17 +53,17 @@ const Card = ({
     } else {
       switch (shadow) {
         case 'light':
-          return Style.shadowLight;
+          return [Style.shadowLight, { borderRadius: radius }];
         case 'medium':
-          return Style.shadowMedium;
+          return [Style.shadowMedium, { borderRadius: radius }];
         case 'dark':
-          return Style.shadowDark;
+          return [Style.shadowDark, { borderRadius: radius }];
         case 'none':
         default:
           return null;
       }
     }
-  }, [shadow, shadowStyle]);
+  }, [radius, shadow, shadowStyle]);
   // #endregion
 
   // #region Animated
