@@ -28,6 +28,7 @@ const Card = ({
   onPress = noop,
   onPressOut = noop,
   onLayout = noop,
+  ...rest
 }: Partial<Props>): JSX.Element => {
   // #region Memo variables
   const container: StyleProp<ViewStyle> = useMemo(() => {
@@ -113,6 +114,7 @@ const Card = ({
       onPressOut={_onPressOut}
       onPress={onPress}
       onLayout={onLayout}
+      {...rest}
     >
       {children}
     </AnimatedPressable>
