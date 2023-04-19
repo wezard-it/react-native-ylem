@@ -555,11 +555,11 @@ const Button = ({
         <Animated.View
           style={[
             buttonShadow,
-            style,
             buttonStyle,
             buttonSize,
             buttonLoadingStyle,
             buttonAnimatedStyle,
+            style,
           ]}
         >
           {children || (
