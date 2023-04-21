@@ -139,7 +139,6 @@ const BottomSheet = (
   // Methods
 
   const _onAnimate = (_: number, toIndex: number) => {
-    console.log(toIndex);
     if (toIndex === -1) {
       runOnUI(hideBottomSheet)();
       setContentVisible(false);
