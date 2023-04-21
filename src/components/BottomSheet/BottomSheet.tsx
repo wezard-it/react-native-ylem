@@ -7,7 +7,13 @@ import React, {
   useCallback,
 } from 'react';
 import { View, Platform } from 'react-native';
-import { useSharedValue, withTiming, runOnUI } from 'react-native-reanimated';
+import {
+  useSharedValue,
+  withTiming,
+  runOnUI,
+  useAnimatedReaction,
+  runOnJS,
+} from 'react-native-reanimated';
 import AnimatedBottomSheet, {
   useBottomSheetSpringConfigs,
   useBottomSheetDynamicSnapPoints,
@@ -66,6 +72,7 @@ const BottomSheet = (
 
   // State variables
   const [contentVisible, setContentVisible] = useState(false);
+  const [derivedOpacity, setDerivedOpacity] = useState(0);
 
   // Animated variables
   const {
@@ -102,8 +109,23 @@ const BottomSheet = (
   // Animated variables
   const opacity = useSharedValue(0);
 
-  // Animated worklets
+  const onHandleOpacity = (value: number) => {
+    if (derivedOpacity === 0) {
+      setDerivedOpacity(value);
+    }
+  };
 
+  // Animated reaction
+  useAnimatedReaction(
+    () => {
+      return opacity.value;
+    },
+    (data) => {
+      runOnJS(onHandleOpacity)(data);
+    }
+  );
+
+  // Animated worklets
   const showBottomSheet = () => {
     'worklet';
     opacity.value = withTiming(1, { duration });
@@ -117,6 +139,7 @@ const BottomSheet = (
   // Methods
 
   const _onAnimate = (_: number, toIndex: number) => {
+    console.log(toIndex);
     if (toIndex === -1) {
       runOnUI(hideBottomSheet)();
       setContentVisible(false);
@@ -157,7 +180,7 @@ const BottomSheet = (
       }
       return (
         <>
-          {isIOSDevice || opacity?.value > 0 ? (
+          {isIOSDevice || derivedOpacity > 0 ? (
             <>
               {backdropType === 'default' ? (
                 <BottomBackdrop
@@ -171,7 +194,7 @@ const BottomSheet = (
         </>
       );
     },
-    [isIOSDevice, opacity?.value, backdropType, overlayOpacity, backdrop]
+    [isIOSDevice, derivedOpacity, backdropType, overlayOpacity, backdrop]
   );
 
   return (

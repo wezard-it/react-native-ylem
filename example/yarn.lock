@@ -1180,6 +1180,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@klarna/react-native-vector-drawable@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@klarna/react-native-vector-drawable/-/react-native-vector-drawable-0.4.0.tgz#b1f9bc0f8119ab3502c488941f11672a04e30651"
+  integrity sha512-jm1rVTZY2l58tJPtnwOmjl+dhhel+nlJSqihd0SENf85fo5F1QNdROGO2/DF9PF9p3pb5v/tRhFPdwW819alwA==
+
 "@react-native-community/cli-clean@^10.1.1":
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-clean/-/cli-clean-10.1.1.tgz#4c73ce93a63a24d70c0089d4025daac8184ff504"
