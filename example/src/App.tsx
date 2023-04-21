@@ -82,18 +82,7 @@ export default function App() {
           magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
           Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
-          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
-          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
-          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
-          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
-          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
-          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
-          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
-          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+          non mollit ad sit culpa voluptate ipsum incididunt.
         </Text>
       </ScrollView>
     </BottomSheet>
@@ -102,7 +91,10 @@ export default function App() {
   return (
     <View style={styles.safe}>
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={theme.colors.white}
+        />
         <ScrollView contentContainerStyle={styles.container}>
           {renderSection(
             <View style={styles.section}>
@@ -229,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
   },
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: theme.colors.white,
     paddingHorizontal: theme.spacing.m,
   },

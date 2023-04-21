@@ -531,6 +531,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YlemExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ylem;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -559,6 +560,7 @@
 				DEVELOPMENT_TEAM = 4KT89NN4FW;
 				INFOPLIST_FILE = YlemExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ylem;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
