@@ -6,7 +6,6 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import {
   Accordion,
   ActionSheet,
@@ -22,6 +21,7 @@ import {
   Toggle,
   BottomSheetHandler,
   BottomSheetModal,
+  BottomSheetModalProvider,
 } from '@wezard/react-native-ylem';
 import Text from './Text/Text';
 
@@ -55,8 +55,8 @@ export default function App() {
   };
 
   const onShowBottomSheetModal = () => {
-    if (bottomRef?.current) {
-      bottomRef?.current?.openBottomSheet();
+    if (bottomModalRef?.current) {
+      bottomModalRef?.current?.openBottomSheet();
     }
   };
 
@@ -260,6 +260,7 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: theme.colors.white,
+    paddingHorizontal: 32,
   },
   safeArea: {
     flex: 1,

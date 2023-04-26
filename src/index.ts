@@ -10,6 +10,7 @@ import Separator from './components/Separator/Separator';
 import Spinner from './components/Spinner/Spinner';
 import Text from './components/Text/Text';
 import Toggle from './components/Toggle/Toggle';
+import BottomSheetModalProvider from './providers/BottomSheetModalProvider/BottomSheetModalProvider';
 import { theme } from './theme';
 import type {
   AccordionProps,
@@ -52,6 +53,7 @@ export { Accordion, AccordionProps };
 export { ActionSheet, ActionsheetHandler, ActionSheetProps };
 export { BottomSheet, BottomSheetHandler, BottomSheetProps };
 export { BottomSheetModal };
+export { BottomSheetModalProvider };
 export { Button, ButtonProps, CustomButtonProps };
 export { Card, CardProps };
 export { Checkbox, CheckboxProps };

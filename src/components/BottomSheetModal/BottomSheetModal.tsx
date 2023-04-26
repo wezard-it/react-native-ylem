@@ -141,8 +141,8 @@ const BottomSheetModal = (
 
   const _onAnimate = (_: number, toIndex: number) => {
     if (toIndex === -1) {
-      runOnUI(hideBottomSheet)();
-      setContentVisible(false);
+      // runOnUI(hideBottomSheet)();
+      // setContentVisible(false);
       onCloseBottomSheet();
     }
   };
@@ -151,12 +151,12 @@ const BottomSheetModal = (
     openBottomSheet() {
       runOnUI(showBottomSheet)();
       setContentVisible(true);
-      bottomSheetRef?.current?.snapToIndex(0);
+      bottomSheetRef?.current?.present();
     },
     closeBottomSheet() {
       runOnUI(hideBottomSheet)();
       setContentVisible(false);
-      bottomSheetRef?.current?.forceClose();
+      bottomSheetRef?.current?.close();
     },
   }));
 
@@ -200,7 +200,6 @@ const BottomSheetModal = (
   return (
     <GorhomBottomSheetModal
       ref={bottomSheetRef}
-      index={-1}
       snapPoints={snapPoints}
       handleHeight={handleHeight}
       contentHeight={contentHeight}

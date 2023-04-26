@@ -529,6 +529,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4KT89NN4FW;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				INFOPLIST_FILE = YlemExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Ylem;
 				IPHONEOS_DEPLOYMENT_TARGET = 13;
