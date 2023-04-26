@@ -255,7 +255,7 @@ interface ButtonProps {
   width: string;
   height: number;
   title: string | DefaultTFuncReturn;
-  titleStyle: StyleProp<ViewStyle>;
+  titleStyle: StyleProp<TextStyle>;
   icon: string;
   iconType: 'default' | 'custom';
   iconSize: number;
