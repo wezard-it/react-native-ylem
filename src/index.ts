@@ -1,6 +1,7 @@
 import Accordion from './components/Accordion/Accordion';
 import ActionSheet from './components/ActionSheet/ActionSheet';
 import BottomSheet from './components/BottomSheet/BottomSheet';
+import BottomSheetModal from './components/BottomSheetModal/BottomSheetModal';
 import Button from './components/Button/Button';
 import Card from './components/Card/Card';
 import Checkbox from './components/Checkbox/Checkbox';
@@ -50,6 +51,7 @@ export {
 export { Accordion, AccordionProps };
 export { ActionSheet, ActionsheetHandler, ActionSheetProps };
 export { BottomSheet, BottomSheetHandler, BottomSheetProps };
+export { BottomSheetModal };
 export { Button, ButtonProps, CustomButtonProps };
 export { Card, CardProps };
 export { Checkbox, CheckboxProps };

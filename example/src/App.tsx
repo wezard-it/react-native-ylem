@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import {
   Accordion,
   ActionSheet,
@@ -20,6 +21,7 @@ import {
   theme,
   Toggle,
   BottomSheetHandler,
+  BottomSheetModal,
 } from '@wezard/react-native-ylem';
 import Text from './Text/Text';
 
@@ -34,6 +36,7 @@ const ICONS = {
 export default function App() {
   const actionRef = useRef<ActionsheetHandler>(null);
   const bottomRef = useRef<BottomSheetHandler>(null);
+  const bottomModalRef = useRef<BottomSheetHandler>(null);
 
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [toggleActive, setToggleActive] = useState(true);
@@ -46,6 +49,12 @@ export default function App() {
   };
 
   const onShowBottomSheet = () => {
+    if (bottomRef?.current) {
+      bottomRef?.current?.openBottomSheet();
+    }
+  };
+
+  const onShowBottomSheetModal = () => {
     if (bottomRef?.current) {
       bottomRef?.current?.openBottomSheet();
     }
@@ -88,126 +97,162 @@ export default function App() {
     </BottomSheet>
   );
 
+  const renderBottomSheetModal = (
+    <BottomSheetModal ref={bottomModalRef} type="fixed" points={['50%']}>
+      <ScrollView contentContainerStyle={styles.bottomsheet}>
+        <Text>
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt.
+        </Text>
+      </ScrollView>
+    </BottomSheetModal>
+  );
+
   return (
-    <View style={styles.safe}>
-      <SafeAreaView style={styles.safeArea}>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor={theme.colors.white}
-        />
-        <ScrollView contentContainerStyle={styles.container}>
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Text:
-              </Text>
-              <Text type="h1" color={theme.colors.black}>
-                Text testing
-              </Text>
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Icon:
-              </Text>
-              <Icon name={ICONS.sun} />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Checkbox:
-              </Text>
-              <Checkbox
-                active={checkboxActive}
-                activeColor={theme.colors.primary}
-                onPress={() => setCheckboxActive((prevState) => !prevState)}
-              />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Toogle:
-              </Text>
-              <Toggle
-                active={toggleActive}
-                onPress={() => setToggleActive((prevState) => !prevState)}
-              />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Spinner:
-              </Text>
-              <Spinner color={theme.colors.primary} />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Accordion
-                title="Accordion component"
-                titleColor={theme.colors.black}
-                iconType="custom"
-                iconColor={theme.colors.black}
-                backgroundAnimation={false}
-                description="Tempor commodo duis ullamco mollit. Irure cupidatat aute voluptate laborum sunt magna fugiat. Non eu do aliqua eu duis excepteur mollit incididunt. Est amet esse veniam eiusmod. Labore ad elit aute minim reprehenderit anim et fugiat mollit cillum pariatur nostrud laborum. Consequat nisi amet culpa sit aliqua nostrud aute dolore amet ut."
-              />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Actionsheet:
-              </Text>
-              <Button
-                type="primary"
-                variant="text"
-                animation="bounce"
-                title="Show"
-                onPress={onShowActionsheet}
-              />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Button:
-              </Text>
-              <Button type="primary" animation="bounce" />
-            </View>
-          )}
-          {renderSection(
-            <View style={styles.section}>
-              <Text type="h3" color={theme.colors.black}>
-                Bottomsheet:
-              </Text>
-              <Button
-                type="primary"
-                variant="text"
-                animation="bounce"
-                title="Show"
-                onPress={onShowBottomSheet}
-              />
-            </View>
-          )}
-          <View style={styles.sectionVertical}>
-            <Text type="h3" color={theme.colors.black}>
-              Card:
-            </Text>
-            <Card style={styles.cardContainer}>
-              <View style={styles.card}>
-                <Text color={theme.colors.black}>Card component</Text>
+    <BottomSheetModalProvider>
+      <View style={styles.safe}>
+        <SafeAreaView style={styles.safeArea}>
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor={theme.colors.white}
+          />
+          <ScrollView contentContainerStyle={styles.container}>
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Text:
+                </Text>
+                <Text type="h1" color={theme.colors.black}>
+                  Text testing
+                </Text>
               </View>
-            </Card>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-      {renderActionsheet}
-      {renderBottomSheet}
-    </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Icon:
+                </Text>
+                <Icon name={ICONS.sun} />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Checkbox:
+                </Text>
+                <Checkbox
+                  active={checkboxActive}
+                  activeColor={theme.colors.primary}
+                  onPress={() => setCheckboxActive((prevState) => !prevState)}
+                />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Toogle:
+                </Text>
+                <Toggle
+                  active={toggleActive}
+                  onPress={() => setToggleActive((prevState) => !prevState)}
+                />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Spinner:
+                </Text>
+                <Spinner color={theme.colors.primary} />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Accordion
+                  title="Accordion component"
+                  titleColor={theme.colors.black}
+                  iconType="custom"
+                  iconColor={theme.colors.black}
+                  backgroundAnimation={false}
+                  description="Tempor commodo duis ullamco mollit. Irure cupidatat aute voluptate laborum sunt magna fugiat. Non eu do aliqua eu duis excepteur mollit incididunt. Est amet esse veniam eiusmod. Labore ad elit aute minim reprehenderit anim et fugiat mollit cillum pariatur nostrud laborum. Consequat nisi amet culpa sit aliqua nostrud aute dolore amet ut."
+                />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Actionsheet:
+                </Text>
+                <Button
+                  type="primary"
+                  variant="text"
+                  animation="bounce"
+                  title="Show"
+                  onPress={onShowActionsheet}
+                />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Button:
+                </Text>
+                <Button type="primary" animation="bounce" />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Bottomsheet:
+                </Text>
+                <Button
+                  type="primary"
+                  variant="text"
+                  animation="bounce"
+                  title="Show"
+                  onPress={onShowBottomSheet}
+                />
+              </View>
+            )}
+            {renderSection(
+              <View style={styles.section}>
+                <Text type="h3" color={theme.colors.black}>
+                  Bottomsheet modal:
+                </Text>
+                <Button
+                  type="primary"
+                  variant="text"
+                  animation="bounce"
+                  title="Show"
+                  onPress={onShowBottomSheetModal}
+                />
+              </View>
+            )}
+            <View style={styles.sectionVertical}>
+              <Text type="h3" color={theme.colors.black}>
+                Card:
+              </Text>
+              <Card style={styles.cardContainer}>
+                <View style={styles.card}>
+                  <Text color={theme.colors.black}>Card component</Text>
+                </View>
+              </Card>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+        {renderActionsheet}
+        {renderBottomSheet}
+        {renderBottomSheetModal}
+      </View>
+    </BottomSheetModalProvider>
   );
 }
 
