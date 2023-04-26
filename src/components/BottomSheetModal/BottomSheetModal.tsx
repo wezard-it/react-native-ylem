@@ -1,19 +1,12 @@
 import React, {
-  useState,
   useRef,
   useMemo,
   forwardRef,
   useImperativeHandle,
   useCallback,
 } from 'react';
-import { View, Platform } from 'react-native';
-import {
-  useSharedValue,
-  withTiming,
-  runOnUI,
-  useAnimatedReaction,
-  runOnJS,
-} from 'react-native-reanimated';
+import { Platform } from 'react-native';
+
 import {
   useBottomSheetSpringConfigs,
   useBottomSheetDynamicSnapPoints,
@@ -23,7 +16,6 @@ import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/t
 import { noop } from 'lodash';
 import type { BottomSheetProps, BottomSheetHandler } from '../../index';
 import BottomBackdrop from '../BottomBackdrop/BottomBackdrop';
-import Style from './BottomSheetModal.style';
 
 export const BOTTOM_CONFIG = {
   damping: 80,
@@ -41,7 +33,6 @@ const BottomSheetModal = (
     type = 'dynamic',
     points = undefined,
     config = BOTTOM_CONFIG,
-    duration = 250,
     children = null,
     header = null,
     footer = null,
@@ -58,7 +49,6 @@ const BottomSheetModal = (
   ref: React.Ref<BottomSheetHandler> | undefined
 ) => {
   const isIOSDevice = Platform.OS === 'ios';
-  const isAndroidDevice = Platform.OS === 'android';
 
   // Config variables
   const animationConfigs = useBottomSheetSpringConfigs(config);
@@ -71,17 +61,9 @@ const BottomSheetModal = (
     }
   }, [points, type]);
 
-  // State variables
-  const [contentVisible, setContentVisible] = useState(false);
-  const [derivedOpacity, setDerivedOpacity] = useState(0);
-
   // Animated variables
-  const {
-    animatedHandleHeight,
-    animatedSnapPoints,
-    animatedContentHeight,
-    handleContentLayout,
-  } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
+  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight } =
+    useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const snapPoints = useMemo(() => {
     if (type === 'fixed') {
@@ -107,71 +89,25 @@ const BottomSheetModal = (
     }
   }, [animatedContentHeight, type]);
 
-  // Animated variables
-  const opacity = useSharedValue(0);
-
-  const onHandleOpacity = (value: number) => {
-    if (derivedOpacity === 0) {
-      setDerivedOpacity(value);
-    }
-  };
-
-  // Animated reaction
-  useAnimatedReaction(
-    () => {
-      return opacity.value;
-    },
-    (data) => {
-      runOnJS(onHandleOpacity)(data);
-    }
-  );
-
-  // Animated worklets
-  const showBottomSheet = () => {
-    'worklet';
-    opacity.value = withTiming(1, { duration });
-  };
-
-  const hideBottomSheet = () => {
-    'worklet';
-    opacity.value = withTiming(0, { duration });
-  };
-
   // Methods
 
-  const _onAnimate = (_: number, toIndex: number) => {
-    if (toIndex === -1) {
-      // runOnUI(hideBottomSheet)();
-      // setContentVisible(false);
-      onCloseBottomSheet();
-    }
-  };
+  const _onChange = React.useCallback(
+    (index: number) => {
+      if (index === -1) onCloseBottomSheet();
+    },
+    [onCloseBottomSheet]
+  );
 
   useImperativeHandle(ref, () => ({
     openBottomSheet() {
-      runOnUI(showBottomSheet)();
-      setContentVisible(true);
       bottomSheetRef?.current?.present();
     },
     closeBottomSheet() {
-      runOnUI(hideBottomSheet)();
-      setContentVisible(false);
       bottomSheetRef?.current?.close();
     },
   }));
 
   // Render components
-
-  let bottomSheetContent: JSX.Element | null = null;
-  if (isIOSDevice || (isAndroidDevice && contentVisible)) {
-    bottomSheetContent = (
-      <View style={Style.wrapper} onLayout={handleContentLayout}>
-        {header || null}
-        {children}
-        {footer || null}
-      </View>
-    );
-  }
 
   const renderBackdrop = useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
@@ -180,21 +116,17 @@ const BottomSheetModal = (
       }
       return (
         <>
-          {isIOSDevice || derivedOpacity > 0 ? (
-            <>
-              {backdropType === 'default' ? (
-                <BottomBackdrop
-                  props={{ opacity: overlayOpacity, ...backgroundProps }}
-                />
-              ) : (
-                backdrop
-              )}
-            </>
-          ) : null}
+          {backdropType === 'default' ? (
+            <BottomBackdrop
+              props={{ opacity: overlayOpacity, ...backgroundProps }}
+            />
+          ) : (
+            backdrop
+          )}
         </>
       );
     },
-    [isIOSDevice, derivedOpacity, backdropType, overlayOpacity, backdrop]
+    [backdropType, overlayOpacity, backdrop]
   );
 
   return (
@@ -203,19 +135,20 @@ const BottomSheetModal = (
       snapPoints={snapPoints}
       handleHeight={handleHeight}
       contentHeight={contentHeight}
-      animateOnMount
       animationConfigs={animationConfigs}
-      enablePanDownToClose
-      enableContentPanningGesture={false}
       handleComponent={handleComponent}
       backgroundStyle={backgroundStyle}
       keyboardBehavior={isIOSDevice ? keyboardBehavior : 'extend'}
       keyboardBlurBehavior={keyboardBlurBehavior}
       backdropComponent={renderBackdrop}
-      onAnimate={_onAnimate}
+      onChange={_onChange}
       {...props}
     >
-      {bottomSheetContent}
+      <>
+        {header || null}
+        {children}
+        {footer || null}
+      </>
     </GorhomBottomSheetModal>
   );
 };
