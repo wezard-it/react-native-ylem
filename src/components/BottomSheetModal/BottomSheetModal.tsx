@@ -158,6 +158,9 @@ const BottomSheetModal = (
       setContentVisible(false);
       bottomSheetRef?.current?.close();
     },
+    snapToIndex(index) {
+      bottomSheetRef?.current?.snapToIndex(index);
+    },
   }));
 
   // Render components

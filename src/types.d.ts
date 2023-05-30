@@ -66,6 +66,7 @@ type TextDecorationLine =
 interface BottomSheetHandler {
   openBottomSheet: () => void;
   closeBottomSheet: () => void;
+  snapToIndex: (index: number) => void;
 }
 
 type Interpolation<T> = [T, T];
