@@ -157,6 +157,9 @@ const BottomSheet = (
       setContentVisible(false);
       bottomSheetRef?.current?.forceClose();
     },
+    snapToIndex(index) {
+      bottomSheetRef?.current?.snapToIndex(index);
+    },
   }));
 
   // Render components

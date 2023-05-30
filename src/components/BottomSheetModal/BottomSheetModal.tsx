@@ -105,6 +105,9 @@ const BottomSheetModal = (
     closeBottomSheet() {
       bottomSheetRef?.current?.close();
     },
+    snapToIndex(index) {
+      bottomSheetRef?.current?.snapToIndex(index);
+    },
   }));
 
   // Render components
