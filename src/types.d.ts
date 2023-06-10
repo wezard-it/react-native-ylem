@@ -311,6 +311,7 @@ interface CheckboxProps {
   size: number;
   type: 'round' | 'square';
   onPress?: () => void;
+  containerStyle: StyleProp<ViewStyle>;
 }
 
 interface IconProps {
