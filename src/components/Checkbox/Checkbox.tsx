@@ -27,6 +27,7 @@ const Checkbox = ({
   size = 25,
   type = 'square',
   onPress = noop,
+  containerStyle = {},
 }: Partial<Props>): JSX.Element => {
   // #region Memo variables
   const containerShape = useMemo(() => {
@@ -40,12 +41,24 @@ const Checkbox = ({
 
   const container: StyleProp<ViewStyle> = useMemo(() => {
     if (isDisabled) {
-      return [containerShape, { backgroundColor: disabledColor }];
+      return [
+        containerShape,
+        containerStyle,
+        { backgroundColor: disabledColor },
+      ];
     } else {
       if (active) {
-        return [containerShape, { backgroundColor: activeColor }];
+        return [
+          containerShape,
+          containerStyle,
+          { backgroundColor: activeColor },
+        ];
       } else {
-        return [containerShape, { backgroundColor: defaultColor }];
+        return [
+          containerShape,
+          containerStyle,
+          { backgroundColor: defaultColor },
+        ];
       }
     }
   }, [
@@ -55,6 +68,7 @@ const Checkbox = ({
     active,
     activeColor,
     defaultColor,
+    containerStyle,
   ]);
 
   const tint = useMemo(() => {
