@@ -52,6 +52,7 @@ const BottomSheet = (
     keyboardBehavior = 'fillParent',
     keyboardBlurBehavior = 'restore',
     onCloseBottomSheet = noop,
+    onIndexChanged = noop,
     props,
   }: Partial<BottomSheetProps>,
   ref: React.Ref<BottomSheetHandler> | undefined
@@ -139,6 +140,7 @@ const BottomSheet = (
   // Methods
 
   const _onAnimate = (_: number, toIndex: number) => {
+    onIndexChanged(toIndex);
     if (toIndex === -1) {
       runOnUI(hideBottomSheet)();
       setContentVisible(false);

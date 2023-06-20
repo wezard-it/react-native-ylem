@@ -44,6 +44,7 @@ const BottomSheetModal = (
     keyboardBehavior = 'fillParent',
     keyboardBlurBehavior = 'restore',
     onCloseBottomSheet = noop,
+    onIndexChanged = noop,
     props,
   }: Partial<BottomSheetProps>,
   ref: React.Ref<BottomSheetHandler> | undefined
@@ -93,8 +94,10 @@ const BottomSheetModal = (
 
   const _onChange = React.useCallback(
     (index: number) => {
+      onIndexChanged(index);
       if (index === -1) onCloseBottomSheet();
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [onCloseBottomSheet]
   );
 
