@@ -215,7 +215,7 @@ const Button = ({
 
   const buttonInterpolation = useMemo(() => {
     if (isDisabled) {
-      return interpolationSet;
+      return custom?.interpolation?.disabled || interpolationSet;
     } else {
       if (type === 'primary') {
         switch (variant) {
