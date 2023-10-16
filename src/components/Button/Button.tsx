@@ -363,7 +363,12 @@ const Button = ({
 
   const titleInterpolation = useMemo(() => {
     if (isDisabled) {
-      return [theme.colors.white, theme.colors.white];
+      return (
+        custom?.interpolationColor?.disabled || [
+          theme.colors.white,
+          theme.colors.white,
+        ]
+      );
     } else {
       if (type === 'primary' || type === 'secondary') {
         switch (variant) {
