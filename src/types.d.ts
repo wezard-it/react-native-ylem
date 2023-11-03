@@ -341,6 +341,7 @@ interface TextProps extends RNTextProps {
   color?: string;
   style?: StyleProp<TextStyle>;
   underlined?: boolean;
+  textDecoration?: TextDecorationLine | null;
   rest?: string[];
   extendedStyle?: StyleProp<TextStyle>;
   fontFamily?: string | undefined;

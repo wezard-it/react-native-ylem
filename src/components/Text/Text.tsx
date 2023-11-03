@@ -10,6 +10,7 @@ const Text = ({
   style = null,
   color = theme.colors.primary,
   underlined = false,
+  textDecoration = null,
   extendedStyle = null,
   fontFamily = 'Avenir',
   ...rest
@@ -52,8 +53,9 @@ const Text = ({
   }, [type, extendedStyle, fontFamily]);
 
   const textDecorationLine: TextDecorationLine = useMemo(() => {
+    if (textDecoration) return textDecoration;
     return underlined ? 'underline' : 'none';
-  }, [underlined]);
+  }, [underlined, textDecoration]);
 
   return (
     <RNText
