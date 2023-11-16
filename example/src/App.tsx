@@ -20,7 +20,7 @@ import {
   theme,
   Toggle,
   BottomSheetHandler,
-  BottomSheetModal,
+  // BottomSheetModal
   BottomSheetModalProvider,
 } from '@wezard/react-native-ylem';
 import Text from './Text/Text';
@@ -41,7 +41,7 @@ export default function App() {
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [toggleActive, setToggleActive] = useState(true);
 
-  // Methods
+  // Methodsr
   const onShowActionsheet = () => {
     if (actionRef?.current) {
       actionRef?.current?.show();
@@ -79,8 +79,8 @@ export default function App() {
   );
 
   const renderBottomSheet = (
-    <BottomSheet ref={bottomRef} type="fixed" points={['50%']}>
-      <ScrollView contentContainerStyle={styles.bottomsheet}>
+    <BottomSheet ref={bottomRef}>
+      <View style={styles.bottomsheet}>
         <Text>
           Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
@@ -89,32 +89,32 @@ export default function App() {
           Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
           nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
           magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          Consequat exercitation fugiat et in.x Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
           non mollit ad sit culpa voluptate ipsum incididunt.
         </Text>
-      </ScrollView>
+      </View>
     </BottomSheet>
   );
 
-  const renderBottomSheetModal = (
-    <BottomSheetModal ref={bottomModalRef} type="fixed" points={['50%']}>
-      <ScrollView contentContainerStyle={styles.bottomsheet}>
-        <Text>
-          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
-          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
-          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
-          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
-          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-          non mollit ad sit culpa voluptate ipsum incididunt.
-        </Text>
-      </ScrollView>
-    </BottomSheetModal>
-  );
+  // const renderBottomSheetModal = (
+  //   <BottomSheetModal ref={bottomModalRef} type="fixed" points={['50%']}>
+  //     <ScrollView contentContainerStyle={styles.bottomsheet}>
+  //       <Text>
+  //         Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+  //         culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+  //         non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+  //         minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+  //         Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+  //         nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+  //         magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+  //         Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+  //         culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+  //         non mollit ad sit culpa voluptate ipsum incididunt.
+  //       </Text>
+  //     </ScrollView>
+  //   </BottomSheetModal>
+  // );
 
   return (
     <BottomSheetModalProvider>
@@ -249,9 +249,9 @@ export default function App() {
           </ScrollView>
         </SafeAreaView>
         {renderActionsheet}
-        {renderBottomSheet}
-        {renderBottomSheetModal}
+        {/* {renderBottomSheetModal} */}
       </View>
+      {renderBottomSheet}
     </BottomSheetModalProvider>
   );
 }
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: theme.colors.white,
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
   },
   safeArea: {
     flex: 1,

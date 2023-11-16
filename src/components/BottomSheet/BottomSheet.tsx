@@ -6,7 +6,7 @@ import React, {
   useImperativeHandle,
   useCallback,
 } from 'react';
-import { View, Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import {
   useSharedValue,
   withTiming,
@@ -16,7 +16,7 @@ import {
 } from 'react-native-reanimated';
 import AnimatedBottomSheet, {
   useBottomSheetSpringConfigs,
-  useBottomSheetDynamicSnapPoints,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
 import { noop } from 'lodash';
@@ -32,8 +32,8 @@ export const BOTTOM_CONFIG = {
   stiffness: 500,
 };
 
-const DYNAMIC_POINTS = ['CONTENT_HEIGHT'];
-const FIXED_POINTS = ['50%', '75%'];
+const FIXED_POINTS = ['25%'];
+const DYNAMIC_POINTS = ['100%'];
 
 const BottomSheet = (
   {
@@ -63,57 +63,30 @@ const BottomSheet = (
   // Config variables
   const animationConfigs = useBottomSheetSpringConfigs(config);
   const bottomSheetRef = useRef<AnimatedBottomSheet>(null);
-  const initialSnapPoints = useMemo(() => {
-    if (type === 'fixed') {
-      return points || FIXED_POINTS;
-    } else {
-      return DYNAMIC_POINTS;
-    }
-  }, [points, type]);
 
   // State variables
   const [contentVisible, setContentVisible] = useState(false);
   const [derivedOpacity, setDerivedOpacity] = useState(0);
+  const [calculatedPoint, setCalculatedPoint] = useState(0);
+
+  // Memo variables
+  const initialSnapPoints = useMemo(() => {
+    if (type === 'dynamic')
+      return calculatedPoint > 0 ? [calculatedPoint] : DYNAMIC_POINTS;
+    else return points || FIXED_POINTS;
+  }, [points, type, calculatedPoint]);
 
   // Animated variables
-  const {
-    animatedHandleHeight,
-    animatedSnapPoints,
-    animatedContentHeight,
-    handleContentLayout,
-  } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
-
-  const snapPoints = useMemo(() => {
-    if (type === 'fixed') {
-      return initialSnapPoints;
-    } else {
-      return animatedSnapPoints;
-    }
-  }, [animatedSnapPoints, initialSnapPoints, type]);
 
   const handleHeight = useMemo(() => {
-    if (type === 'fixed') {
-      return 20;
-    } else {
-      return animatedHandleHeight;
-    }
-  }, [animatedHandleHeight, type]);
-
-  const contentHeight = useMemo(() => {
-    if (type === 'fixed') {
-      return undefined;
-    } else {
-      return animatedContentHeight;
-    }
-  }, [animatedContentHeight, type]);
+    return 20;
+  }, []);
 
   // Animated variables
   const opacity = useSharedValue(0);
 
   const onHandleOpacity = (value: number) => {
-    if (derivedOpacity === 0) {
-      setDerivedOpacity(value);
-    }
+    if (derivedOpacity === 0) setDerivedOpacity(value);
   };
 
   // Animated reaction
@@ -148,6 +121,15 @@ const BottomSheet = (
     }
   };
 
+  const _onChange = React.useCallback(
+    (index: number) => {
+      onIndexChanged(index);
+      if (index === -1) onCloseBottomSheet();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [onCloseBottomSheet]
+  );
+
   useImperativeHandle(ref, () => ({
     openBottomSheet() {
       runOnUI(showBottomSheet)();
@@ -165,17 +147,19 @@ const BottomSheet = (
   }));
 
   // Render components
-
-  let bottomSheetContent: JSX.Element | null = null;
-  if (isIOSDevice || (isAndroidDevice && contentVisible)) {
-    bottomSheetContent = (
-      <View style={Style.wrapper} onLayout={handleContentLayout}>
-        {header || null}
-        {children}
-        {footer || null}
-      </View>
+  const bottomSheetContent: JSX.Element | null = React.useMemo(() => {
+    return (
+      <>
+        {isIOSDevice || (isAndroidDevice && contentVisible) ? (
+          <View style={Style.wrapper}>
+            {header || null}
+            {children}
+            {footer || null}
+          </View>
+        ) : null}
+      </>
     );
-  }
+  }, [children, contentVisible, footer, header, isAndroidDevice, isIOSDevice]);
 
   const renderBackdrop = useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
@@ -184,43 +168,46 @@ const BottomSheet = (
       }
       return (
         <>
-          {isIOSDevice || derivedOpacity > 0 ? (
-            <>
-              {backdropType === 'default' ? (
-                <BottomBackdrop
-                  props={{ opacity: overlayOpacity, ...backgroundProps }}
-                />
-              ) : (
-                backdrop
-              )}
-            </>
-          ) : null}
+          {backdropType === 'default' ? (
+            <BottomBackdrop
+              props={{ opacity: overlayOpacity, ...backgroundProps }}
+            />
+          ) : (
+            backdrop
+          )}
         </>
       );
     },
-    [isIOSDevice, derivedOpacity, backdropType, overlayOpacity, backdrop]
+    [backdropType, overlayOpacity, backdrop]
   );
 
   return (
     <AnimatedBottomSheet
       ref={bottomSheetRef}
       index={-1}
-      snapPoints={snapPoints}
-      handleHeight={handleHeight}
-      contentHeight={contentHeight}
-      animateOnMount
-      animationConfigs={animationConfigs}
+      enableDynamicSizing={type === 'dynamic'}
       enablePanDownToClose
-      enableContentPanningGesture={false}
+      animateOnMount
+      snapPoints={initialSnapPoints}
+      handleHeight={handleHeight}
+      contentHeight={undefined}
+      animationConfigs={animationConfigs}
       handleComponent={handleComponent}
       backgroundStyle={backgroundStyle}
       keyboardBehavior={isIOSDevice ? keyboardBehavior : 'extend'}
       keyboardBlurBehavior={keyboardBlurBehavior}
       backdropComponent={renderBackdrop}
+      onChange={_onChange}
       onAnimate={_onAnimate}
       {...props}
     >
-      {bottomSheetContent}
+      <BottomSheetView
+        onLayout={(e) => {
+          setCalculatedPoint(e.nativeEvent.layout.height + 50);
+        }}
+      >
+        {bottomSheetContent}
+      </BottomSheetView>
     </AnimatedBottomSheet>
   );
 };

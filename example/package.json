@@ -30,6 +30,7 @@
     "@babel/runtime": "^7.23.2",
     "@types/react": "^18.0.28",
     "babel-plugin-module-resolver": "^4.1.0",
-    "metro-react-native-babel-preset": "0.73.7"
+    "metro-react-native-babel-preset": "0.73.7",
+    "react-native-safe-area-context": "^4.7.4"
   }
 }
