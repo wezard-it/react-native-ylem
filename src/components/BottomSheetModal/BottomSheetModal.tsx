@@ -1,21 +1,15 @@
-import React, {
-  useRef,
-  useMemo,
-  forwardRef,
-  useImperativeHandle,
-  useCallback,
-} from 'react';
-import { Platform } from 'react-native';
-
+import React from 'react';
+import { Platform, View } from 'react-native';
 import {
   useBottomSheetSpringConfigs,
-  useBottomSheetDynamicSnapPoints,
   BottomSheetModal as GorhomBottomSheetModal,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
 import { noop } from 'lodash';
 import type { BottomSheetProps, BottomSheetHandler } from '../../index';
 import BottomBackdrop from '../BottomBackdrop/BottomBackdrop';
+import Style from './BottomSheetModal.style';
 
 export const BOTTOM_CONFIG = {
   damping: 80,
@@ -25,7 +19,7 @@ export const BOTTOM_CONFIG = {
   stiffness: 500,
 };
 
-const DYNAMIC_POINTS = ['CONTENT_HEIGHT'];
+const DYNAMIC_POINTS = ['100%'];
 const FIXED_POINTS = ['50%', '75%'];
 
 const BottomSheetModal = (
@@ -53,45 +47,18 @@ const BottomSheetModal = (
 
   // Config variables
   const animationConfigs = useBottomSheetSpringConfigs(config);
-  const bottomSheetRef = useRef<GorhomBottomSheetModal>(null);
-  const initialSnapPoints = useMemo(() => {
-    if (type === 'fixed') {
-      return points || FIXED_POINTS;
-    } else {
-      return DYNAMIC_POINTS;
-    }
-  }, [points, type]);
+  const bottomSheetRef = React.useRef<GorhomBottomSheetModal>(null);
 
-  // Animated variables
-  const { animatedHandleHeight, animatedSnapPoints, animatedContentHeight } =
-    useBottomSheetDynamicSnapPoints(initialSnapPoints);
+  // State variables
+  const [calculatedPoint, setCalculatedPoint] = React.useState(0);
 
-  const snapPoints = useMemo(() => {
-    if (type === 'fixed') {
-      return initialSnapPoints;
-    } else {
-      return animatedSnapPoints;
-    }
-  }, [animatedSnapPoints, initialSnapPoints, type]);
-
-  const handleHeight = useMemo(() => {
-    if (type === 'fixed') {
-      return 20;
-    } else {
-      return animatedHandleHeight;
-    }
-  }, [animatedHandleHeight, type]);
-
-  const contentHeight = useMemo(() => {
-    if (type === 'fixed') {
-      return undefined;
-    } else {
-      return animatedContentHeight;
-    }
-  }, [animatedContentHeight, type]);
+  const initialSnapPoints = React.useMemo(() => {
+    if (type === 'dynamic')
+      return calculatedPoint > 0 ? [calculatedPoint] : DYNAMIC_POINTS;
+    else return points || FIXED_POINTS;
+  }, [points, type, calculatedPoint]);
 
   // Methods
-
   const _onChange = React.useCallback(
     (index: number) => {
       onIndexChanged(index);
@@ -101,7 +68,7 @@ const BottomSheetModal = (
     [onCloseBottomSheet]
   );
 
-  useImperativeHandle(ref, () => ({
+  React.useImperativeHandle(ref, () => ({
     openBottomSheet() {
       bottomSheetRef?.current?.present();
     },
@@ -114,8 +81,17 @@ const BottomSheetModal = (
   }));
 
   // Render components
+  const bottomSheetContent: JSX.Element | null = React.useMemo(() => {
+    return (
+      <View style={Style.wrapper}>
+        {header || null}
+        {children}
+        {footer || null}
+      </View>
+    );
+  }, [children, footer, header]);
 
-  const renderBackdrop = useCallback(
+  const renderBackdrop = React.useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
       if (backdropType === 'none') {
         return null;
@@ -138,25 +114,28 @@ const BottomSheetModal = (
   return (
     <GorhomBottomSheetModal
       ref={bottomSheetRef}
-      snapPoints={snapPoints}
-      handleHeight={handleHeight}
-      contentHeight={contentHeight}
+      snapPoints={initialSnapPoints}
+      handleHeight={20}
+      contentHeight={undefined}
       animationConfigs={animationConfigs}
+      animateOnMount
       handleComponent={handleComponent}
       backgroundStyle={backgroundStyle}
+      enableDynamicSizing={type === 'dynamic'}
+      enablePanDownToClose
       keyboardBehavior={isIOSDevice ? keyboardBehavior : 'extend'}
       keyboardBlurBehavior={keyboardBlurBehavior}
       backdropComponent={renderBackdrop}
       onChange={_onChange}
       {...props}
     >
-      <>
-        {header || null}
-        {children}
-        {footer || null}
-      </>
+      <BottomSheetView
+        onLayout={(e) => setCalculatedPoint(e.nativeEvent.layout.height + 50)}
+      >
+        {bottomSheetContent}
+      </BottomSheetView>
     </GorhomBottomSheetModal>
   );
 };
 
-export default forwardRef(BottomSheetModal);
+export default React.forwardRef(BottomSheetModal);

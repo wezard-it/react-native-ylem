@@ -6,7 +6,7 @@ import React, {
   useImperativeHandle,
   useCallback,
 } from 'react';
-import { Platform, View } from 'react-native';
+import { View, Platform } from 'react-native';
 import {
   useSharedValue,
   withTiming,
@@ -14,7 +14,7 @@ import {
   useAnimatedReaction,
   runOnJS,
 } from 'react-native-reanimated';
-import AnimatedBottomSheet, {
+import GorhomBottomSheet, {
   useBottomSheetSpringConfigs,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
@@ -32,8 +32,8 @@ export const BOTTOM_CONFIG = {
   stiffness: 500,
 };
 
-const FIXED_POINTS = ['25%'];
 const DYNAMIC_POINTS = ['100%'];
+const FIXED_POINTS = ['50%', '57%'];
 
 const BottomSheet = (
   {
@@ -62,7 +62,7 @@ const BottomSheet = (
 
   // Config variables
   const animationConfigs = useBottomSheetSpringConfigs(config);
-  const bottomSheetRef = useRef<AnimatedBottomSheet>(null);
+  const bottomSheetRef = useRef<GorhomBottomSheet>(null);
 
   // State variables
   const [contentVisible, setContentVisible] = useState(false);
@@ -75,12 +75,6 @@ const BottomSheet = (
       return calculatedPoint > 0 ? [calculatedPoint] : DYNAMIC_POINTS;
     else return points || FIXED_POINTS;
   }, [points, type, calculatedPoint]);
-
-  // Animated variables
-
-  const handleHeight = useMemo(() => {
-    return 20;
-  }, []);
 
   // Animated variables
   const opacity = useSharedValue(0);
@@ -111,7 +105,6 @@ const BottomSheet = (
   };
 
   // Methods
-
   const _onAnimate = (_: number, toIndex: number) => {
     onIndexChanged(toIndex);
     if (toIndex === -1) {
@@ -163,9 +156,7 @@ const BottomSheet = (
 
   const renderBackdrop = useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
-      if (backdropType === 'none') {
-        return null;
-      }
+      if (backdropType === 'none') return null;
       return (
         <>
           {backdropType === 'default' ? (
@@ -182,18 +173,18 @@ const BottomSheet = (
   );
 
   return (
-    <AnimatedBottomSheet
+    <GorhomBottomSheet
       ref={bottomSheetRef}
       index={-1}
-      enableDynamicSizing={type === 'dynamic'}
-      enablePanDownToClose
-      animateOnMount
       snapPoints={initialSnapPoints}
-      handleHeight={handleHeight}
+      handleHeight={20}
       contentHeight={undefined}
       animationConfigs={animationConfigs}
+      animateOnMount
       handleComponent={handleComponent}
       backgroundStyle={backgroundStyle}
+      enableDynamicSizing={type === 'dynamic'}
+      enablePanDownToClose
       keyboardBehavior={isIOSDevice ? keyboardBehavior : 'extend'}
       keyboardBlurBehavior={keyboardBlurBehavior}
       backdropComponent={renderBackdrop}
@@ -202,13 +193,11 @@ const BottomSheet = (
       {...props}
     >
       <BottomSheetView
-        onLayout={(e) => {
-          setCalculatedPoint(e.nativeEvent.layout.height + 50);
-        }}
+        onLayout={(e) => setCalculatedPoint(e.nativeEvent.layout.height + 50)}
       >
         {bottomSheetContent}
       </BottomSheetView>
-    </AnimatedBottomSheet>
+    </GorhomBottomSheet>
   );
 };
 

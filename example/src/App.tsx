@@ -20,12 +20,12 @@ import {
   theme,
   Toggle,
   BottomSheetHandler,
-  // BottomSheetModal
+  BottomSheetModal,
   BottomSheetModalProvider,
 } from '@wezard/react-native-ylem';
 import Text from './Text/Text';
 
-// Custom icons
+// ICONS
 const ICONS = {
   check: 'check',
   plus: 'plus',
@@ -97,24 +97,24 @@ export default function App() {
     </BottomSheet>
   );
 
-  // const renderBottomSheetModal = (
-  //   <BottomSheetModal ref={bottomModalRef} type="fixed" points={['50%']}>
-  //     <ScrollView contentContainerStyle={styles.bottomsheet}>
-  //       <Text>
-  //         Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-  //         culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-  //         non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
-  //         minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
-  //         Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
-  //         nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
-  //         magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-  //         Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
-  //         culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
-  //         non mollit ad sit culpa voluptate ipsum incididunt.
-  //       </Text>
-  //     </ScrollView>
-  //   </BottomSheetModal>
-  // );
+  const renderBottomSheetModal = (
+    <BottomSheetModal ref={bottomModalRef}>
+      <ScrollView contentContainerStyle={styles.bottomsheet}>
+        <Text>
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt. Consequat laboris
+          minim velit voluptate nostrud fugiat ex consequat laborum labore sunt.
+          Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
+          nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
+          magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
+          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
+          non mollit ad sit culpa voluptate ipsum incididunt.
+        </Text>
+      </ScrollView>
+    </BottomSheetModal>
+  );
 
   return (
     <BottomSheetModalProvider>
@@ -124,7 +124,10 @@ export default function App() {
             barStyle="dark-content"
             backgroundColor={theme.colors.white}
           />
-          <ScrollView contentContainerStyle={styles.container}>
+          <ScrollView
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          >
             {renderSection(
               <View style={styles.section}>
                 <Text type="h3" color={theme.colors.black}>
@@ -249,7 +252,7 @@ export default function App() {
           </ScrollView>
         </SafeAreaView>
         {renderActionsheet}
-        {/* {renderBottomSheetModal} */}
+        {renderBottomSheetModal}
       </View>
       {renderBottomSheet}
     </BottomSheetModalProvider>
