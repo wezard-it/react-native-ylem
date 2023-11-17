@@ -25,7 +25,7 @@ import {
 } from '@wezard/react-native-ylem';
 import Text from './Text/Text';
 
-// Custom icons
+// ICONS
 const ICONS = {
   check: 'check',
   plus: 'plus',
@@ -41,7 +41,7 @@ export default function App() {
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [toggleActive, setToggleActive] = useState(true);
 
-  // Methods
+  // Methodsr
   const onShowActionsheet = () => {
     if (actionRef?.current) {
       actionRef?.current?.show();
@@ -79,8 +79,8 @@ export default function App() {
   );
 
   const renderBottomSheet = (
-    <BottomSheet ref={bottomRef} type="fixed" points={['50%']}>
-      <ScrollView contentContainerStyle={styles.bottomsheet}>
+    <BottomSheet ref={bottomRef}>
+      <View style={styles.bottomsheet}>
         <Text>
           Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
@@ -89,16 +89,16 @@ export default function App() {
           Irure culpa enim id excepteur nostrud anim aliquip qui eu commodo. Do
           nostrud elit aliqua ea cupidatat eiusmod id consectetur minim laboris
           magna. Id amet eiusmod ad irure officia qui adipisicing mollit tempor.
-          Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
+          Consequat exercitation fugiat et in.x Dolore aliqua non ullamco aliqua
           culpa ea fugiat consectetur aute. Nulla consequat dolore irure amet
           non mollit ad sit culpa voluptate ipsum incididunt.
         </Text>
-      </ScrollView>
+      </View>
     </BottomSheet>
   );
 
   const renderBottomSheetModal = (
-    <BottomSheetModal ref={bottomModalRef} type="fixed" points={['50%']}>
+    <BottomSheetModal ref={bottomModalRef}>
       <ScrollView contentContainerStyle={styles.bottomsheet}>
         <Text>
           Consequat exercitation fugiat et in. Dolore aliqua non ullamco aliqua
@@ -124,7 +124,10 @@ export default function App() {
             barStyle="dark-content"
             backgroundColor={theme.colors.white}
           />
-          <ScrollView contentContainerStyle={styles.container}>
+          <ScrollView
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          >
             {renderSection(
               <View style={styles.section}>
                 <Text type="h3" color={theme.colors.black}>
@@ -249,9 +252,9 @@ export default function App() {
           </ScrollView>
         </SafeAreaView>
         {renderActionsheet}
-        {renderBottomSheet}
         {renderBottomSheetModal}
       </View>
+      {renderBottomSheet}
     </BottomSheetModalProvider>
   );
 }
@@ -260,7 +263,7 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: theme.colors.white,
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
   },
   safeArea: {
     flex: 1,
