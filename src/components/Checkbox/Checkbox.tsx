@@ -85,12 +85,7 @@ const Checkbox = ({
         return (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          <DefaultIcon
-            name={icon}
-            size={iconSize}
-            color={tint}
-            onPress={onPress}
-          />
+          <DefaultIcon name={icon} size={iconSize} color={tint} />
         );
       } else {
         return (
