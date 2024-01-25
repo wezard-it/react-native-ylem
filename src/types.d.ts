@@ -321,6 +321,7 @@ interface IconProps {
   containerStyle: ImageStyle;
   size: number;
   tint: string | null;
+  pointerEvents: 'box-none' | 'none' | 'box-only' | 'auto' | undefined;
   onPress?: () => void;
 }
 

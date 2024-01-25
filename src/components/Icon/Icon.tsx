@@ -10,6 +10,7 @@ const Icon = ({
   size = 24,
   tint = null,
   containerStyle = {},
+  pointerEvents = 'auto',
   onPress = noop,
 }: Partial<Props>) => {
   const _name = useMemo(() => {
@@ -26,7 +27,11 @@ const Icon = ({
   }
 
   return onPress !== undefined ? (
-    <Pressable style={containerStyle} onPress={onPress}>
+    <Pressable
+      pointerEvents={pointerEvents}
+      style={containerStyle}
+      onPress={onPress}
+    >
       {Platform.select({
         ios: <Image source={{ uri: _name }} style={[iconStyle, style]} />,
         android: (
