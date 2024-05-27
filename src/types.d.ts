@@ -357,4 +357,24 @@ interface ToggleProps {
   trackDefault: string;
   onPress?: () => void;
 }
-// #endregion
+
+interface SliderProps extends ViewProps {
+  min: number;
+  max: number;
+  minRange?: number;
+  step: number;
+  renderThumb: (name: 'high' | 'low') => React.ReactNode;
+  low?: number;
+  high?: number;
+  allowLabelOverflow?: boolean;
+  disableRange?: boolean;
+  disabled?: boolean;
+  floatingLabel?: boolean;
+  renderLabel?: (value: number) => React.ReactNode;
+  renderNotch?: (value: number) => React.ReactNode;
+  renderRail: () => React.ReactNode;
+  renderRailSelected: () => React.ReactNode;
+  onValueChanged?: (low: number, high: number, byUser: boolean) => void;
+  onSliderTouchStart?: (low: number, high: number) => void;
+  onSliderTouchEnd?: (low: number, high: number) => void;
+}
