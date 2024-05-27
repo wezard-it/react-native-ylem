@@ -7,6 +7,7 @@ import Card from './components/Card/Card';
 import Checkbox from './components/Checkbox/Checkbox';
 import Icon from './components/Icon/Icon';
 import Separator from './components/Separator/Separator';
+import Slider from './components/Slider/Slider';
 import Spinner from './components/Spinner/Spinner';
 import Text from './components/Text/Text';
 import Toggle from './components/Toggle/Toggle';
@@ -28,10 +29,11 @@ import type {
   Radius,
   SeparatorProps,
   Shadow,
+  SliderProps,
   Spacing,
   SpinnerProps,
-  TextProps,
   TextDecorationLine,
+  TextProps,
   TextType,
   Theme,
   ToggleProps,
@@ -62,3 +64,4 @@ export { Separator, SeparatorProps };
 export { Spinner, SpinnerProps };
 export { Text, TextType, TextProps, FontWeight, TextDecorationLine };
 export { Toggle, ToggleProps };
+export { Slider, SliderProps };
