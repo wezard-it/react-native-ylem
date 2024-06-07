@@ -539,6 +539,7 @@ const Button = ({
         />
       ) : (
         <Icon
+          pointerEvents="none"
           name={icon}
           tint={iconColor || derivedIconColor}
           size={iconSize}
