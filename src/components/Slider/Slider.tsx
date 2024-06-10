@@ -24,6 +24,8 @@ const falseFunc = () => false;
 const Slider: React.FC<SliderProps> = ({
   min,
   max,
+  currentMin,
+  currentMax,
   minRange = 0,
   step,
   low: lowProp,
@@ -43,8 +45,8 @@ const Slider: React.FC<SliderProps> = ({
   ...restProps
 }) => {
   const { inPropsRef, inPropsRefPrev, setLow, setHigh } = useLowHigh(
-    lowProp,
-    disableRange ? max : highProp,
+    currentMin ?? lowProp,
+    disableRange ? max : currentMax ?? highProp,
     min,
     max,
     step

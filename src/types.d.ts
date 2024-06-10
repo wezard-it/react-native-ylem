@@ -361,6 +361,8 @@ interface ToggleProps {
 interface SliderProps extends ViewProps {
   min: number;
   max: number;
+  currentMin?: number;
+  currentMax?: number;
   minRange?: number;
   step: number;
   renderThumb: (name: 'high' | 'low') => React.ReactNode;
