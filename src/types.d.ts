@@ -255,7 +255,7 @@ interface ButtonProps {
   variant: 'container' | 'outlined' | 'soft' | 'text';
   size: 'sm' | 'md' | 'lg' | 'custom';
   width: string;
-  height: number | 'string';
+  height: number | string;
   title: string | DefaultTFuncReturn;
   titleStyle: StyleProp<TextStyle>;
   icon: string;
