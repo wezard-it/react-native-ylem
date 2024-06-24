@@ -263,7 +263,8 @@ interface ButtonProps {
   iconSize: number;
   hasIcon: boolean;
   iconPosition: 'left' | 'right';
-  iconColor: string;
+  iconColor: string | undefined | null;
+  iconStyle: ImageStyle;
   isLoading: boolean;
   spinnerColor: string;
   isDisabled: boolean;

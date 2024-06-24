@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { View, Pressable, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -34,6 +34,7 @@ const Button = ({
   hasIcon = false,
   iconPosition = 'right',
   iconColor = undefined,
+  iconStyle = {},
   isLoading = false,
   spinnerColor = theme.colors.white,
   isDisabled = false,
@@ -51,11 +52,11 @@ const Button = ({
   custom = undefined,
   onPress = noop,
 }: Partial<Props>): JSX.Element => {
-  const [defaultWidth, setDefaultWidth] = useState(0);
-  const [derivedIconColor, setDerivedIconColor] = useState('');
+  const [defaultWidth, setDefaultWidth] = React.useState(0);
+  const [derivedIconColor, setDerivedIconColor] = React.useState('');
 
   // #region Container
-  const _containerStyle: StyleProp<ViewStyle> = useMemo(() => {
+  const _containerStyle: StyleProp<ViewStyle> = React.useMemo(() => {
     if (fillSpace) {
       return [containerStyle, { flex: 1 }];
     }
@@ -64,7 +65,7 @@ const Button = ({
   // #endregion
 
   // #region Button
-  const buttonShadow = useMemo(() => {
+  const buttonShadow = React.useMemo(() => {
     if (hasShadow) {
       if (shadowStyle) {
         return shadowStyle;
@@ -87,7 +88,7 @@ const Button = ({
     }
   }, [hasShadow, shadowStyle, shadowType, custom]);
 
-  const buttonStyle: StyleProp<ViewStyle> = useMemo(() => {
+  const buttonStyle: StyleProp<ViewStyle> = React.useMemo(() => {
     let innerStyle: StyleProp<ViewStyle> = Style.button;
     if (isDisabled) {
       if (type === 'custom') {
@@ -190,7 +191,7 @@ const Button = ({
     return [innerStyle, { width: fillSpace ? '100%' : width }];
   }, [isDisabled, variant, type, custom, width, fillSpace, disabledColor]);
 
-  const buttonSize: StyleProp<ViewStyle> = useMemo(() => {
+  const buttonSize: StyleProp<ViewStyle> = React.useMemo(() => {
     switch (size) {
       case 'sm':
         return Style.buttonSm;
@@ -205,7 +206,7 @@ const Button = ({
     }
   }, [size, height]);
 
-  const buttonLoadingStyle: StyleProp<ViewStyle> = useMemo(() => {
+  const buttonLoadingStyle: StyleProp<ViewStyle> = React.useMemo(() => {
     if (isLoading) {
       return { minWidth: defaultWidth };
     } else {
@@ -213,7 +214,7 @@ const Button = ({
     }
   }, [isLoading, defaultWidth]);
 
-  const buttonInterpolation = useMemo(() => {
+  const buttonInterpolation = React.useMemo(() => {
     if (isDisabled) {
       return custom?.interpolation?.disabled || interpolationSet;
     } else {
@@ -285,14 +286,14 @@ const Button = ({
   // #endregion
 
   // #region Title
-  const titleContainer: StyleProp<ViewStyle> = useMemo(() => {
+  const titleContainer: StyleProp<ViewStyle> = React.useMemo(() => {
     if (hasIcon) {
       return [Style.titleContainer, Style.titleContainerIcon];
     }
     return Style.titleContainer;
   }, [hasIcon]);
 
-  const titleSize: StyleProp<TextStyle> = useMemo(() => {
+  const titleSize: StyleProp<TextStyle> = React.useMemo(() => {
     switch (size) {
       case 'sm':
         return Style.titleSm;
@@ -307,7 +308,7 @@ const Button = ({
     }
   }, [size, titleStyle]);
 
-  const _titleColor: StyleProp<TextStyle> = useMemo(() => {
+  const _titleColor: StyleProp<TextStyle> = React.useMemo(() => {
     if (isDisabled) {
       return {
         color:
@@ -361,7 +362,7 @@ const Button = ({
     }
   }, [type, variant, custom, isDisabled]);
 
-  const titleInterpolation = useMemo(() => {
+  const titleInterpolation = React.useMemo(() => {
     if (isDisabled) {
       return (
         custom?.interpolationColor?.disabled || [
@@ -419,7 +420,7 @@ const Button = ({
   // #endregion
 
   // #region Spinner
-  const loadingColor = useMemo(() => {
+  const loadingColor = React.useMemo(() => {
     if (isDisabled) {
       if (type === 'custom') {
         return custom?.spinner?.disabled || theme.colors.neutralDark;
@@ -527,26 +528,33 @@ const Button = ({
   // #endregion
 
   // #region Render components
-  const renderIcon = (
-    <View style={Style.iconContainer}>
-      {iconType === 'default' ? (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        <DefaultIcon
-          name={icon}
-          size={iconSize}
-          color={iconColor || derivedIconColor}
-        />
-      ) : (
-        <Icon
-          pointerEvents="none"
-          name={icon}
-          tint={iconColor || derivedIconColor}
-          size={iconSize}
-        />
-      )}
-    </View>
-  );
+  const renderIcon = React.useMemo(() => {
+    let color = iconColor;
+    if (color === undefined) color = derivedIconColor;
+    if (color === null) color = null;
+
+    return (
+      <View style={Style.iconContainer}>
+        {iconType === 'default' ? (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          <DefaultIcon
+            name={icon}
+            size={iconSize}
+            color={iconColor || derivedIconColor}
+          />
+        ) : (
+          <Icon
+            pointerEvents="none"
+            name={icon}
+            tint={iconColor || derivedIconColor}
+            size={iconSize}
+            style={iconStyle}
+          />
+        )}
+      </View>
+    );
+  }, [icon, iconType, iconSize, iconColor, derivedIconColor, iconStyle]);
   // #endregion
 
   return (
