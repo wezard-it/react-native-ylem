@@ -538,16 +538,12 @@ const Button = ({
         {iconType === 'default' ? (
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          <DefaultIcon
-            name={icon}
-            size={iconSize}
-            color={iconColor || derivedIconColor}
-          />
+          <DefaultIcon name={icon} size={iconSize} color={color} />
         ) : (
           <Icon
             pointerEvents="none"
             name={icon}
-            tint={iconColor || derivedIconColor}
+            tint={color}
             size={iconSize}
             style={iconStyle}
           />
