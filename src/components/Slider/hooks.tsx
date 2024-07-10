@@ -98,7 +98,8 @@ export const useThumbFollower = (
   }>,
   renderContent: undefined | ((value: number) => React.ReactNode),
   isPressed: boolean,
-  allowOverflow: boolean
+  allowOverflow: boolean,
+  sticky?: boolean
 ) => {
   const xRef = React.useRef(new Animated.Value(0));
   const widthRef = React.useRef(0);
@@ -112,11 +113,13 @@ export const useThumbFollower = (
       const { current: containerWidth } = containerWidthRef;
       const position = thumbPositionInView - width / 2;
       xRef.current.setValue(
-        allowOverflow ? position : clamp(position, 0, containerWidth - width)
+        allowOverflow
+          ? position
+          : clamp(position, 0, containerWidth - (sticky ? 0 : width))
       );
       contentContainerRef.current?.setValue(value);
     },
-    [widthRef, containerWidthRef, allowOverflow]
+    [containerWidthRef, allowOverflow, sticky]
   );
 
   const handleLayout = useWidthLayout(widthRef, () => {
