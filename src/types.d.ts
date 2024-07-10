@@ -366,13 +366,15 @@ interface SliderProps extends ViewProps {
   currentMax?: number;
   minRange?: number;
   step: number;
-  renderThumb: (name: 'high' | 'low') => React.ReactNode;
   low?: number;
   high?: number;
   allowLabelOverflow?: boolean;
   disableRange?: boolean;
   disabled?: boolean;
   floatingLabel?: boolean;
+  stickyLowThumb?: boolean;
+  stickyHighThumb?: boolean;
+  renderThumb: (name: 'high' | 'low') => React.ReactNode;
   renderLabel?: (value: number) => React.ReactNode;
   renderNotch?: (value: number) => React.ReactNode;
   renderRail: () => React.ReactNode;

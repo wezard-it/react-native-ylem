@@ -34,6 +34,8 @@ const Slider: React.FC<SliderProps> = ({
   allowLabelOverflow = false,
   disableRange = false,
   disabled = false,
+  stickyLowThumb = undefined,
+  stickyHighThumb = undefined,
   onValueChanged,
   onSliderTouchStart,
   onSliderTouchEnd,
@@ -165,14 +167,14 @@ const Slider: React.FC<SliderProps> = ({
     containerWidthRef,
     gestureStateRef,
     renderLabel,
-    isPressed,
+    stickyLowThumb || isPressed,
     allowLabelOverflow
   );
   const [notchView, notchUpdate] = useThumbFollower(
     containerWidthRef,
     gestureStateRef,
     renderNotch,
-    isPressed,
+    stickyHighThumb || isPressed,
     allowLabelOverflow
   );
   const lowThumb = renderThumb('low');
