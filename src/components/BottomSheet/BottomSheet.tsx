@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  forwardRef,
-  useImperativeHandle,
-  useCallback,
-} from 'react';
+import React from 'react';
 import { View, Platform } from 'react-native';
 import {
   useSharedValue,
@@ -47,6 +40,7 @@ const BottomSheet = (
     overlayOpacity = 0.4,
     backdropType = 'default',
     backdrop = null,
+    backdropPressBehavior = 'close',
     handleComponent,
     backgroundStyle,
     keyboardBehavior = 'fillParent',
@@ -62,15 +56,15 @@ const BottomSheet = (
 
   // Config variables
   const animationConfigs = useBottomSheetSpringConfigs(config);
-  const bottomSheetRef = useRef<GorhomBottomSheet>(null);
+  const bottomSheetRef = React.useRef<GorhomBottomSheet>(null);
 
   // State variables
-  const [contentVisible, setContentVisible] = useState(false);
-  const [derivedOpacity, setDerivedOpacity] = useState(0);
-  const [calculatedPoint, setCalculatedPoint] = useState(0);
+  const [contentVisible, setContentVisible] = React.useState(false);
+  const [derivedOpacity, setDerivedOpacity] = React.useState(0);
+  const [calculatedPoint, setCalculatedPoint] = React.useState(0);
 
   // Memo variables
-  const initialSnapPoints = useMemo(() => {
+  const initialSnapPoints = React.useMemo(() => {
     if (type === 'dynamic')
       return calculatedPoint > 0 ? [calculatedPoint] : DYNAMIC_POINTS;
     else return points || FIXED_POINTS;
@@ -123,7 +117,7 @@ const BottomSheet = (
     [onCloseBottomSheet]
   );
 
-  useImperativeHandle(ref, () => ({
+  React.useImperativeHandle(ref, () => ({
     openBottomSheet() {
       runOnUI(showBottomSheet)();
       setContentVisible(true);
@@ -154,13 +148,14 @@ const BottomSheet = (
     );
   }, [children, contentVisible, footer, header, isAndroidDevice, isIOSDevice]);
 
-  const renderBackdrop = useCallback(
+  const renderBackdrop = React.useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
       if (backdropType === 'none') return null;
       return (
         <>
           {backdropType === 'default' ? (
             <BottomBackdrop
+              backdropPressBehavior={backdropPressBehavior}
               props={{ opacity: overlayOpacity, ...backgroundProps }}
             />
           ) : (
@@ -169,7 +164,7 @@ const BottomSheet = (
         </>
       );
     },
-    [backdropType, overlayOpacity, backdrop]
+    [backdropType, backdropPressBehavior, overlayOpacity, backdrop]
   );
 
   return (
@@ -201,4 +196,4 @@ const BottomSheet = (
   );
 };
 
-export default forwardRef(BottomSheet);
+export default React.forwardRef(BottomSheet);

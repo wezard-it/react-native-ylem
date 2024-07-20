@@ -239,6 +239,7 @@ interface BottomSheetProps {
   overlayOpacity: number;
   backdropType: 'default' | 'custom' | 'none';
   backdrop: React.ReactNode;
+  backdropPressBehavior: BackdropPressBehavior;
   backgroundStyle: StyleProp<
     Omit<ViewStyle, 'bottom' | 'left' | 'position' | 'right' | 'top'>
   >;

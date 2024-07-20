@@ -33,6 +33,7 @@ const BottomSheetModal = (
     overlayOpacity = 0.4,
     backdropType = 'default',
     backdrop = null,
+    backdropPressBehavior = 'close',
     handleComponent,
     backgroundStyle,
     keyboardBehavior = 'fillParent',
@@ -100,6 +101,7 @@ const BottomSheetModal = (
         <>
           {backdropType === 'default' ? (
             <BottomBackdrop
+              backdropPressBehavior={backdropPressBehavior}
               props={{ opacity: overlayOpacity, ...backgroundProps }}
             />
           ) : (
@@ -108,7 +110,7 @@ const BottomSheetModal = (
         </>
       );
     },
-    [backdropType, overlayOpacity, backdrop]
+    [backdropType, backdropPressBehavior, overlayOpacity, backdrop]
   );
 
   return (

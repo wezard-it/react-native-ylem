@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import type {
   BackdropPressBehavior,
@@ -7,10 +7,10 @@ import type {
 
 interface Props {
   props: BottomSheetDefaultBackdropProps;
+  backdropPressBehavior?: BackdropPressBehavior;
 }
 
-const BottomBackdrop = ({ props }: Props) => {
-  const [backdropPressBehavior] = useState<BackdropPressBehavior>('close');
+const BottomBackdrop = ({ props, backdropPressBehavior = 'close' }: Props) => {
   return (
     <BottomSheetBackdrop
       pressBehavior={backdropPressBehavior}
