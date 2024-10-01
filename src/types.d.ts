@@ -247,6 +247,7 @@ interface BottomSheetProps {
   keyboardBlurBehavior: 'none' | 'restore' | undefined;
   handleComponent: React.FC<BottomSheetHandleProps>;
   props: Partial<GorhomBottomSheetProps>;
+  wrapperStyle: StyleProp<ViewStyle>;
   onIndexChanged?: (index: number) => void;
   onCloseBottomSheet?: () => void;
 }

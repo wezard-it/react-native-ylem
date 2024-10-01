@@ -45,6 +45,7 @@ const BottomSheet = (
     backgroundStyle,
     keyboardBehavior = 'fillParent',
     keyboardBlurBehavior = 'restore',
+    wrapperStyle,
     onCloseBottomSheet = noop,
     onIndexChanged = noop,
     props,
@@ -138,7 +139,7 @@ const BottomSheet = (
     return (
       <>
         {isIOSDevice || (isAndroidDevice && contentVisible) ? (
-          <View style={Style.wrapper}>
+          <View style={[Style.wrapper, wrapperStyle]}>
             {header || null}
             {children}
             {footer || null}
@@ -146,7 +147,15 @@ const BottomSheet = (
         ) : null}
       </>
     );
-  }, [children, contentVisible, footer, header, isAndroidDevice, isIOSDevice]);
+  }, [
+    children,
+    contentVisible,
+    footer,
+    header,
+    isAndroidDevice,
+    isIOSDevice,
+    wrapperStyle,
+  ]);
 
   const renderBackdrop = React.useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {

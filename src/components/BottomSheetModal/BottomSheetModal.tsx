@@ -38,6 +38,7 @@ const BottomSheetModal = (
     backgroundStyle,
     keyboardBehavior = 'fillParent',
     keyboardBlurBehavior = 'restore',
+    wrapperStyle,
     onCloseBottomSheet = noop,
     onIndexChanged = noop,
     props,
@@ -84,13 +85,13 @@ const BottomSheetModal = (
   // Render components
   const bottomSheetContent: JSX.Element | null = React.useMemo(() => {
     return (
-      <View style={Style.wrapper}>
+      <View style={[Style.wrapper, wrapperStyle]}>
         {header || null}
         {children}
         {footer || null}
       </View>
     );
-  }, [children, footer, header]);
+  }, [children, footer, header, wrapperStyle]);
 
   const renderBackdrop = React.useCallback(
     (backgroundProps: BottomSheetDefaultBackdropProps) => {
