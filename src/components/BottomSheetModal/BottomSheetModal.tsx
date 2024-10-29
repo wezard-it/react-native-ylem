@@ -38,7 +38,10 @@ const BottomSheetModal = (
     backgroundStyle,
     keyboardBehavior = 'fillParent',
     keyboardBlurBehavior = 'restore',
+    style,
     wrapperStyle,
+    detached = false,
+    bottomInset = 0,
     onCloseBottomSheet = noop,
     onIndexChanged = noop,
     props,
@@ -128,6 +131,9 @@ const BottomSheetModal = (
       enablePanDownToClose
       keyboardBehavior={isIOSDevice ? keyboardBehavior : 'extend'}
       keyboardBlurBehavior={keyboardBlurBehavior}
+      style={style}
+      detached={detached}
+      bottomInset={bottomInset}
       backdropComponent={renderBackdrop}
       onChange={_onChange}
       {...props}
