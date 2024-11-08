@@ -17,40 +17,40 @@ const Text = ({
 }: React.PropsWithChildren<Partial<Props>>) => {
   const customStyle: StyleProp<TextStyle> = useMemo(() => {
     if (extendedStyle) {
-      return [extendedStyle, { fontFamily }];
+      return extendedStyle;
     } else {
       switch (type) {
         case 'h1':
-          return [Style.h1, { fontFamily }];
+          return Style.h1;
         case 'h2':
-          return [Style.h2, { fontFamily }];
+          return Style.h2;
         case 'h3':
-          return [Style.h3, { fontFamily }];
+          return Style.h3;
         case 'h4':
-          return [Style.h4, { fontFamily }];
+          return Style.h4;
         case 'title-sm':
-          return [Style.titleSm, { fontFamily }];
+          return Style.titleSm;
         case 'title-md':
-          return [Style.titleMd, { fontFamily }];
+          return Style.titleMd;
         case 'title-lg':
-          return [Style.titleLg, { fontFamily }];
+          return Style.titleLg;
         case 'title-bold':
-          return [Style.titleBold, { fontFamily }];
+          return Style.titleBold;
         case 'p-sm':
-          return [Style.pSm, { fontFamily }];
+          return Style.pSm;
         case 'p-md':
-          return [Style.pMd, { fontFamily }];
+          return Style.pMd;
         case 'p-lg':
-          return [Style.pLg, { fontFamily }];
+          return Style.pLg;
         case 'link-sm':
-          return [Style.linkSm, { fontFamily }];
+          return Style.linkSm;
         case 'link-md':
-          return [Style.linkMd, { fontFamily }];
+          return Style.linkMd;
         case 'link-lg':
-          return [Style.linkLg, { fontFamily }];
+          return Style.linkLg;
       }
     }
-  }, [type, extendedStyle, fontFamily]);
+  }, [type, extendedStyle]);
 
   const textDecorationLine: TextDecorationLine = useMemo(() => {
     if (textDecoration) return textDecoration;
@@ -59,7 +59,7 @@ const Text = ({
 
   return (
     <RNText
-      style={[style, { color, textDecorationLine }, customStyle]}
+      style={[customStyle, style, { color, textDecorationLine, fontFamily }]}
       {...rest}
     >
       {children}
