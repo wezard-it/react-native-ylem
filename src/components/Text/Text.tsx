@@ -59,7 +59,7 @@ const Text = ({
 
   return (
     <RNText
-      style={[customStyle, style, { color, textDecorationLine }]}
+      style={[style, { color, textDecorationLine }, customStyle]}
       {...rest}
     >
       {children}
